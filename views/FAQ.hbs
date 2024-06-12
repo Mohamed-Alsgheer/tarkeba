@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en-ar">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta property="og:title" content="Tarkeba perfume">
+        <meta property="og:description" content="get the best Tarkeba's of the best perfumes, we can make a custom perfume for you.">
+        <meta property="og:image" content="tarkeba-img/iconSocail.jpg">
+        <meta property="og:image:width" content="1200">
+        <meta property="og:image:height" content="600">
+        <meta property="og:type" content="website">
+        <title id="title">Tarkeba perfume | FAQ</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="icon" href="/images/icon2.png">
+        <link rel="stylesheet" href="/stylesheets/tarkeba.css">
+        <link rel="stylesheet" href="/stylesheets/products.css">
+        <link rel="stylesheet" href="/stylesheets/Q&A.css">
+        <link rel="stylesheet" href="/stylesheets/style-language.css">
+    </head>
+    <body>
+        <!--header-->
+        {{> header1}}
+        <!--body page-->
+        <div class="body-container">
+            <div class="title">
+                <p class="name-title" id="questionsTitle">Frequently Asked Questions</p>
+            </div>
+            <div class="divQA">
+                <ul class="Questions">
+                    {{#each questions}}        
+                    <li id="ques1">{{this.question}}</li>
+                    <p id="ans1">{{this.answer}}</p>
+                    {{/each}}
+                    
+                </ul>
+            </div>
+        </div>
+        <!--footer-->
+        {{> footer}}
+        <!--JavaScript-->
+        <script src="javascripts/products.js"></script>
+        <script src="javascripts/translate.js"></script>
+    </body>
+</html>

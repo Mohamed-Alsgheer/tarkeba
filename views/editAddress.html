@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta property="og:title" content="Tarkeba perfume">
+        <meta property="og:description" content="get the best Tarkeba's of the best perfumes, we can make a custom perfume for you.">
+        <meta property="og:image" content="tarkeba-img/iconSocail.jpg">
+        <meta property="og:image:width" content="1200">
+        <meta property="og:image:height" content="600">
+        <meta property="og:type" content="website">
+        <title>Tarkeba perfume | Edit address</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="icon" href="tarkeba-img/icon2.png">
+        <link rel="stylesheet" href="tarkeba-css/tarkeba.css">
+        <link rel="stylesheet" href="tarkeba-css/products.css">
+        <link rel="stylesheet" href="tarkeba-css/profile.css">
+    </head>
+    <body>
+        <!--header-->
+        <div class="header2">
+            <div class="container">
+                <div class="navbar">
+                    <div>
+                        <a href="tarkeba.html"><img src="tarkeba-img/icon8.png" alt="logo" class="logo"></a>
+                    </div>
+                    <nav>
+                        <ul id="menuitems">
+                            <li id="li-home"><a href="tarkeba.html" id="home">Home</a></li>
+                            <hr class="hr" style="display: none;">
+                            <li><a href="Q&A.html">Q&A</a></li>
+                            <hr class="hr" style="display: none;">
+                            <li style="color: #ffffff;" id="ar"><a href="#" onclick="refresh()">Arabic</a></li>
+                            <li style="color: #ffffff;" id="en"><a href="#" onclick="refresh()">English</a></li>
+                            <hr class="hr" style="display: none;">
+                            <li id="links"><a href="account.html">Account</a></li>
+                            <li id="user-info" style="justify-content: space-around"><a href="profile.html" id="user"></a></li>
+                            <li id="logout2"><a href="#" id="logout">Logout</a></li>
+                        </ul>
+                    </nav>
+                    <img src="tarkeba-img/shopping-bags.png" alt="shopping cart" style="padding-top: 0px; width: 30px; height: 30px; margin-left: 0px; margin-right: 5px;" class="shopping" onclick="openMenuProducts()">
+                    <span class="icon">0</span>
+                    <img id="closeX" src="tarkeba-img/imgProfile/pluss2.png" style="width: 30px; height: 30px; display: none;" onclick="menuClose()">
+                    <img src="tarkeba-img/menu.png" alt="menu" class="menu-icon" id="menu-icon-open" onclick="menutoggle()">
+                    <div class="menu-cart-products">
+                        <div class="menu-productsss">
+                        </div>
+                        <div class="No_products">
+                            <p class="nooProducts" style="text-align: center; margin-top: 5px; font-size: 15px; margin-bottom: 5px;">there's no product</p>
+                            <hr>
+                        </div>
+                        <p style="margin-top: 10px; display: none;" class="total-products">total:</p>
+                        <strong><p id="total-mony"></p></strong>
+                        <a href="cart.html" class="btn" style="font-size: 14px; width: 100%; text-align: center; margin-bottom: 15px; margin-top: 15px;">view all products</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="body-html">
+            
+        </div>
+        <footer style="margin-top: 600px;">
+            <div class="foot1" style="align-items: center;">
+                <img src="tarkeba-img/icon23.png" alt="" style="width: 120px; height: 100px;">
+                <p style="text-align: center; margin-top: 5px;">All fragrances shown are tarkebas</p>
+                <p style="text-align: center;">perfumes, not original.</p>
+            </div>
+            <div class="foot2">
+                <h3>Useful Links</h3>
+                <p><a onclick="checkAccount()">Your Account</a></p>
+                <p><a href="Q&A.html">Help</a></p>
+                <p><a href="create product.html">Create Product</a></p>
+            </div>
+            <div class="foot3">
+                <h3>Contact</h3>
+                <address>
+                    <a style="display: flex;"><img src="tarkeba-img/footer-img/home.png" style="width: 25px;"><p class="pFooter">Giza, Imbaba, Saft El Laban</p></a>
+                    <a style="display: flex;"><img src="tarkeba-img/footer-img/mail.png" style="width: 25px;"><p class="pFooter">abdullahYasser2004@gmail.com</p></a>
+                    <a href="tel:01150110235" style="display: flex;"><img src="tarkeba-img/footer-img/phone-call.png" style="width: 25px;"><p class="pFooter">0115 011 0235</p></a>
+                </address>
+            </div>
+            <div class="foot4">
+                <h3>Social Media</h3>
+                <a href="#" target="_blank"><img src="tarkeba-img/footer-img/facebook.png" style="width: 25px;"><p class="pFooter">Facebook</p></a>
+                <a href="#" target="_blank"><img src="tarkeba-img/footer-img/instagram.png" style="width: 25px;"><p class="pFooter">Instagram</p></a>
+                <a href="#" target="_blank"><img src="tarkeba-img/footer-img/twitter.png" style="width: 25px;"><p class="pFooter">Tiwtter</p></a>
+            </div>
+        </footer>
+        <script>
+            //user name function//
+            let userInfoo = document.querySelector('#links');
+            let userDoom = document.querySelector('#user');
+            let userInfoo2 = document.querySelector('#user-info');
+            let logOut = document.querySelector('#logout2');
+            if(localStorage.getItem("username")) {
+                userDoom.style.display = "block";
+                userDoom.innerHTML = localStorage.getItem("username");
+                userInfoo.style.display = "none";
+                userInfoo2.style.display = "block";
+                logOut.style.display = "block";
+            }
+            function accountPage() {
+                if(localStorage.getItem("username")) {
+                    window.location = "profile.html";
+                    console.log("you have account");
+                } else {
+                    window.location = "account.html"
+                    console.log("create account");
+                }
+            }
+
+            let dataAddress = localStorage.getItem("address");
+            if(dataAddress) {
+                if(dataAddress.length == 0) {
+                    localStorage.removeItem("address");
+                }
+            }
+        </script>
+        <script>
+            /////LogOut/////
+            let LogOutBtn = document.getElementById("logout");
+    
+            LogOutBtn.addEventListener('click', function(o) {
+                o.preventDefault();
+                localStorage.removeItem("username");
+                localStorage.removeItem("address");
+                localStorage.removeItem("email");
+                localStorage.removeItem("password");
+                localStorage.removeItem("cartNumbers");
+                localStorage.removeItem("productsInCart");
+                localStorage.removeItem("totalCost");
+                setTimeout(() => {
+                    window.location = "tarkeba.html";
+                }, 1500);
+            })
+        </script>
+        <script src="tarkeba-js/editAddress.js"></script>
+        <script src="tarkeba-js/products.js"></script>
+    </body>
+</html>

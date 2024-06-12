@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Tarkeba perfume">
+    <meta property="og:description"
+        content="get the best Tarkeba's of the best perfumes, we can make a custom perfume for you.">
+    <meta property="og:image" content="tarkeba-img/iconSocail.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="600">
+    <meta property="og:type" content="website">
+    <title>Tarkeba perfume | select address</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="/images/icon2.png">
+    <link rel="stylesheet" href="/stylesheets/tarkeba.css">
+    <link rel="stylesheet" href="/stylesheets/products.css">
+    <link rel="stylesheet" href="/stylesheets/profile.css">
+    <link rel="stylesheet" href="/stylesheets/cart.css">
+    <link rel="stylesheet" href="/stylesheets/chooseAddress.css">
+    <link rel="stylesheet" href="/stylesheets/style-language.css">
+</head>
+
+<body>
+    <!--header-->
+    {{> header1}}
+    <div class="addresses-box body-container">
+        <form action="selectAddress" method="POST">
+            <div class="form-div">
+                {{#each address as |val index|}}
+                <div class="address-div">
+                    <input type="radio" name="addressID" value="{{this._id}}" id="{{add @index}}" class="hidebx">
+                    <label for="{{add @index}}" class="adress-label">
+                        <div class="address-box">
+                            <div class="header-box">
+                                <h4>address {{add @index}}</h4>
+                            </div>
+                            <div class="address-info">
+                                <div style="display: flex; flex-direction:column; justify-content: space-between;">
+                                    <div>
+                                        <p>name:</p>
+                                    </div>
+                                    <div>
+                                        <p>address:</p>
+                                    </div>
+                                    <div>
+                                        <p>phone:</p>
+                                    </div>
+                                </div>
+                                <div style="display: flex; flex-direction:column; justify-content: space-between;">
+                                    <div>
+                                        <p>{{this.name}}</p>
+                                    </div>
+                                    <div>
+                                        <p style="width: 200px; margin: 0 5px 0 5px">{{this.street}} - {{this.county}} - {{this.city}}</p>
+                                    </div>
+                                    <div>
+                                        <p>+20{{this.phone}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                </div>
+                {{/each}}
+                <a class="add-address" href="/addAddress" style="color: black;">
+                    <div>
+                        <p>new address +</p>
+                    </div>
+                </a>
+            </div>
+            <input type="submit" class="submit-address btn" value="Continue" id="submitID">
+        </form>
+    </div>
+    <!--footer-->
+    {{> footer}}
+    <script>
+        {{#if selectError}}
+        alert('{{selectError}}');
+        {{/if}}
+    </script>
+</body>

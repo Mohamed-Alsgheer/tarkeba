@@ -1,0 +1,85 @@
+<div class="header2">
+    <div class="container">
+        <div class="navbar">
+            <div>
+                <a href="/"><img src="/images/icon8.png" alt="logo" class="logo"></a>
+            </div>
+            <nav>
+                <ul id="menuitems">
+                    <li id="li-home"><a href="/" id="home">Home</a></li>
+                    <hr class="hr" style="display: none;">
+                    <li><a href="/about">About</a></li>
+                    <hr class="hr" style="display: none;">
+                    <li><a href="/Questions">FAQ</a></li>
+                    <hr class="hr" style="display: none;">
+                    {{#if checkUser}}
+                    {{#if isAdmin}}
+                    <li><a href="/admin">Dashboard</a></li>
+                    {{/if}}
+                    <li><a href="/users/profile">Profile</a></li>
+                    <li><a href="/users/logout">Logout</a></li>
+                    {{else}}
+                    <li><a href="/users/account">Account</a></li>
+                    {{/if}}
+                </ul>
+            </nav>
+            <form action="/categories/search" id="searchBar">
+                <input type="text" placeholder="What are you looking for" id="inputSearch" style="padding: 0px;"
+                    name="search_query">
+            </form>
+            <img src="/images/loupe.png" alt="search" id="searchIcon">
+            <img src="/images/shopping-cart.png" alt="shopping cart"
+                style="padding-top: 0px; width: 25px; height: 25px; margin: 0px;" class="shopping"
+                onclick="openMenuProducts()"> <!--/images/shopping-bags.png-->
+            {{#if cart}}
+            <span class="icon">{{cart.totalQuantity}}</span>
+            {{else}}
+            <span class="icon">0</span>
+            {{/if}}
+            <img src="/images/menu.png" alt="menu" class="menu-icon" id="menu-icon-open" onclick="menutoggle()">
+            <div class="menu-cart-products">
+                {{#if cart}}
+                {{#each cart.selectedProduct as | val index |}}
+                <div class="menu-productsss">
+                    <div class="product-in-menu">
+                        <form method="POST">
+                            <input type="image" src="/images/blackX.png" alt="delete" id="delete-product" class="cancel"
+                                formaction="/deleteProduct/{{index}}">
+                        </form>
+                        <div class="ay7aga">
+                            <div>
+                                <img src="{{this.img}}" alt="{{this.name}}" style="cursor: pointer;">
+                            </div>
+                            <div style="display: flex; flex-direction: column; justify-content: center;">
+                                <p style="text-align: left; cursor: pointer; font-weight: bold; white-space: nowrap;"
+                                    onclick='saveItemData(${productDetails.id})'>{{this.name}}</p>
+                                {{#if this.link}}
+                                <p style="text-align: left;">{{this.link}}</p>
+                                {{else}}
+
+                                {{/if}}
+                                <p style="text-align: left;">{{this.total}} x {{this.quantity}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+                <div style="display: flex; justify-content: space-between; margin-top: 10px;">
+                    <p id="total-products">Total:</p>
+                    <p id="total-mony">{{cart.totalPrice}}.00 EGP</p>
+                </div>
+                <a href="/cart" class="btn"
+                    style="font-size: 14px; width: 100%; text-align: center; margin: 15px 0px 5px; border-radius: 4px;">View
+                    Cart</a>
+                {{else}}
+                <div class="No_products">
+                    <p class="nooProducts"
+                        style="text-align: center; margin-top: 5px; font-size: 15px; margin-bottom: 5px;">there's no
+                        products</p>
+                    <hr>
+                </div>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</div>

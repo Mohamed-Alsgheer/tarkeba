@@ -1,0 +1,41 @@
+.name-title {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.divQA {
+    margin-left: 20%;
+    margin-top: 50px;
+    margin-bottom: 150px;
+}
+
+.Questions {
+    list-style: inside;
+}
+
+.Questions li {
+    color: #007EC8;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.Questions li::marker {
+    margin: 5px;
+}
+
+.Questions p {
+    color: #1E1926;
+    margin-bottom: 5px;
+}
+
+/*-------media query for less than 600 screen size-------*/
+
+@media only screen and (max-width: 600px) {
+    .divQA {
+        width: 90%;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+}

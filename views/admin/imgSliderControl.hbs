@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Tarkeba perfume">
+    <meta property="og:description"
+        content="get the best Tarkeba's of the best perfumes, we can make a custom perfume for you.">
+    <meta property="og:image" content="tarkeba-img/iconSocail.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="600">
+    <meta property="og:type" content="website">
+    <title>Tarkeba perfume | Slider</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="/images/icon2.png">
+    <link rel="stylesheet" href="/stylesheets/tarkeba.css">
+    <link rel="stylesheet" href="/stylesheets/products.css">
+    <link rel="stylesheet" href="/stylesheets/dashboard.css">
+    <link rel="stylesheet" href="/stylesheets/product.css">
+    <link rel="stylesheet" href="/stylesheets/orders.css">
+    <link rel="stylesheet" href="/stylesheets/imgSliderManagement.css">
+    <link rel="stylesheet" href="/stylesheets/style-language.css">
+</head>
+
+<body>
+    <div id="cartBody">
+        <div style="display: flex; justify-content: flex-start;">
+            <!--side bar-->
+            {{> sidebar}}
+            <!--header-->
+            {{> header2}}
+            <!--page body-->
+            <div class="dashboard-body">
+                <div class="order-list" style="margin-bottom: 50px;">
+                    <form action="/admin/saveImgSlider" method="POST" id="formType" enctype="multipart/form-data"
+                        style="display: block; width: 95%;">
+                        <div class="page-title" style="padding-left: 20px;">
+                            <p>Images Slider Management</p>
+                        </div>
+                        <div id="page-body">
+                            <div>
+                                <div class="img-box" id="img-container" style="position: relative;">
+                                    <div>
+                                        <img src="/images/admin-img/gallery.png" style="width: 80px;">
+                                        <p style="color: #6c757d; padding 10px 0px;">1220 * 686</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex-box" style="justify-content: space-between;">
+                                        <h3>Settings</h3>
+                                        <div style="display: flex;">
+                                            <button class="btn btn-style" id="edit-btn">Edit</button>
+                                            <button class="btn btn-style" id="cancel-btn">Cancel</button>
+                                            <input type="submit" value="Delete" class="btn btn-style" id="delete-btn"
+                                                formaction="/admin/deleteImgSlider">
+                                            <input type="submit" value="Save" class="btn btn-style" id="save-btn">
+                                        </div>
+                                    </div>
+                                    <div class="flex-box">
+                                        <b class="disable">Object-fit: </b>
+                                        <select name="objectFit" id="objectFit" style="width: 100px; margin: 0px 15px;"
+                                            disabled>
+                                            <option value="contain">contain</option>
+                                            <option value="cover">cover</option>
+                                            <option value="fill">fill</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <b class="disable">Order</b>
+                                        <input type="number" name="order" disabled>
+                                    </div>
+                                    <div>
+                                        <b class="disable">Link</b>
+                                        <div style="display: flex; white-space: nowrap;">
+                                            <div class="flex-box" style="padding-right: 15px;">
+                                                <input type="radio" name="linkStatus" value="onImg" disabled>
+                                                <label for="" class="disable">On image</label>
+                                            </div>
+                                            <div class="flex-box" style="padding: 0px 15px;">
+                                                <input type="radio" name="linkStatus" value="button" disabled>
+                                                <label for="" class="disable">Button</label>
+                                            </div>
+                                            <div class="flex-box" style="padding: 0px 15px;">
+                                                <input type="radio" name="linkStatus" value="none" checked disabled>
+                                                <label for="" class="disable">None</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="url">
+                                        <b class="disable">URL</b>
+                                        <input type="url" name="link" placeholder="https://example.com" disabled>
+                                    </div>
+                                    <div id="btnValue">
+                                        <b class="disable">Button value</b>
+                                        <input type="text" name="btnValue" placeholder="text inside the button"
+                                            disabled>
+                                    </div>
+                                    <div id="colors">
+                                        <div class="color-div">
+                                            <b class="disable" id="fontColor">Font color:</b>
+                                            <div>
+                                                <div class="color-container">
+                                                    <input type="color" name="fontColor" value="#ffffff" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="color-div" style="justify-content: flex-end;">
+                                            <b class="disable" id="btnColor">Button color:</b>
+                                            <div style="width: 65%;">
+                                                <div class="color-container">
+                                                    <input type="color" name="btnColor" value="#4028df" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="coordinates" class="flex-box"
+                                        style="justify-content: space-between; margin: 0px;">
+                                        <div class="flex-box" id="x-input">
+                                            <b class="disable">X :</b>
+                                            <input type="number" name="x" value="50" class="location" id="x" min="0"
+                                                max="100" disabled>
+                                        </div>
+                                        <div class="flex-box" id="y-input">
+                                            <b class="disable">Y :</b>
+                                            <input type="number" name="y" value="50" class="location" id="y" min="0"
+                                                max="100" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="images">
+                                <input type="file" name="uploadImg" id="uploadImg" accept="image/*" hidden>
+                                <label for="uploadImg" style="padding: 0px;">
+                                    <div class="img-box" style="flex-direction: row; height: 183px;">
+                                        <img src="/images/admin-img/add-image.png"
+                                            style="width: 20px; margin: 0px; height: auto; box-shadow: none;">
+                                        <p style="margin: 0px 10px;">Add new image</p>
+                                    </div>
+                                </label>
+                                {{#each slides as | val index |}}
+                                <input type="radio" name="slide" id="{{val._id}}" value="{{val._id}}"
+                                    order="{{val.order}}" url="{{val.img.url}}" object="{{val.objectFit}}"
+                                    linkStatus="{{val.linkStatus}}" link="{{val.link}}" btnVal="{{val.btnValue}}"
+                                    btnColor="{{val.btnColor}}" fontColor="{{val.fontColor}}" x="{{val.coordinates.x}}"
+                                    y="{{val.coordinates.y}}">
+                                <label for="{{val._id}}">
+                                    <img src="{{val.img.url}}">
+                                </label>
+                                {{/each}}
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--javaScripts-->
+    <script src="/javascripts/sidebar.js"></script>
+    <script src="/javascripts/imgSliderManagement.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+.state-div {
+    display: flex; 
+    padding: 10px;
+    border: 1px solid black; 
+    border-radius: 5px; 
+    margin: 10px 15px;
+    cursor: pointer;
+}
+
+.state-div.active {
+    background: #E4ABFF;
+}
+
+.state-div.active:hover {
+    background: #E4ABFF;
+}
+
+.state-div:hover {
+    background: #F9EBFF;
+}
+
+@media only screen and (max-width: 750px) {
+    #shipping-title {
+        font-size: 19px;
+    }
+
+    .state-div {
+        margin: 10px 5px;
+    }
+}

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Tarkeba perfume">
+    <meta property="og:description"
+        content="get the best Tarkeba's of the best perfumes, we can make a custom perfume for you.">
+    <meta property="og:image" content="tarkeba-img/iconSocail.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="600">
+    <meta property="og:type" content="website">
+    <title>Tarkeba perfume | Category</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="/images/icon2.png">
+    <link rel="stylesheet" href="/stylesheets/tarkeba.css">
+    <link rel="stylesheet" href="/stylesheets/products.css">
+    <link rel="stylesheet" href="/stylesheets/category.css">
+    <link rel="stylesheet" href="/stylesheets/dashboard.css">
+    <link rel="stylesheet" href="/stylesheets/orderDetails.css">
+    <link rel="stylesheet" href="/stylesheets/userDetails.css">
+    <link rel="stylesheet" href="/stylesheets/orders.css">
+    <link rel="stylesheet" href="/stylesheets/style-language.css">
+</head>
+
+<body>
+    <div id="cartBody">
+        <div style="display: flex; justify-content: flex-start;">
+            <!--side bar-->
+            {{> sidebar}}
+            <!--header-->
+            {{> header2}}
+            <!--page body-->
+            <div class="dashboard-body">
+                <div class="order-list" style="margin-bottom: 50px;">
+                    <form action="/admin/users/updateUser/{{user._id}}" method="POST"
+                        style="width: 80%; display: flex; flex-direction: column;">
+                        <div class="page-title"
+                            style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                            <p>{{user.username}}</p>
+                            {{#if showRole}}
+                            <input type="submit" value="Update" class="btn"
+                                style="border-radius: 4px; border: 0px; font-weight: bold; margin: 0px;"
+                                id="createProduct">
+                            {{/if}}
+                        </div>
+                        <div class="user-body">
+                            <div>
+                                <div class="details-div">
+                                    <div
+                                        style="display: flex; flex-direction: column; align-items: center; gap: 15px; border-bottom: 1px solid #ccc;">
+                                        <img src="/images/user1.png" alt="user" style="width: 100px; margin-top: 10px;">
+                                        <div
+                                            style="display: flex; flex-direction: column; align-items: center; gap: 15px;">
+                                            <p style="font-weight: bold;">{{user.username}}</p>
+                                            <a href="mailto:{{user.email}}" id="email">{{user.email}}</a>
+                                            <p style="font-size: 13px;">{{user.phone}}</p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        {{#if showRole}}
+                                        <div style="margin-top: 20px;">
+                                            <p style="font-weight: bold; font-size: 14px;">Staff Role</p>
+                                            <input list="staffRoles" name="role" value="{{user.role}}"
+                                                style="padding: 5px; border-radius: 3px; margin-top: 5px; width: 100%; border: 1px solid #555; font-size: 13px;"
+                                                required>
+                                            <datalist id="staffRoles">
+                                                <option value="Admin">
+                                            </datalist>
+                                        </div>
+                                        {{/if}}
+                                        <div style="margin-top: 20px;">
+                                            <p style="font-weight: bold; font-size: 14px;">Last Order</p>
+                                            {{#if userOrders}}
+                                            <p id="lastOrder" style="margin-top: 3px; font-size: 13px; color: #555;">
+                                                {{userOrders.[0].createdAt}}</p>
+                                            <p id="invoice" style="display: none;">{{userOrders.[0].invoice}}11020
+                                            </p>
+                                            <p id="orderID" style="display: none;">{{lastOrder.[0]._id}}</p>
+                                            {{else}}
+                                            <p style="font-size: 13px; color: #555; margin-top: 3px;">He hasn't ordered
+                                                yet.</p>
+                                            {{/if}}
+                                        </div>
+                                        <div style="margin-top: 20px;">
+                                            <p style="font-weight: bold; font-size: 14px;">Average Order Value</p>
+                                            <p style="margin-top: 3px; font-size: 13px; color: #555;">
+                                                {{avgOrderValue}}.00 EGP</p>
+                                        </div>
+                                        <div style="margin-top: 20px;">
+                                            <p style="font-weight: bold; font-size: 14px;">Registered</p>
+                                            <p id="registerDate" style="margin-top: 3px; font-size: 13px; color: #555;">
+                                                {{user.createdAt}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="details-div">
+                                    <div
+                                        style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 25px;">
+                                        <h3>Orders</h3>
+                                        <p style="font-size: 14px; color: #555;">Total spent {{ordersValue}}.00 EGP
+                                            on
+                                            {{numOfOrders}} orders</p>
+                                    </div>
+                                    {{#if userOrders}}
+                                    <div class="ordersTable">
+                                        {{#each userOrders}}
+                                        <a href="/admin/order/{{this._id}}"
+                                            class="ordersInvoices">#{{this.invoice}}11023</a>
+                                        <div class="orderDate">{{this.createdAt}}</div>
+                                        <div>{{this.status}}</div>
+                                        <div>{{this.cart.totalQuantity}}</div>
+                                        <div>{{this.orderPrice}} EGP</div>
+                                        {{/each}}
+                                    </div>
+                                    {{else}}
+                                    <p style="color: #555; text-align: center;">There are no orders.</p>
+                                    {{/if}}
+                                </div>
+                                <div class="details-div">
+                                    <h3 style="margin-bottom: 15px;">Addresses</h3>
+                                    <div>
+                                        {{#if userAddresses}}
+                                        {{#each userAddresses}}
+                                        <div style="padding: 15px 0px; border-top: 1px solid #ccc;">
+                                            <p style="font-size: 15px;">{{this.name}}</p>
+                                            <p style="font-size: 14px; color: #555; margin-top: 5px;">
+                                                {{this.street}} -
+                                                {{this.county}} - {{this.city}}</p>
+                                        </div>
+                                        {{/each}}
+                                        {{else}}
+                                        <p style="color: #555; text-align: center;">There are no addresses.</p>
+                                        {{/if}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--javaScripts-->
+    <script src="/javascripts/sidebar.js"></script>
+    <script>
+        const registerDate = new Date(document.querySelector("#registerDate").textContent);
+        console.log(document.querySelector("#registerDate").textContent);
+        const today = new Date();
+        let timeDiff = Math.abs(today - registerDate);
+        console.log(timeDiff);
+        let diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+        document.querySelector("#registerDate").innerHTML = `${diffDays} days ago`;
+
+        const lastOrder = new Date(document.querySelector('#lastOrder').textContent);
+        timeDiff = Math.abs(today - lastOrder);
+        diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+        const invoice = document.querySelector('#invoice').textContent;
+        const orderID = document.querySelector('#orderID').textContent;
+        document.querySelector('#lastOrder').innerHTML = `${diffDays} days ago - <a href="/admin/order/${orderID}" id="orderID">#${invoice}</a>`;
+    </script>
+    <script>
+        const options = { month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true };
+        const orderDate = document.querySelectorAll('.orderDate');
+        orderDate.forEach((date) => {
+            date.innerHTML = new Date(date.textContent).toLocaleDateString("en-us", options)
+        })
+    </script>
+</body>
+
+</html>

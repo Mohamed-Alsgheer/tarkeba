@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en-ar">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta property="og:title" content="Tarkeba perfume">
+        <meta property="og:description" content="get the best Tarkeba's of the best perfumes, we can make a custom perfume for you.">
+        <meta property="og:image" content="tarkeba-img/iconSocail.jpg">
+        <meta property="og:image:width" content="1200">
+        <meta property="og:image:height" content="600">
+        <meta property="og:type" content="website">
+        <title id="title">Tarkeba perfume | FAQ</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="icon" href="/images/icon2.png">
+        <link rel="stylesheet" href="/stylesheets/tarkeba.css">
+        <link rel="stylesheet" href="/stylesheets/products.css">
+        <link rel="stylesheet" href="/stylesheets/product.css">
+        <link rel="stylesheet" href="/stylesheets/dashboard.css">
+        <link rel="stylesheet" href="/stylesheets/reviews.css">
+        <link rel="stylesheet" href="/stylesheets/Q&A.css">
+        <link rel="stylesheet" href="/stylesheets/style-language.css">
+    </head>
+    <body>
+        <!--side bar-->
+        {{> sidebar}}
+        <!--header-->
+        {{> header2}}
+        <!--page body-->
+        <div class="dashboard-body" style="width: auto;">
+            <div class="title" style="margin-bottom: 25px;">
+                <p class="name-title" id="questionsTitle">Frequently Asked Questions</p>
+            </div>
+            <div style="padding: 25px;">
+                <div>
+                    <form action="" style="display: flex; flex-direction: column; align-items: flex-end">
+                        <input type="text" name="question" placeholder="Make new question here" required>
+                        <textarea name="answer" placeholder="The answer..." style="padding: 10px; min-width: 100%; max-width: 100%; height: 100px;" required></textarea>
+                        <div style="display: flex;">
+                            <input type="submit" class="btn" id="submitQues" style="border: 0px; width: 125px;">
+                            <button class="btn" style="border: 0px; width: 125px; display: none;" id="cancelUpdate">Cancel</button>
+                            <input type="submit" value="Update" class="btn" id="updateQues" style="border: 0px; width: 125px; margin: 30px 10px; display: none;">
+                        </div>
+                    </form>
+                </div>
+                <ul class="Questions">
+                    {{#each questions}}
+                    <div class="questionDiv">
+                        <div class="action-btns">
+                            <!--edit-->
+                            <img src="/images/admin-img/edit.png" class="edit-ques">
+                            <!--delete-->
+                            <img src="/images/admin-img/delete.png" class="delete-ques">
+                        </div>
+                        <li style="margin: 10px 0px 15px 0px;">{{this.question}}</li>
+                        <p>{{this.answer}}</p>
+                        <div class="confirm-div" style="margin-top: 10px;">
+                            <p class="reviewerRate" style="color: #c40000;">Review flagged for deletion.</p>
+                            <div>
+                                <button class="cancel-btn btn">Cancel</button>
+                                <button class="btn delete-btn">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                    
+                </ul>
+            </div>
+        </div>
+        <!--JavaScript-->
+        <script src="/javascripts/sidebar.js"></script>
+        <script src="/javascripts/editQuestions.js"></script>
+    </body>
+</html>

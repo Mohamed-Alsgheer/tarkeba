@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en-ar">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta property="og:title" content="Tarkeba perfume">
+        <meta property="og:description" content="get the best Tarkeba's of the best perfumes, we can make a custom perfume for you.">
+        <meta property="og:image" content="tarkeba-img/iconSocail.jpg">
+        <meta property="og:image:width" content="1200">
+        <meta property="og:image:height" content="600">
+        <meta property="og:type" content="website">
+        <title id="title">Tarkeba perfume | Feedback</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="icon" href="/images/icon2.png">
+        <link rel="stylesheet" href="/stylesheets/tarkeba.css">
+        <link rel="stylesheet" href="/stylesheets/products.css">
+        <link rel="stylesheet" href="/stylesheets/feedback.css">
+        <link rel="stylesheet" href="/stylesheets/style-language.css">
+    </head>
+    <body>
+        <!--header-->
+        {{> header1}}
+        <!--body page-->
+        <div class="body-container">
+            <div class="title">
+                <h1>Feedback</h1>
+            </div>
+            <div style="display: flex; justify-content: center; margin: 50px 0px 160px 0px;">
+                <form action="/sendFeedback" method="POST" style="width: 50%;">
+                    <p style="font-size: 14px; color: #6c757d; padding-bottom: 15px;">We value your feedback and invite you to leave a review about your experience. Your opinion helps us improve our service and provide the best customer experience possible.</p>
+                    <div>
+                        <p>Name:</p>
+                        <input type="text" name="name" placeholder="Full Name" required>
+                    </div>
+                    <div>
+                        <p>Email:</p>
+                        <input type="email" name="email" placeholder="Email Address" required>
+                    </div>
+                    <div>
+                        <p>Message:</p>
+                        <textarea name="feedback" placeholder="Describe your experience..." required></textarea>
+                    </div>
+                    <input type="submit" class="btn" style="border-radius: 5px; border: 0px; width: 100px">
+                </form>
+            </div>
+        </div>
+        <!--footer-->
+        {{> footer}}
+        <!--JavaScript-->
+        <script src="javascripts/products.js"></script>
+        <script src="javascripts/translate.js"></script>
+    </body>
+</html>

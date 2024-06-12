@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Tarkeba perfume">
+    <meta property="og:description"
+        content="get the best Tarkeba's of the best perfumes, we can make a custom perfume for you.">
+    <meta property="og:image" content="tarkeba-img/iconSocail.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="600">
+    <meta property="og:type" content="website">
+    <title>Tarkeba perfume | Cart</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="/images/icon2.png">
+    <link rel="stylesheet" href="/stylesheets/tarkeba.css">
+    <link rel="stylesheet" href="/stylesheets/products.css">
+    <link rel="stylesheet" href="/stylesheets/cart.css">
+    <link rel="stylesheet" href="/stylesheets/profile.css">
+    <link rel="stylesheet" href="/stylesheets/style-language.css">
+</head>
+
+<body>
+    <!--header-->
+    {{> header1}}
+    <div id="cartBody" class="body-container">
+        <div>
+            <!--cart menu-->
+            {{#if userCart}}
+            <div style="display: flex; justify-content: center;">
+                <div class="products-container">
+                    <div class="product-header">
+                        <h5 class="product-title" style="color: #1E1926;">Product</h5>
+                        <h5 class="quantity1" style="color: #1E1926;">Quantity</h5>
+                        <h5 class="total">Total</h5>
+                    </div>
+                    <div class="products">
+
+                        {{#each userCart.selectedProduct as | val index |}}
+                        <div class="product">
+                            <div style="display: flex; width: 33%;">
+                                <a href="/{{val.id}}/{{val.name}}">
+                                    <img src="{{val.img}}" style="margin-left: 10px; border: 1px solid #4A4453">
+                                </a>
+                                <div class="details-div" style="margin-left: 10px;">
+                                    <a href="/{{val.id}}/{{val.name}}" style="color: #000;">
+                                        <p>{{val.name}}</p>
+                                    </a>
+                                    <p>price: {{val.price}} EGP</p>
+                                    <p class="deleteProduct">Remove</p>
+                                    <input type="checkbox" name="deletedProducts" class="removeCheckbox">
+                                </div>
+                            </div>
+                            <div class="quantity">
+                                <div class="qtyContainer">
+                                    <span class="next"></span>
+                                    <div id="boxNumber">
+                                        <span class="productQty" style="display: initial;">{{this.quantity}}</span>
+                                    </div>
+                                    {{#if (checkQty @val.quantity)}}
+                                    <span class="prev disable"></span>
+                                    {{else}}
+                                    <span class="prev"></span>
+                                    {{/if}}
+                                </div>
+                                <input type="number" name="productQty" class="qtyInput" oninput="changeQty({{val.id}})"
+                                    value="{{val.quantity}}" min="1" max="100">
+                                <input type="hidden" name="qtyInStock" value="{{val.stock}}" class="qtyInStock">
+                            </div>
+                            <div style="display: flex; justify-content: center; width: 33%;">
+                                <p style="text-align: center;" id="productPrice">{{val.total}} EGP</p>
+                            </div>
+                        </div>
+                        {{/each}}
+                        <div class="basketTotalContainer">
+                            <div class="print-total style-total">
+                                <h3 id="tttt" style="width: 100px; color: #1E1926;">Total:</h3>
+                                <h3 style="width: auto; color: #1E1926;" id="tttt-cost">{{totalPrice}} EGP
+                                </h3>
+                            </div>
+                            <a href="/selectAddress" class="btn btn-confim" style="border-radius: 3px;">Checkout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{else}}
+        <div class="no-products">
+            <img src="/images/empty.png" class="imgNoProducts" alt="empty cart">
+            <p>your cart is empty.</p>
+            <br>
+            <a href="/" style="color: black;" id="continue-shopping">Back to shopping</a>
+        </div>
+        {{/if}}
+    </div>
+    <!--footer-->
+    {{> footer}}
+    <!--javaScripts-->
+    <script src="/javascripts/cart.js"></script>
+    <script src="/javascripts/products.js"></script>
+</body>
+
+</html>

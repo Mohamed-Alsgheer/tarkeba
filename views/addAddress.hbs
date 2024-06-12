@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Tarkeba perfume">
+    <meta property="og:description"
+        content="get the best Tarkeba's of the best perfumes, we can make a custom perfume for you.">
+    <meta property="og:image" content="tarkeba-img/iconSocail.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="600">
+    <meta property="og:type" content="website">
+    <title>Tarkeba perfume | add new address</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="/images/icon2.png">
+    <link rel="stylesheet" href="/stylesheets/tarkeba.css">
+    <link rel="stylesheet" href="/stylesheets/products.css">
+    <link rel="stylesheet" href="/stylesheets/profile.css">
+    <link rel="stylesheet" href="/stylesheets/cart.css">
+    <link rel="stylesheet" href="/stylesheets/checkout.css">
+</head>
+
+<body>
+    <!--header-->
+    {{> header1}}
+    <div class="body-container">
+        <div class="divAddress">
+            <h1>Add address</h1>
+            <form action="/users/addAddress" method="POST" id="form-inputs" style="display: block; margin-top: 30px;">
+                <input type="hidden" name="_csrf" value="{{token}}">
+                <input type="hidden" name="prevPage" value="{{prevPage}}">
+                <h4 style="font-weight: bold;">Full name:</h4>
+                <input type="text" name="fullName" id="name-user" value="{{address.name}}" class="address-inputs"
+                    required>
+                <h4 style="font-weight: bold;">Phone number:</h4>
+                <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                    <p id="phoneCode"
+                        style="height: 40px; border: 1px solid #000; display: flex; align-items: center; padding: 0px 10px; border-radius: 3px 0px 0px 3px;">
+                        +20</p>
+                    <input type="number" name="phone" minlength="10" maxlength="10" placeholder="xxx-xxx-xxxx"
+                        value="{{address.phone}}" id="phone-number"
+                        style="margin: 0px; border-radius: 0px 3px 3px 0px; border-left: 0px;" class="address-inputs"
+                        required>
+                </div>
+                <p id="invalidPhone" style="margin: 10px 0px; display: none;" class="error">Invalid phone number.</p>
+                <h4 style="font-weight: bold;">Address:</h4>
+                <select name="government" id="government" class="state" style="border-color: #000;" required>
+                    {{#if address}}
+                    <option value="{{address.government}}" selected>{{address.government}}</option>
+                    {{/if}}
+                    <option hidden>Select government</option>
+                    <option value="Cairo">Cairo</option>
+                    <option value="Giza">Giza</option>
+                </select>
+                <select name="city" id="city" class="city" style="border-color: #000;" required>
+                    {{#if address}}
+                    <option value="{{address.city}}" selected>{{address.city}}</option>
+                    {{/if}}
+                    <option hidden>Select city</option>
+                </select>
+                <input type="text" name="street" placeholder="Area and street name" id="street" class="address-inputs"
+                    style="margin-top: 0px; border-color: #000;" required>
+                <input type="text" name="building" placeholder="Building name/number" id="street" class="address-inputs"
+                    style="margin-top: 0px; border-color: #000;" required>
+                <input type="text" name="floor" placeholder="Floor and apartment number" id="street"
+                    class="address-inputs" style="margin-top: 0px; border-color: #000;" required>
+                <div style="display: flex; justify-content: center;">
+                    <input type="submit" class="btn" id="set-new-address"
+                        style="display: block; border-radius: 3px; margin-left: 0px; width: 250px; border: 0px; font-size: 16px;"
+                        value="add new address">
+                </div>
+            </form>
+        </div>
+    </div>
+    <!--footer-->
+    {{> footer}}
+    <script src="/javascripts/address.js"></script>
+</body>

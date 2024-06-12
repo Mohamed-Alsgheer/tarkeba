@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Tarkeba perfume">
+    <meta property="og:description"
+        content="get the best Tarkeba's of the best perfumes, we can make a custom perfume for you.">
+    <meta property="og:image" content="tarkeba-img/iconSocail.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="600">
+    <meta property="og:type" content="website">
+    <title>Tarkeba perfume | checkout</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="/images/icon2.png">
+    <link rel="stylesheet" href="/stylesheets/tarkeba.css">
+    <link rel="stylesheet" href="/stylesheets/products.css">
+    <link rel="stylesheet" href="/stylesheets/profile.css">
+    <link rel="stylesheet" href="/stylesheets/cart.css">
+    <link rel="stylesheet" href="/stylesheets/checkout.css">
+    <link rel="stylesheet" href="/stylesheets/style-language.css">
+</head>
+
+<body>
+    <!--header-->
+    {{> header1}}
+    <!--checkout-->
+    <div style="display:flex; justify-content: space-around; margin-top: 137px">
+        <div style="width: 600px;">
+            <h2 style="margin-bottom: 20px;">Payment</h2>
+            <h3>Payment method</h3>
+            <form action="/checkout" method="POST">
+                <input type="hidden" name="totalCost" id="totalPrice" value="{{totalPrice}}">
+                <input type="hidden" name="coupon" id="validCoupon">
+                <input type="hidden" name="shippingCost" value="{{shippingCost}}">
+                <div class="paymet-options">
+                    <label id="cash" style="cursor: pointer; border: 3px solid #4028df;">
+                        <input type="radio" name="paymentMethod" id="PaymentMethod" value="cash" checked hidden>
+                        <p id="cash-title">Pay with cash</p>
+                        <img src="/images/money.png" class="pay-img" alt="cash">
+                    </label>
+                    <!--
+                    <label id="cash" style="cursor: pointer; border: 3px solid #4028df;">
+                        <input type="radio" name="PaymentMethod" id="PaymentMethod" value="cash" hidden>
+                        <p id="cash-title">Pay with card</p>
+                        <img src="/images/credit-card.png" class="pay-img" alt="cash">
+                    </label>
+                    -->
+                </div>
+                <div id="cash-text" class="cash-div">
+                    <img src="/images/credit-card.png" alt="bank-card" style="width: 75px;">
+                    <p>Pay with card will be added soon.</p>
+                </div>
+                <div>
+                    <button type="submit" class="button-order btn">Place order</button>
+                </div>
+            </form>
+        </div>
+        <div style="display: flex; flex-direction: column;">
+            <div style="border: 1px solid #ccc; width: 350px; margin-bottom: 50px">
+                <div style="padding: 15px 20px 15px 20px">
+                    <h3 style="padding-bottom: 20px;">Order summary</h3>
+                        <div class="cart-details">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                <input type="text" name="coupon" id="coupon" placeholder="Coupon code">
+                                <button class="btn" id="checkCode" style="border: 0px; margin: 0px; border-radius: 0px 5px 5px 0px; padding: 8px 13px; cursor: pointer;">Apply</button>
+                            </div>
+                            <p id="coupon-error" style="color: #c40000;"></p>
+                            <div style="display: flex; justify-content: space-between;">
+                                <div>
+                                    <p id="couponCode" style="color: #4028df;"></p>
+                                    <p>Subtotal:</p>
+                                    <p>Shipping fee:</p>
+                                </div>
+                                <div>
+                                    <p id="couponValue" style="color: #4028df;"></p>
+                                    <p id="subTotal">{{userCart.totalPrice}} EGP</p>
+                                    <p id="shippingPrice">{{shippingCost}} EGP</p>
+                                </div>
+                            </div>
+                            <div style="border-top: 1px solid #1E1926; display:flex; justify-content: space-between;">
+                                <p style="padding-top: 10px; font-weight: bold;">Totalcost:</p>
+                                <p style="padding-top: 10px; font-weight: bold;" id="totalCost">{{totalPrice}} EGP</p>
+                            </div>
+                        </div>
+                </div>
+                <div>
+                    <div class="address-header">
+                        <p>Shipping to</p>
+                        <a href="/selectAddress"><p style="color: black; text-decoration: underline;">edit</p></a>
+                    </div>
+                    <div style="padding: 15px 20px 15px 20px">
+                        {{#each deliveryAddress}}
+                        <p style="font-weight: bold; margin-bottom: 10px">{{this.name}}</p>
+                        <p style="margin-bottom: 10px;">{{this.street}} - {{this.county}} - {{this.city}}</p>
+                        <p>{{this.phone}}</p>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+            <div
+                style="border: 1px solid #ccc; width: 350px; padding: 15px 20px 15px 20px; margin-bottom: 50px">
+                <h3 style="padding-bottom: 20px;">Your order</h3>
+                <div>
+                    {{#each userCart.selectedProduct as |alias|}}
+                    <div
+                        style="display: flex; justify-content: space-between; border-bottom: 1px solid black; padding: 10px 0 10px 0">
+                        <div style="display: flex;">
+                            <img src="{{this.img}}" alt="{{this.name}}" style="width: 75px; border: 1px solid black">
+                            <div style="margin-left: 10px;">
+                                <h4 style="font-weight: bold;">{{this.name}}</h4>
+                                <p>size: {{this.size}}</p>
+                                <p>origin: {{this.origin}}</p>
+                                <p>type: {{this.productType}}</p>
+                            </div>
+                        </div>
+                        <div>
+                            <p style="font-weight: bold;">{{this.price}} EGP</p>
+                            <p>qty: {{this.quantity}}</p>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--footer-->
+    {{> footer}}
+    <script src="/javascripts/checkout.js"></script>
+</body>

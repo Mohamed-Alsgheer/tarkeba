@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Tarkeba perfume">
+    <meta property="og:description"
+        content="get the best Tarkeba's of the best perfumes, we can make a custom perfume for you.">
+    <meta property="og:image" content="tarkeba-img/iconSocail.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="600">
+    <meta property="og:type" content="website">
+    <title>Tarkeba perfume | Feedback</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" href="/images/icon2.png">
+    <link rel="stylesheet" href="/stylesheets/tarkeba.css">
+    <link rel="stylesheet" href="/stylesheets/products.css">
+    <link rel="stylesheet" href="/stylesheets/dashboard.css">
+    <link rel="stylesheet" href="/stylesheets/coupon.css">
+    <link rel="stylesheet" href="/stylesheets/reviews.css">
+    <link rel="stylesheet" href="/stylesheets/orders.css">
+    <link rel="stylesheet" href="/stylesheets/style-language.css">
+</head>
+
+<body>
+    <div id="cartBody">
+        <div style="display: flex; justify-content: flex-start;">
+            <!--side bar-->
+            {{> sidebar}}
+            <!--header-->
+            {{> header2}}
+            <!--page body-->
+            <div class="dashboard-body">
+                <div class="order-list" style="margin-bottom: 50px;">
+                    <div class="page-title" style="display: flex; justify-content: space-between; align-items: center;">
+                        <p>Feedback</p>
+                    </div>
+                    <div
+                        style="width: 80%; display: flex; flex-direction: column; align-items: center;">
+                        <div style="width: 100%;">
+                            {{#each feedback}}
+                            <div class="review-div">
+                                <div class="comment" style="border-bottom: 0px; margin: 0px;">
+                                    <div style="display: flex;">
+                                        <div>
+                                            <p style="margin-bottom: 10px;">{{this.name}}</p>
+                                            <p style="font-size: 14px; color: #6c757d;">{{this.email}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="reviewDiv">
+                                        <p class="reviewerDate">{{this.date}}</p>
+                                    </div>
+                                </div>
+                                <div style="display: flex; align-items: flex-end; justify-content: space-between;">
+                                    <p class="reviewerRate" style="max-width: 80%; overflow-wrap: break-word;">{{this.feedback}}</p>
+                                    <img src="/images/admin-img/delete.png" class="remove-review">
+                                </div>
+                            </div>
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--javaScripts-->
+    <script src="/javascripts/sidebar.js"></script>
+    <script src="/javascripts/orders.js"></script>
+</body>
+</html>

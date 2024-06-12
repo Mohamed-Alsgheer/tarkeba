@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Tarkeba perfume">
+    <meta property="og:description"
+        content="get the best Tarkeba's of the best perfumes, we can make a custom perfume for you.">
+    <meta property="og:image" content="tarkeba-img/iconSocail.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="600">
+    <meta property="og:type" content="website">
+    <title>Tarkeba perfume | Dashboard</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="/images/icon2.png">
+    <link rel="stylesheet" href="/stylesheets/tarkeba.css">
+    <link rel="stylesheet" href="/stylesheets/products.css">
+    <link rel="stylesheet" href="/stylesheets/dashboard.css">
+    <link rel="stylesheet" href="/stylesheets/orders.css">
+    <link rel="stylesheet" href="/stylesheets/style-language.css">
+</head>
+
+<body>
+    <!--header-->
+    <div id="cartBody">
+        <div style="display: flex; justify-content: flex-start;">
+            <!--side bar-->
+            {{> sidebar}}
+            <!--header-->
+            {{> header2}}
+            <!--page body-->
+            <div class="dashboard-body">
+                <div class="overview">
+                    <div class="overview-header">
+                        <h2>Overview</h2>
+                        <p style="font-size: 14px;">How your shop is performing compared to the previous month.</p>
+                    </div>
+                    <div class="overview-content">
+                        <div class="content-div">
+                            <div class="overview-text">
+                                <p style="font-weight: 600; font-size: 15px;">Customers</p>
+                                <p style="font-weight: 600; font-size: 22px">{{newUsers}}</p>
+                                <p style="text-decoration: underline; font-size: 13px;">See details</p>
+                            </div>
+                            <div style="display: flex; flex-direction: column; align-items: flex-end">
+                                <p style="font-size: 14px; margin: 10px 0px;">{{usersPerc}} %</p>
+                                <div class="img-div" style="margin: 10px 0px;">
+                                    <img src="/images/admin-img/group.png">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content-div">
+                            <div class="overview-text">
+                                <p style="font-weight: 600; font-size: 15px;">Orders</p>
+                                <p style="font-weight: 600; font-size: 22px">{{newOrders}}</p>
+                                <a href="/admin/orders"
+                                    style="text-decoration: underline; font-size: 13px; color: black">View all
+                                    orders</a>
+                            </div>
+                            <div style="display: flex; flex-direction: column; align-items: flex-end">
+                                <p style="font-size: 14px; margin: 10px 0px;">{{ordersPerc}} %</p>
+                                <div class="img-div" style="margin: 10px 0px;">
+                                    <img src="/images/admin-img/shopping-list2.png">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content-div">
+                            <div class="overview-text">
+                                <p style="font-weight: 600; font-size: 15px;">Income</p>
+                                <p style="font-weight: 600; font-size: 22px;">{{currentIncome}} EGP</p>
+                                <p style="text-decoration: underline; font-size: 13px; color: #F9EBFF"> ٍ </p>
+                            </div>
+                            <div style="display: flex; flex-direction: column; align-items: flex-end">
+                                <p style="font-size: 14px; margin: 10px 0px;">{{incomePerc}} %</p>
+                                <div class="img-div" style="margin: 10px 0px;">
+                                    <img src="/images/admin-img/profits.png">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="charts-div" style="margin-bottom: 50px;">
+                    <div class="charts-container">
+                        <iframe
+                            src="https://charts.mongodb.com/charts-project-0-mmrxd/embed/charts?id=63499dff-bfdb-418a-823d-47eea52cb5e1&maxDataAge=3600&theme=light&autoRefresh=true">
+                        </iframe>
+                        <iframe
+                            src="https://charts.mongodb.com/charts-project-0-mmrxd/embed/charts?id=6369676b-7433-43e0-87bb-f612e403a340&maxDataAge=3600&theme=light&autoRefresh=true">
+                        </iframe>
+                    </div>
+                    <div class="charts-container">
+                        <iframe
+                            src="https://charts.mongodb.com/charts-project-0-mmrxd/embed/charts?id=636a51fe-019d-4097-8a87-2dbf47bfeed3&maxDataAge=3600&theme=light&autoRefresh=true">
+                        </iframe>
+                        <div id="best-selling-body">
+                            <div id="best-selling-header">
+                                <p>Best Selling Products</p>
+                            </div>
+                            <div id="best-selling" class="bestSelling">
+                            </div>
+                        </div>
+                    </div>
+                    <!--top products-->
+                </div>
+                <div class="order-list" style="margin-bottom: 50px;">
+                    <div class="order-title">
+                        <p>Latest orders</p>
+                        <a href="/admin/orders">View All</a>
+                    </div>
+                    <div
+                        style="width: 80%; box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2); overflow: overlay; white-space: nowrap; border-radius: 5px;">
+                        {{!-- <div class="order-div" style="border-radius: 5px 5px 0px 0px; cursor: auto;">
+                        </div> --}}
+                        <div class="order-div">
+                            <div class="head-item">
+                                Invoice
+                            </div>
+                            <div class="head-item">
+                                Order Date
+                            </div>
+                            <div class="head-item">
+                                Customer Name
+                            </div>
+                            <div class="head-item">
+                                Payment Method
+                            </div>
+                            <div class="head-item">
+                                Status
+                            </div>
+                            <div class="head-item">
+                                Total
+                            </div>
+                            <div class="head-item">
+                                Action
+                            </div>
+                            {{#each orders}}
+                            <div>
+                                <p>10120</p>
+                            </div>
+                            <div>
+                                <p class="date">{{this.createdAt}}</p>
+                            </div>
+                            <div>
+                                <p>{{this.shippingAddress.name}}</p>
+                            </div>
+                            <div>
+                                <p>{{this.paymentMethod}}</p>
+                            </div>
+                            <div>
+                                <p>{{this.status}}</p>
+                            </div>
+                            <div>
+                                <p>{{this.orderPrice}} EGP</p>
+                            </div>
+                            <div>
+                                <a href="/admin/order/{{this._id}}"
+                                    style="width: 100%; display: flex; justify-content: center;"><img
+                                        src="/images/admin-img/edit.png" width="15px" style="cursor: pointer;"></a>
+                            </div>
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--javaScripts-->
+    <script>
+        let date = document.querySelectorAll(".date");
+        const options = { month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true };
+        date.forEach((date) => date.innerHTML = new Date(date.innerHTML).toLocaleDateString("en-us", options));
+    </script>
+    <script src="/javascripts/dashboard.js"></script>
+    <script src="/javascripts/sidebar.js"></script>
+    <script src="/javascripts/products.js"></script>
+</body>
+
+</html>

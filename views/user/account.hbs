@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Tarkeba perfume">
+    <meta property="og:description"
+        content="get the best Tarkeba's of the best perfumes, we can make a custom perfume for you.">
+    <meta property="og:image" content="tarkeba-img/iconSocail.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="600">
+    <meta property="og:type" content="website">
+    <title>Tarkeba perfume | Account</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap">
+    <link rel="icon" href="/images/icon2.png">
+    <link rel="stylesheet" href="/stylesheets/tarkeba.css">
+    <link rel="stylesheet" href="/stylesheets/products.css">
+    <link rel="stylesheet" href="/stylesheets/account.css">
+</head>
+
+<body>
+    <!--header-->
+    {{> header1}}
+    <div id="main" class="body-container account-page">
+        <!--account-page-->
+        <div>
+            <div class="form-container" id="form-account">
+                <div class="form-btn">
+                    <span onclick="register()">Register</span>|
+                    <span onclick="login()">Login</span>
+                    <hr id="Indicator">
+                </div>
+                <!--login-->
+                <form action="/users/login" method="POST" id="LoginForm">
+                    <div class="media-auth" style="">
+                        <a href="/users/auth/google">
+                            <div class="loginWith">
+                                <img src="/images/search.png" alt=""
+                                    style="width: 20px; height: 20px; margin-right: 7px ">
+                                <p>Sign in with Google</p>
+                            </div>
+                        </a>
+                        <a href="/users/auth/facebook">
+                            <div class="loginWith">
+                                <img src="/images/facebook.png" alt=""
+                                    style="width: 20px; height: 20px; margin-right: 7px">
+                                <p>Sign in with Facebook</p>
+                            </div>
+                        </a>
+                    </div>
+                    <hr style="border: 1px solid #ccc;">
+                    <div class="inputDiv" style="margin-top: 10px;">
+                        <p id="email">Email</p>
+                        <input type="text" name="emailLog" placeholder="Email" id="email2" required>
+                        {{#each loginEmailError}}
+                        <p class="error" id="errlog1">{{this}}</p>
+                        {{/each}}
+                    </div>
+                    <div class="inputDiv">
+                        <p id="password">Password</p>
+                        <input type="password" name="passwordLog" placeholder="Password" id="pass2" required>
+                        {{#each loginPasswordError}}
+                        <p class="error" id="errlog2">{{this}}</p>
+                        {{/each}}
+                        {{#each successReset}}
+                        <p class="successReset" id="successReset">{{this}}</p>
+                        {{/each}}
+                    </div>
+                    <input type="hidden" name="_csrf" value="{{token}}">
+                    <button type="submit" class="btn22" id="logbtn">sign in</button>
+                    <a href="/users/forget_password" style="color: #555; margin: 10px 0px;" id="forgetPass">Forgot
+                        password?</a>
+                </form>
+                <!--register-->
+                <form action="/users/register" method="POST" id="RegForm">
+                    <div class="inputDiv">
+                        <p id="userName">Username</p>
+                        <input type="text" name="username" placeholder="Username" id="username" required>
+                        {{#each NameError}}
+                        <div>
+                            <p class="error" id="err1">{{this}}</p>
+                        </div>
+                        {{/each}}
+                    </div>
+                    <div class="inputDiv">
+                        <p id="emailRegister">Email</p>
+                        <input type="email" name="email" placeholder="Email" id="emailInput" required>
+                        {{#each registerEmailError}}
+                        <div>
+                            <p class="error" id="err2">{{this}}</p>
+                        </div>
+                        {{/each}}
+                    </div>
+                    <div class="inputDiv">
+                        <p id="passwordRegister">Password</p>
+                        <input type="password" name="password" placeholder="Enter your password" id="pass" required>
+                        {{#each registerPasswordError}}
+                        <div>
+                            <p class="error" id="err3">{{this}}</p>
+                        </div>
+                        {{/each}}
+                        <input type="password" name="confirmPassword" placeholder="Re enter your password"
+                            id="confirm-pass" required>
+                        {{#each confirmError}}
+                        <div>
+                            <p class="error" id="err4">{{this}}</p>
+                        </div>
+                        {{/each}}
+                    </div>
+                    <input type="hidden" name="_csrf" value="{{token}}">
+                    <button type="submit" class="btn22" id="regbtn">sign up</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--footer-->
+    {{> footer}}
+    <!--javaScript-->
+    <script src="/javascripts/products.js"></script>
+    <script src="/javascripts/account.js"></script>
+</body>
+
+</html>

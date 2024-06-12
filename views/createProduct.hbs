@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Tarkeba perfume">
+    <meta property="og:description"
+        content="get the best Tarkeba's of the best perfumes, we can make a custom perfume for you.">
+    <meta property="og:image" content="tarkeba-img/iconSocail.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="600">
+    <meta property="og:type" content="website">
+    <title>Tarkeba perfume | Custom</title>
+    <link rel="icon" href="/images/icon2.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/stylesheets/tarkeba.css">
+    <link rel="stylesheet" href="/stylesheets/products.css">
+    <link rel="stylesheet" href="/stylesheets/createProduct.css">
+</head>
+
+<body>
+    <!--header-->
+    {{> header1}}
+    <div class="body-container">
+        <div class="single-product">
+            <div class="row5">
+                <div class="col2" style="max-width: 600px;">
+                    <img src="/images/bottle.jpg" alt="img-product" style="width: 100%" id="ProductImg">
+                    <div class="sir">
+                        <div class="sic">
+                            <img src="/images/bottle.jpg" alt="img1" style="width: 100%;" class="small-img">
+                        </div>
+                        <div class="sic">
+                            <img src="/images/pppp/red1_MG_1002.jpg" alt="img2" style="width: 100%" class="small-img">
+                        </div>
+                        <div class="sic">
+                            <img src="/images/pppp/orange1_MG_1003.jpg" alt="img2" style="width: 100%"
+                                class="small-img">
+                        </div>
+                        <div class="sic">
+                            <img src="/images/pppp/purple1_MG_1000.jpg" alt="img2" style="width: 100%"
+                                class="small-img">
+                        </div>
+                        <div class="sic">
+                            <img src="/images/pppp/name_MG_0997.jpg" alt="img2" style="width: 100%" class="small-img">
+                        </div>
+                        <div class="sic">
+                            <img src="/images/pppp/black1_MG_1006.jpg" alt="img2" style="width: 100%" class="small-img">
+                        </div>
+                    </div>
+                </div>
+                <div class="col2" style="height: 600px;">
+                    <form action="create" method="POST" id="inputs">
+                        <div class="col22">
+                            <h1 style="margin-bottom: 20px;">Custom perfume</h1>
+                            <div class="starLine">
+                                <p style="margin-right: 8px;"> {{customPerfume.overallRating}} / 5 </p>
+                                <div class="numReviews" style="display: flex;">
+                                    <i class="fa-regular fa-star" style="display: block;"></i>
+                                    <i class="fa-regular fa-star" style="display: block;"></i>
+                                    <i class="fa-regular fa-star" style="display: block;"></i>
+                                    <i class="fa-regular fa-star" style="display: block;"></i>
+                                    <i class="fa-regular fa-star" style="display: block;"></i>
+                                </div>
+                                <input type="number" value="{{customPerfume.overallRating}}" id="avgRating" hidden>
+                                <p class="reviewsCount" style="margin-left: 8px;">( {{customPerfume.reviews.length}}
+                                    reviews )
+                                </p>
+                            </div>
+                            <h4>{{customPerfume.pricing.price}}.00 EGP</h4>
+                            <div style="display: flex; gap: 20px; align-items: center; margin: 20px 0px;">
+                                <select name="" id="" style="width: fit-content; padding: 0px 10px; margin: 0px;">
+                                    <option value="" hidden>Select size</option>
+                                    {{#each customPerfume.size }}
+                                    <option value="{{this}}">
+                                        <p>{{this}}</p>
+                                    </option>
+                                    {{/each}}
+                                </select>
+                                <input type="number" name="quantity" value="1" min="1" max="100"
+                                    style="width: 60px; height: 40px; padding-left: 10px; font-size: 20px;">
+                            </div>
+                            <h3 id="title-create">Create Perfume</h3>
+                            <br>
+                        </div>
+                        <input type="text" name="productName" placeholder="Perfume name" class="style-input"
+                            id="product-name">
+                        <input type="url" name="productLink" placeholder="Perfume link" class="style-input"
+                            id="product-link">
+                        <select name="bottleColor" class="style-input" id="product-color">
+                            <option value="" hidden>Select your bottle</option>
+                            {{#each customPerfume.images }}
+                            {{#if this.selected}}
+                            <option value="">
+                                <img src="{{this.url}}" alt="{{this.altText}}">
+                                <p>{{this.altText}}</p>
+                            </option>
+                            {{/if}}
+                            {{/each}}
+                        </select>
+                        {{#if checkUser}}
+                        <input type="submit" class="btn" style="border: none; width: 125px; font-size: 20px"
+                            value="Create">
+                        {{else}}
+                        <a href="/users/account" class="btn"
+                            style="border: none; width: 125px; text-align: center;">Create</a>
+                        {{/if}}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--comments-->
+    <div style="display: flex; justify-content: center;">
+        <div style="width: 90%">
+            <div class="reviewHeader">
+                <h2 class="headers active">Reviews</h2>
+            </div>
+            <div class="bodies">
+                <div class="comment reviewQuestions">
+                    <div class="qdiv">
+                        <p class="question">How do I review this product?</p>
+                        <p class="answer">If you recently purchased this product from Tarkeba, you can go to
+                            your Orders page and click on the Submit Review button.</p>
+                    </div>
+                    <div class="qdiv">
+                        <p class="question">Where do the reviews come from?</p>
+                        <p class="answer">Our reviews are from our customers who purchased the product and
+                            submitted a review.</p>
+                    </div>
+                </div>
+                {{#each customPerfume.reviews}}
+                <div class="comment">
+                    <div>
+                        <h2 class="reviewerName">{{this.name}}</h2>
+                        <p class="reviewerRate">{{this.comment}}</p>
+                    </div>
+                    <div class="reviewDiv">
+                        <p class="reviewerDate">{{this.date}}</p>
+                        <div class="reviewNumber" style="display: flex;">
+                            <i class="fa-regular fa-star" style="display: block;"></i>
+                            <i class="fa-regular fa-star" style="display: block;"></i>
+                            <i class="fa-regular fa-star" style="display: block;"></i>
+                            <i class="fa-regular fa-star" style="display: block;"></i>
+                            <i class="fa-regular fa-star" style="display: block;"></i>
+                        </div>
+                        <input type="number" class="starCount" name="rating" value="{{this.rating}}" hidden>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+    <!--footer-->
+    {{> footer}}
+    <!--JavaScript-->
+    <script src="/javascripts/products.js"></script>
+    <script>
+        /////product gallery/////
+        let productImg = document.getElementById("ProductImg");
+        let smallImg = document.getElementsByClassName("small-img");
+        Array.from(smallImg).forEach((img) => {
+            img.onclick = () => {
+                productImg.src = img.src;
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+#couponBody {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+#left-side {
+    width: 50%;
+}
+
+#right-side {
+    width: 40%;
+    margin: 0px 30px;
+}
+
+.couponType {
+    margin: 5px 5px 5px 0px; 
+}
+
+.inputStyle {
+    border-radius: 5px;
+    padding: 6px 13px;
+    margin: 15px 0px; 
+    width: 90%;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.checkbox-div {
+    display: flex;
+}
+
+.checkbox-div input {
+    margin-right: 5px;
+}
+
+.error {
+    font-size: 13px;
+    font-weight:400;
+    text-align: left;
+    margin-left: 15px;
+    margin-bottom: 10px;
+    color: #c40000;
+    text-shadow: red;
+}
+
+@media only screen and (max-width: 750px) {
+    #left-side {
+        width: 100%;
+    }
+    
+    #right-side {
+        width: 100%;
+        margin: 0px;
+    }
+
+    .inputStyle {
+        width: 100%;
+    }
+
+    .checkbox-div {
+        margin-bottom: 15px;
+    }
+}

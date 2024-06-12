@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Tarkeba perfume">
+    <meta property="og:description"
+        content="get the best Tarkeba's of the best perfumes, we can make a custom perfume for you.">
+    <meta property="og:image" content="tarkeba-img/iconSocail.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="600">
+    <meta property="og:type" content="website">
+    <title>Tarkeba perfume | Profile</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="/images/icon2.png">
+    <link rel="stylesheet" href="/stylesheets/tarkeba.css">
+    <link rel="stylesheet" href="/stylesheets/products.css">
+    <link rel="stylesheet" href="/stylesheets/profile.css">
+    <link rel="stylesheet" href="/stylesheets/style-language.css">
+</head>
+<body>
+    <!--header-->
+    {{> header1}}
+    <div class="body-container">
+        <!--popups-->
+        <div class="popup" id="popup-1">
+            <div class="overlay"></div>
+            <div class="content" id="contentPass">
+                <div style="display: flex;">
+                    <div class="close-btn" onclick="togglePopupName()">&times;</div>
+                    <h2 style="color: #1E1926;">Change Your Name</h2>
+                </div>
+                <form action="changeName" method="POST" style="margin-top: 40px;">
+                    <h6 style="text-align: left; color: #1E1926; margin-bottom: 5px; margin-left: 5%;">NEW USERNAME </h6>
+                    <input type="text" class="change-inputs" name="newName" placeholder="New Username" id="new-name" required>
+                    <input type="hidden" name="_csrf" value="{{token}}">
+                    <div class="div-btns">
+                        <input type="submit" class="btn change-btn" id="subNewEmail" value="Change">
+                        <a class="btn cancel-btn" onclick="togglePopupName()">Cancel</a>
+                    </div>
+                </form>
+            </div>
+            <div class="content" id="contentPass2">
+                <div style="display: flex;">
+                    <div class="close-btn" onclick="togglePopupPassword()">&times;</div>
+                    <h2 style="color: #1E1926;">Change Password</h2>
+                </div>
+                <form action="changePassword" method="post" style="margin-top: 40px;">
+                    <h6 style="text-align: left; color: #1E1926; margin-bottom: 5px; margin-left: 5%;">OLD PASSWORD</h6>
+                    <input type="password" name="oldPassword" class="change-inputs" placeholder="Old Password" id="old-pass">
+                    {{#each passwordErrors}}
+                        <div>
+                            <p class="error" style="margin-bottom: 10px; margin-left: 5%;" id="changePassError1">{{this}}</p>
+                        </div>                    
+                    {{/each}}
+                    <p id="wrongPass">The password that you've entered is incorrect.</p>
+                    <h6 style="text-align: left; color: #1E1926; margin-bottom: 5px; margin-left: 20px;">NEW PASSWORD</h6>
+                    <input type="password" name="newPassword" class="change-inputs" placeholder="New Password" id="new-pass">
+                    {{#each newPassword}}
+                        <div>
+                            <p class="error" style="margin-bottom: 10px; margin-left: 5%;" id="changePassError2">{{this}}</p>
+                        </div>                    
+                    {{/each}}
+                    <input type="password" name="confirmPass" class="change-inputs" placeholder="New Password Confirmation" id="confirm-pass">
+                    {{#each confirmPassword}}
+                        <div>
+                            <p class="error" style="margin-bottom: 10px; margin-left: 5%;" id="changePassError3">{{this}}</p>
+                        </div>                    
+                    {{/each}}
+                    <input type="hidden" name="_csrf" value="{{token}}">
+                    <div class="div-btns">
+                        <input type="submit" class="btn change-btn" id="subNewPass" value="Change">
+                        <a class="btn cancel-btn" onclick="togglePopupPassword()">Cancel</a>
+                    </div>
+                </form>
+            </div>
+            <div class="content" id="contentPass3">
+                <div style="display: flex;">
+                    <div class="close-btn" onclick="togglePopupDeleteAccount()">&times;</div>
+                    <h2 style="color: #1E1926;">Confirm Account Deletion</h2>
+                </div>
+                <form action="deleteAccount" method="post" style="margin-top: 40px;">
+                    <p style="margin: 30px 0px 30px 0px;">Are you sure you want to delete your account?</p>
+                    <div class="div-btns">
+                        <input type="hidden" name="_csrf" value="{{token}}">
+                        <input type="submit" class="btn change-btn" value="Delete Account">
+                        <a class="btn cancel-btn" onclick="togglePopupDeleteAccount()">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!--profile-->
+        <div class="profile-detailes" style="margin-top: 40px;">
+            <div>
+                <div style="border-bottom: 1px solid #aaa; margin-bottom: 15px;">
+                    <h4 style="font-weight: bold; margin-bottom: 10px;">Name:</h4>
+                    <p style="margin-bottom: 5px; margin-top: 0px;" id="user-name">{{user.username}}</p>
+                    <p style="color: #4028df; cursor: pointer; margin-bottom: 5px; width: 150px;" id="change-name" onclick="togglePopupName()">change name</p>
+                </div>
+                <div style="border-bottom: 1px solid #aaa; margin-bottom: 15px;">
+                    <h4 style="font-weight: bold; margin-bottom: 10px;">Email:</h4>
+                    <p style="margin-bottom: 15px; margin-top: 0px;" id="email">{{user.email}}</p>
+                </div>
+                <div style="border-bottom: 1px solid #aaa; margin-bottom: 15px;">
+                    <h4 style="font-weight: bold; margin-bottom: 10px;">Password:</h4>
+                    <p style="margin-bottom: 5px; margin-top: 0px;" id="password-email">********</p>
+                    <p style="color: #4028df; cursor: pointer; margin-bottom: 15px; width: 160px;" id="change-pass" onclick="togglePopupPassword()">change password</p>
+                </div>
+            </div>
+            <!--user-order-->
+            <div style="border-bottom: 1px solid #aaa; margin-bottom: 15px;">
+                <a href="/users/orders">
+                    <div class="container-profile1">
+                        <h4 style="font-weight: bold;">Orders:</h4>
+                            <img id="plus" src="/images/admin-img/arrow.png" style="width: 12px; cursor: pointer; transform: rotate(-90deg);">
+                    </div>
+                </a>
+            </div>
+            <!--add address-->
+            <div style="border-bottom: 1px solid #aaa; margin-bottom: 15px;">
+                <a href="/users/addresses">
+                    <div class="container-profile1">
+                            <h4 style="font-weight: bold;">Addresses:</h4>
+                            <img id="plus" src="/images/admin-img/arrow.png" style="width: 12px; cursor: pointer; transform: rotate(-90deg);">
+                    </div>
+                </a>
+            </div>
+            <div>
+                <button class="delete-account"  onclick="togglePopupDeleteAccount()">Delete Account</button>
+            </div>
+        </div>
+    </div>
+    <!--footer-->
+    {{> footer}}
+    <!--javaScripts-->
+    <script src="/javascripts/profile.js"></script>
+    <script>
+        let alertP = document.getElementById('alert');
+        let citys = {
+            Cairo: [
+                'Ain Shams',
+                'Ain Shams-Ahmed Esmat',
+                'Ain Shams-Al Naam',
+                'Ain Shams-El Zahraa City',
+                'Ain Shams-Ibrahim Abd El-Razik',
+                'Ain Shams-Mansheya El-Tahrir',
+                'Ain Shams-Mostafa Hafez',
+                'Al Matareya',
+                'Al Rehab 1',
+                'Al Rehab 2',
+                'Al Sad Al Aali Cairo',
+                'Al Salam City',
+                'Al Sawah',
+                'Al Zeitoun',
+                'Al Zeitoun-Ibn Al Hakam',
+                'Al Zeitoun-Ibn Sendar',
+                'Al Zeitoun-Salim Al Awal',
+                'Al Zeitoun-Toman Bai',
+                'Amiria',
+                'Badr City',
+                'Badr City-Badr City Industrial Area',
+                'Basateen',
+                'Basateen-Al Sad Al Aali',
+                'Basateen-Ber Om Soultan',
+                'Basateen-Fayda Kamel',
+                'Basateen-Mazraet Al Baet',
+                'Dar Al Salam',
+                'Dar Al Salam-Al Gezira',
+                "Dar Al Salam-El Mala'a",
+                'Down Town',
+                'Down Town-Abdeen',
+                'Down Town-Bab al-Louq',
+                'Down Town-El Azbakeya',
+                'Down Town-El Esaaf',
+                'Down Town-Tahrir Square',
+                'DownTown-Abaseya',
+                'DownTown-Al Ataba',
+                'DownTown-Al Azhar',
+                'DownTown-Al Daher',
+                'DownTown-Al Moski',
+                'DownTown-Al Sabtia',
+                'DownTown-Al Sharabiyah',
+                'DownTown-Al-Hussein',
+                'DownTown-Bab El Shaeria',
+                'DownTown-Boulak Abo el Eila',
+                'DownTown-Boulaq Abo Elela',
+                'DownTown-Cornish Al Nile',
+                'DownTown-El Darasa',
+                'DownTown-El Fagala',
+                'DownTown-El Gamalia',
+                'DownTown-El Opera',
+                'DownTown-Ghamrah',
+                'DownTown-Maspero',
+                'DownTown-Ramsis',
+                'El Marg-Berket Al Hag',
+                'El Marg-EL knesa w El Gameaa',
+                'El Marg-El-Rashah',
+                'El Marg-Kafr El-Shorafa',
+                'El Marg-Mosset Al Zakah',
+                'El Shorouk - 3rd district',
+                'El Shorouk - 7th district',
+                'El Shorouk - 8th district',
+                'El Shorouk - 9th district',
+                'El Shorouk 5th district',
+                'El Shorouk 6th district',
+                'El Shorouk Al Hay Al Awal',
+                'El Shorouk Al Hay Al Thany',
+                'El Shorouk Eskan Al Shabab',
+                'El Shorouk Family Housing',
+                'El Shorouk Future City',
+                'El Shorouk- 4th district',
+                'El Shrouk-Cairo Suez Desert Rd',
+                'El Shrouk-New Heliopolis City',
+                'El Tahrir',
+                'El-Zawia El-Hamra',
+                'Elsayeda Aisha',
+                'Ezbat El-Nakhl',
+                'Ezbet El-nakhl',
+                'Ezbt Elhagana',
+                'Gesr Al Suez',
+                'Gesr Al Suez-Al Togareen buildings',
+                'Gesr Al Suez-Badr Park',
+                'Gesr Al Suez-El herafieen',
+                'Gesr Al Suez-El-Zohour City',
+                'Gesr Al Suez-Gamal Abdelnaser',
+                'Gesr Al Suez-Qebaa City',
+                'Gesr Al Suez-Souk El Canal',
+                'Gesr Al Suez-Taksem Omar Ibn El-Khattab',
+                'Hadayek Al Qobah-Al Sheikh Al Babli',
+                'Hadayek Al Qobah-El-Khalig El-Masry',
+                'Hadayek Al Qobah-El-Shaikh Ghorab',
+                'Hadayek Al Qobah-Kobry El Qobba',
+                'Hadayek Al Qobah-Masr and El Swdan',
+                'Hadayek Al Qobah-Saraya Al Koba',
+                'Hadayek Al Qobah-Sekat Al Waili',
+                'Hadayek Al Qobah-Wali Al Ahd',
+                'Hadayek Helwan',
+                'Hadayek Maadi',
+                'Heliopolis- Al-Ismailia Square',
+                'Heliopolis-Abd El-Hameed Badawi',
+                'Heliopolis-Al Mahkama Square',
+                'Heliopolis-Almaza',
+                'Heliopolis-Almoltaka Alarabi',
+                'Heliopolis-Ard El-Golf',
+                'Heliopolis-Cairo Airport',
+                'Heliopolis-El Obour Buildings',
+                'Heliopolis-El Oroba',
+                'Heliopolis-El-Higaz Square',
+                'Heliopolis-El-Thawra Street',
+                'Heliopolis-Masaken Sheraton',
+                'Heliopolis-Masr LEl Tiaran buildings',
+                'Heliopolis-Misr LelTameer',
+                'Heliopolis-Mohammed Kamel Hussei',
+                'Heliopolis-New Nozha',
+                'Heliopolis-Roxy Square',
+                'Heliopolis-Saint Fatima Square',
+                'Heliopolis-Saqr Korayesh Sheraton',
+                'Heliopolis-Taha Hussen Axis',
+                'Heliopolis-Triumph Square',
+                'Helmiet Elzaitoun',
+                'Helwan',
+                'Helwan-15th of May City',
+                'Helwan-Atlas',
+                'Helwan-El Moazafen City',
+                'Helwan-El Shams City',
+                'Helwan-Helwan American project',
+                'Helwan-Rael',
+                'Helwan-Wadi Houf',
+                'Kablat',
+                'Katamiah-Al Fursan City',
+                'Katamiah-Baron City',
+                'Katamiah-Bavaria Town',
+                'Katamiah-Ebad El-Rahman Katamya',
+                'Katamiah-Maadi Grand City',
+                'Katamiah-Palm City Katamya',
+                'Katamiah-Sama Tower',
+                'Katamiah-Tabarak City',
+                'Kozzika',
+                'Maadi - El-Horreya Square',
+                'Maadi- Taqseem Laselky',
+                'Maadi-Ahmed Zaki',
+                'Maadi-Becho American City',
+                'Maadi-El Gazaer Square',
+                'Maadi-Hadayek El Maadi',
+                'Maadi-Hassanen Desoki',
+                'Maadi-Maadi Degla',
+                'Maadi-Maadi Saqr Qoraish',
+                'Maadi-Mearaag Elowy',
+                'Maadi-Meraag Sofly',
+                'Maadi-New Maadi',
+                'Maadi-Sakanat El Maadi',
+                'Maadi-Zahraa Al Maadi',
+                'Madinty',
+                'Manial Al Rodah-Abdo Basha',
+                'Manial Al Rodah-El Manial',
+                'Manial Al Rodah-El Roda',
+                'Mansheyet Naser',
+                'Misr El-Kadima',
+                'Misr El-Kadima-Amr Ibn El-Aas',
+                'Misr El-Kadima-El-Malek El-Saleh',
+                'Misr El-Kadima-Fustat',
+                'Misr El-Kadima-Zahraa Masr El Kadima',
+                'Mokattam',
+                'Mokattam-Asmarat Heights Compound',
+                'Mokattam-El-Hadaba El-Wosta',
+                'Mokattam-Uptown Cairo',
+                'Moustorod',
+                'Nasr City Al Hay Al Asher',
+                'Nasr City Al Manteqah Al Oula',
+                'Nasr City Al Manteqah Al Sadesah',
+                'Nasr City Al Manteqah Al Thamenah',
+                'Nasr City El Hay El Sabea',
+                'Nasr City El Hay El Tamen',
+                'Nasr City Nasr City El Hay El Tamen',
+                'Nasr City-Al TOB Al Ramli',
+                'Nasr City-Al Wafaa W Al Amal City',
+                'Nasr City-Waha District',
+                'Nasr City-Zahraa Nasr City',
+                'New Administrative Capital',
+                'New Cairo- New Cairo El-Diplomaseen',
+                'New Cairo-1st Settlement',
+                'New Cairo-3rd Settlement',
+                'New Cairo-5th Settlement',
+                'New Cairo-Arabella',
+                'New Cairo-Mirage City',
+                'New Cairo-North 90,st',
+                'New Cairo-North investors',
+                'New Cairo-South 90,st',
+                'New Cairo-South investors',
+                'New Cairo-South of Police Academy',
+                'New El-Marg',
+                'Rod El-Farag',
+                'Sayeda Naffisa',
+                'Sayeda Naffisa-Zenhom',
+                'Sayeda Zeinab',
+                'Sayeda Zeinab-Al Kalaa',
+                'Sayeda Zeinab-Al Kasr Al Einy',
+                'Sayeda Zeinab-El Helmeya El Gedida',
+                'Sayeda Zeinab-El Khodary',
+                'Sayeda Zeinab-El Nasrya',
+                'Sayeda Zeinab-Garden City',
+                'Sayeda Zeinab-kaleat Elkabsh',
+                'Sayeda Zeinab-Magles Al Shaab',
+                'Sayeda Zeinab-Magles Eloma',
+                'Shubra-El Khalafawy',
+                'Shubra-Masarra',
+                'Shubra-Rod El Farag',
+                'Tebin',
+                'Tura-Elbalad',
+                'Zamalek',
+            ],
+            Giza: [
+                '6th of October',
+                'Abou Rawash',
+                'Abu Al-Nomros',
+                'Agouza-Abou El Dahab Square',
+                'Agouza-Abou Eldahab Square',
+                'Agouza-Abu Al Mawahib Square',
+                'Agouza-Aswan square',
+                'Agouza-Balloon Theatre',
+                'Agouza-Nawal Street',
+                'Agouza-Sphinx Square',
+                'Al Ayat',
+                'Al Barageel',
+                'AL Kom Al Ahmer',
+                'Al Manashi',
+                'Al Nobariah',
+                'Al Saf',
+                'Al Wahat',
+                'Aossim',
+                'Badrashin',
+                'Beherms',
+                'Bolak Al Dakrour-Nahia',
+                'Dokki-26 July Axis',
+                'Dokki-Al Awqaf buildings',
+                'Dokki-Al Behos',
+                'Dokki-Amman Square',
+                'Dokki-Babel Square',
+                'Dokki-Ben ElSaryat',
+                'Dokki-El Galaa Square',
+                'Dokki-El Messaha Square',
+                'Dokki-El Tahrir Street',
+                'Dokki-Elsayed club',
+                'Dokki-Mohy Eldin Abou El Ezz',
+                'Dokki-Soliman Gohar',
+                'Dokki-Tehran Squre',
+                'Dokki-Wezaret El Zeraa',
+                'El Manawat',
+                'Faisal',
+                'faisal- El Talbeya',
+                'faisal-Al Kom Al Akhdar',
+                'faisal-Al Shesheini',
+                'faisal-Aspats',
+                'faisal-El Lebeny Axis',
+                'faisal-El Remaya Square',
+                'faisal-El-Matbaa',
+                'faisal-El-Taawon',
+                'faisal-Kafr Tuhurmis',
+                'faisal-Madkour',
+                'faisal-Mariottia',
+                'faisal-Nasr El Din',
+                'Giza-Al Monib',
+                'Giza-Boulak El Dakroor',
+                'Giza-El Geza Square',
+                'Giza-El Mahata street',
+                'Giza-Qism el Giza',
+                'Giza-Saft El Laban',
+                'Hadayek Al Ahram',
+                'Haram - El Remaya',
+                'Haram- El-Taawon',
+                'Haram- Nazlet El-Semman',
+                'Haram- Sahl Hamza',
+                'Haram-El Mansouria',
+                'Haram-El-Arish Street',
+                'Haram-Kafr El Gabal',
+                'Haram-Nazlet Al Batran',
+                'Harania',
+                'Hawamdya',
+                'Imbaba',
+                'Kerdasa',
+                'Kit Kat',
+                'Manial Shiha',
+                'Mansoureya',
+                'Mohandessin-Ahmed Oraby',
+                'Mohandessin-Gameat El Dowal',
+                'Mohandessin-Geziret el Arab',
+                'Mohandessin-Lebanon Square',
+                'Mohandessin-Met Okba',
+                'Mohandessin-Mostafa Mahmoud Square',
+                'Mohandessin-Shehab Street',
+                'Nahai Elbalad',
+                'Omraneya-Al Thalatheni',
+                'Omraneya-El Konayyesa',
+                'Omraneya-El Omraneya El Gharbeya',
+                'Omraneya-El Omraneya El Sharqeya',
+                'Omraneya-Elshrkia Eastern Company',
+                'Omraneya-Khatem El-Morsaleen',
+                'Omraneya-Tereat Elzomor',
+                'Omraneya-Tersa',
+                'sakiat Mekki',
+                'Saqara',
+                'Saqeel',
+                'ShabraMant',
+                'Tirsa',
+                'Warraq',
+            ]
+        }
+
+        city.addEventListener('change', function () {
+            let selectedOption = citys[this.value];
+            while (county.options.length > 0) {
+                county.options.remove(0);
+            }
+
+            Array.from(selectedOption).forEach(function (el) {
+                let option = new Option(el, el);
+                console.log(el);
+                county.appendChild(option);
+            });
+            alertP.style.display = 'block';
+            city.style.marginBottom = '0px';
+        });
+    </script>
+    <script src="/javascripts/products.js"></script>
+</body>
+
+</html>

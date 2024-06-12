@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="get the best Tarkeba's of the best perfumes, we can make a custom perfume for you.">
+    <meta name="keywords"
+        content="perfume,عطر,عطور,برفان,برفيوم,عود,عنبر,تركيب عطور,مراجعة عطور,المسك,العود,شانيل,oud,عطور امواج,
+        perfume,perfumes,perfume collection,best perfumes,perfume haul,my perfume collection,perfume review,perfume collection 2021,perfume official channel,
+        top perfumes,el perfume,britney perfume,perfume britney,top 10 perfumes,luxury perfumes,perfume britney spears,britney spears perfume,perfumes nacionais,
+        perfumes femininos,perfume collection 2020,perfume ad,perfume mv,perfumer,perfume collection women,sia perfume,oud perfume,date perfume,
+        تركيب العطور,عطور,عطور تركيب,تركيبة عطور رجالي رائعة,خلطات عطور تركيب,تركيز العطور,العطور,اسرار تركيب العطور,العطور المركبة,
+        lacoste white, black lexus, pink sugar,CK,blue chanel,sauvage,oud bouquet,vip 212,euphoria,rose vanilla,bmw perfume,BMW perfume,">
+    <meta name="author" content="Mohamed Alsgheer">
+    <meta property="og:title" content="Tarkeba perfume">
+    <meta property="og:description"
+        content="get the best Tarkeba's of the best perfumes, we can make a custom perfume for you.">
+    <meta property="og:image" content="tarkeba-img/iconSocail.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="600">
+    <meta property="og:type" content="website">
+    <title>Tarkeba Perfume</title>
+    <link rel="icon" href="/images/icon2.png">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;1,400;1,500&display=swap">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/stylesheets/tarkeba.css">
+    <link rel="stylesheet" href="/stylesheets/products.css">
+    <link rel="stylesheet" href="/stylesheets/profile.css">
+    <link rel="stylesheet" href="/stylesheets/style-language.css">
+</head>
+
+<body id="body">
+    <!--header-->
+    {{> header1}}
+    <!--images slider-->
+    <div class="slider-container">
+        {{#each slides}}
+        {{#if (linkStatus this.linkStatus)}}
+        <div class="img-slider">
+            <img src="{{this.img.url}}" style="object-fit: {{this.objectFit}};">
+            <a href="{{this.link}}" class="btn" id="link-slider"
+                style="color: {{this.fontColor}}; background: {{this.btnColor}}; left: {{this.coordinates.x}}%; bottom: {{this.coordinates.y}}%; z-index: 3;">{{this.btnValue}}</a>
+            {{!-- <a href="/custom" class="btn" class="row" id="custom">custom &#8594;</a> --}}
+        </div>
+        {{else}}
+        <a href="/{{this.link}}" class="img-slider">
+            <img src="{{this.img.url}}" style="object-fit: {{this.objectFit}};">
+            {{!-- <a href="/custom" class="btn" class="row" id="custom">custom &#8594;</a> --}}
+        </a>
+        {{/if}}
+        {{/each}}
+        <div class="slide-controls" style="height: fit-content; top: 50%; bottom: 50%;">
+            <span class="indicators">
+                <div id="prev">
+                    <i style="color: #fff; mix-blend-mode: difference;" class="fa-solid fa-angle-left"></i>
+                </div>
+                <div id="next">
+                    <i style="color: #fff; mix-blend-mode: difference;" class="fa-solid fa-angle-right"></i>
+                </div>
+            </span>
+        </div>
+        <div class="slide-controls">
+            <span id="indicators" class="indicators" style="justify-content: center;"></span>
+        </div>
+    </div>
+    <!--
+        <div class="row55">
+            <div class="col2">
+                <div class="row2">
+                    <p class="text" id="title1">Get The Best</p>
+                    <p class="text" id="title2">Tarkeba's Of</p>
+                    <p class="text" id="title3">The Best perfumes</p>
+                </div>
+                <p style="color: #777777; font-size: 20px;" id="sentence1">If you can't find what perfumes suit you, we can make</p>
+                <p style="color: #777777; font-size: 20px;" id="sentence2">a custom perfume for you.</p>
+                <a href="/custom" class="btn" class="row" id="custom">custom &#8594;</a>
+            </div>
+            <div class="col2">
+                <img src="/images/tp_MG_0973.png" alt="perfumes" style="float: right; padding-top: 25px;" class="row1">
+            </div>
+        </div>
+    -->
+    <!--successfully message-->
+    {{#if success}}
+    <div class="popup" id="popup-1">
+        <div class="overlay" id="dark-overlay"></div>
+        <div class="content" id="contentBuying">
+            <div class="close-btn" onclick="togglePopupEmail()">&times;</div>
+            <h2 style="color: #1E1926;" id="buying-succeeded">Buying succeeded</h2>
+            <div style="margin-top: 75px;">
+                <img src="/images/shopping-bag.png" alt="success" style="width: 120px;">
+                <p style="margin-top: 15px;">{{success}}</p>
+            </div>
+        </div>
+    </div>
+    {{/if}}
+    <!--featured products-->
+    <div class="small-container">
+        <div class="title-div">
+            <h2>Categories</h2>
+        </div>
+        <div class="row" style="display: flex; flex-wrap: wrap; justify-content: space-evenly;">
+            {{#each categories}}
+            <a href="/categories/{{this.slug}}"
+                style="display: flex; flex-direction: column; align-items: center; gap: 15px;">
+                <div style="width: fit-content; border-radius: 50px; border: 1px solid #000; padding: 15px;">
+                    <div style="width: 60px; height: 60px">
+                        <img src="{{this.image.url}}" alt="category" style="width: 60px;">
+                    </div>
+                </div>
+                <h4>{{this.name}}</h4>
+            </a>
+            {{/each}}
+        </div>
+        <div class="title-div">
+            <h2>Best Seller</h2>
+            <a href="/categories/best-seller" class="more">Show more &#8250;</a>
+        </div>
+        <div class="row">
+            {{#each bestSelling}}
+            <div class="mproducts">
+                <a href="/product-page/{{this.id}}/{{this.name}}">
+                    {{#if this.pricing.discount}}
+                    <div class="offer">
+                        <p>{{this.pricing.discount}}% OFF</p>
+                    </div>
+                    {{/if}}
+                    {{#with (lookup this.images 0)~}}
+                    <img src="{{url}}" alt="{{altText}}">
+                    {{/with}}
+                </a>
+                <div>
+                    <div
+                        style="display: flex; align-items: baseline; justify-content: space-between; margin: 10px 10px 0px 10px;">
+                        <a href="/product-page/{{this.id}}/{{this.name}}">
+                            <h4 style="margin: 0px; font-size: 18px;">{{this.name}}</h4>
+                        </a>
+                        <div style="display: flex; align-items: baseline; white-space: nowrap;">
+                            {{#if this.pricing.salePrice}}
+                            <p id="salePrice">{{this.pricing.salePrice}} EGP</p>
+                            {{/if}}
+                            <p class="priceOnScreen">{{this.pricing.price}} EGP</p>
+                        </div>
+                    </div>
+                    <div
+                        style="max-width: 100%; height: 59px; margin: 10px 10px 0px 10px; overflow: hidden; text-overflow: ellipsis;">
+                        <p style="font-size: 12px; color: #6c757d; text-align: left;">
+                            {{this.desc}}
+                        </p>
+                    </div>
+                    <div class="starLine2">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                            <div class="starRate">
+                                <div class="numReviews2" style="margin: 0px;">
+                                    <i class="fa-regular fa-star mediaStyleStar"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                </div>
+                                <p class="productRate" style="margin: 0px;font-size: 14px; color: #fff">
+                                    {{this.overallRating}}</p>
+                            </div>
+                            <input type="number" value="{{this.overallRating}}" class="avgRating" hidden>
+                            <span style="align-items: baseline; white-space: nowrap;">
+                                {{#if this.pricing.salePrice}}
+                                <p id="salePrice-media">{{this.pricing.salePrice}} EGP</p>
+                                {{/if}}
+                                <p class="priceOnMobile" style="font-size: 13px;">{{this.pricing.price}} EGP</p>
+                            </span>
+                        </div>
+                        <form action="/addToCart/{{this._id}}" method="POST">
+                            <input type="submit" class="btn"
+                                style="border: none; padding: 10px 20px; border-radius: 7px; margin: 0px; cursor: pointer; width: 100%;"
+                                value="Add To Cart">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+        <div class="title-div">
+            <h2>Men's Perfumes</h2>
+            <a href="/categories/{{menProductsLink}}" class="more">Show more &#8250;</a>
+        </div>
+        <div class="row">
+            {{#each men}}
+            <div class="mproducts">
+                <a href="/product-page/{{this.id}}/{{this.name}}">
+                    {{#if this.pricing.discount}}
+                    <div class="offer">
+                        <p>{{this.pricing.discount}}% OFF</p>
+                    </div>
+                    {{/if}}
+                    {{#with (lookup this.images 0)~}}
+                    <img src="{{url}}" alt="{{altText}}">
+                    {{/with}}
+                </a>
+                <div>
+                    <div
+                        style="display: flex; align-items: baseline; justify-content: space-between; margin: 10px 10px 0px 10px;">
+                        <a href="/product-page/{{this.id}}/{{this.name}}">
+                            <h4 style="margin: 0px; font-size: 18px;">{{this.name}}</h4>
+                        </a>
+                        <div style="display: flex; align-items: baseline; white-space: nowrap;">
+                            {{#if this.pricing.salePrice}}
+                            <p id="salePrice">{{this.pricing.salePrice}} EGP</p>
+                            {{/if}}
+                            <p class="priceOnScreen">{{this.pricing.price}} EGP</p>
+                        </div>
+                    </div>
+                    <div
+                        style="max-width: 100%; height: 59px; margin: 10px 10px 0px 10px; overflow: hidden; text-overflow: ellipsis;">
+                        <p style="font-size: 12px; color: #6c757d; text-align: left;">
+                            {{this.desc}}
+                        </p>
+                    </div>
+                    <div class="starLine2">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                            <div class="starRate">
+                                <div class="numReviews2" style="margin: 0px;">
+                                    <i class="fa-regular fa-star mediaStyleStar"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                </div>
+                                <p class="productRate" style="margin: 0px;font-size: 14px; color: #fff">
+                                    {{this.overallRating}}</p>
+                            </div>
+                            <input type="number" value="{{this.overallRating}}" class="avgRating" hidden>
+                            <span style="align-items: baseline; white-space: nowrap;">
+                                {{#if this.pricing.salePrice}}
+                                <p id="salePrice-media">{{this.pricing.salePrice}} EGP</p>
+                                {{/if}}
+                                <p class="priceOnMobile" style="font-size: 13px;">{{this.pricing.price}} EGP</p>
+                            </span>
+                        </div>
+                        <form action="/addToCart/{{this._id}}" method="POST">
+                            <input type="submit" class="btn"
+                                style="border: none; padding: 10px 20px; border-radius: 7px; margin: 0px; cursor: pointer; width: 100%;"
+                                value="Add To Cart">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+        <!---->
+        <div class="title-div">
+            <h2>Women's Perfumes</h2>
+            <a href="/categories/{{womenProductsLink}}" class="more">Show more &#8250;</a>
+        </div>
+        <div class="row">
+            {{#each women}}
+            <div class="mproducts">
+                <a href="/product-page/{{this.id}}/{{this.name}}">
+                    {{#if this.pricing.discount}}
+                    <div class="offer">
+                        <p>{{this.pricing.discount}}% OFF</p>
+                    </div>
+                    {{/if}}
+                    {{#with (lookup this.images 0)~}}
+                    <img src="{{url}}" alt="{{altText}}">
+                    {{/with}}
+                </a>
+                <div>
+                    <div
+                        style="display: flex; align-items: baseline; justify-content: space-between; margin: 10px 10px 0px 10px;">
+                        <a href="/product-page/{{this.id}}/{{this.name}}">
+                            <h4 style="margin: 0px; font-size: 18px;">{{this.name}}</h4>
+                        </a>
+                        <div style="display: flex; align-items: baseline; white-space: nowrap;">
+                            {{#if this.pricing.salePrice}}
+                            <p id="salePrice">{{this.pricing.salePrice}} EGP</p>
+                            {{/if}}
+                            <p class="priceOnScreen">{{this.pricing.price}} EGP</p>
+                        </div>
+                    </div>
+                    <div
+                        style="max-width: 100%; height: 59px; margin: 10px 10px 0px 10px; overflow: hidden; text-overflow: ellipsis;">
+                        <p style="font-size: 12px; color: #6c757d; text-align: left;">
+                            {{this.desc}}
+                        </p>
+                    </div>
+                    <div class="starLine2">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                            <div class="starRate">
+                                <div class="numReviews2" style="margin: 0px;">
+                                    <i class="fa-regular fa-star mediaStyleStar"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                </div>
+                                <p class="productRate" style="margin: 0px;font-size: 14px; color: #fff">
+                                    {{this.overallRating}}</p>
+                            </div>
+                            <input type="number" value="{{this.overallRating}}" class="avgRating" hidden>
+                            <span style="align-items: baseline; white-space: nowrap;">
+                                {{#if this.pricing.salePrice}}
+                                <p id="salePrice-media">{{this.pricing.salePrice}} EGP</p>
+                                {{/if}}
+                                <p class="priceOnMobile" style="font-size: 13px;">{{this.pricing.price}} EGP</p>
+                            </span>
+                        </div>
+                        <form action="/addToCart/{{this._id}}" method="POST">
+                            <input type="submit" class="btn"
+                                style="border: none; padding: 10px 20px; border-radius: 7px; margin: 0px; cursor: pointer; width: 100%;"
+                                value="Add To Cart">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+    <!--footer-->
+    {{> footer}}
+    <!--JavaScript-->
+    <script src="/javascripts/products.js"></script>
+    <script src="/javascripts/imgSlider.js"></script>
+    {{!--
+    <script src="/javascripts/translate.js"></script> --}}
+    <script>
+        function togglePopupEmail() {
+            const overLay = document.getElementById('dark-overlay');
+            const content = document.getElementById('contentBuying');
+            overLay.style.display = 'none';
+            content.style.transform = 'translate(-50%, -50%) scale(0)';
+        }
+    </script>
+    <script>
+        ////average rating////
+        const avgRating = document.getElementsByClassName("avgRating");
+        const numReviews = document.querySelectorAll(".numReviews2");
+        for (let i = 0; i < numReviews.length; i++) {
+            for (let j = 0; j < avgRating[i].value; j++) {
+                numReviews[i].children[j].classList.add("fa-solid");
+            }
+        }
+    </script>
+</body>
+
+</html>

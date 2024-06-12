@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Tarkeba perfume">
+    <meta property="og:description"
+        content="get the best Tarkeba's of the best perfumes, we can make a custom perfume for you.">
+    <meta property="og:image" content="tarkeba-img/iconSocail.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="600">
+    <meta property="og:type" content="website">
+    <title>Tarkeba perfume | Products</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" href="/images/icon2.png">
+    <link rel="stylesheet" href="/stylesheets/tarkeba.css">
+    <link rel="stylesheet" href="/stylesheets/products.css">
+    <link rel="stylesheet" href="/stylesheets/dashboard.css">
+    <link rel="stylesheet" href="/stylesheets/product.css">
+    <link rel="stylesheet" href="/stylesheets/orders.css">
+    <link rel="stylesheet" href="/stylesheets/style-language.css">
+</head>
+
+<body>
+    <div id="cartBody">
+        <div style="display: flex; justify-content: flex-start;">
+            <!--side bar-->
+            {{> sidebar}}
+            <!--header-->
+            {{> header2}}
+            <!--page body-->
+            <div class="dashboard-body">
+                <div class="order-list" style="margin-bottom: 50px;">
+                    <div class="page-title">
+                        <p>Products</p>
+                    </div>
+                    <div
+                        style="width: 80%; box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2); border-radius: 5px 5px 0px 0px;">
+                        <div class="order-filters">
+                            <form>
+                                <div class="filter-div">
+                                    <input type="search" placeholder="Start typing to search for products" id="search"
+                                        style="margin-top: 0px;">
+                                    <input type="hidden" value="{{orders}}" id="orders">
+                                </div>
+                                <div>
+                                    <a href="/admin/product" id="delete-orders">New Product</a>
+                                </div>
+                            </form>
+                        </div>
+                        <div style="white-space: nowrap; overflow: overlay;">
+                            <div class="order-div" style="grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr;">
+                                <div class="list-key head-item">
+                                    <img src="/images/admin-img/arrow2.png" style="transform: rotate(0deg);">
+                                    <p>Product</p>
+                                </div>
+                                <div class="list-key head-item">
+                                    <img src="/images/admin-img/arrow2.png" style="transform: rotate(0deg);">
+                                    <p>Stock</p>
+                                </div>
+                                <div class="list-key head-item">
+                                    <img src="/images/admin-img/arrow2.png" style="transform: rotate(0deg);">
+                                    <p>Price</p>
+                                </div>
+                                <div class="list-key head-item">
+                                    <img src="/images/admin-img/arrow2.png" style="transform: rotate(0deg);">
+                                    <p>Rating</p>
+                                </div>
+                                <div class="head-item" style="justify-content: center;">
+                                    <p>Action</p>
+                                </div>
+                            </div>
+                            <div class="order-div" id="products-body"
+                                style="grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr;">
+                                {{#each products}}
+                                <div id="nameDiv">
+                                    {{#with (lookup this.images 0)~}}
+                                    <img src="{{this.url}}" style="width: 50px;">
+                                    {{/with}}
+                                    <p>{{this.name}}</p>
+                                </div>
+                                <div>
+                                    {{#if this.stock}}
+                                    <p>{{this.stock}} in stock</p>
+                                    {{else}}
+                                    <p>Out of stock</p>
+                                    {{/if}}
+                                </div>
+                                <div>
+                                    <p>{{this.pricing.price}} EGP</p>
+                                </div>
+                                <div style="font-size: 14px; gap: 5px;">
+                                    <div class="starRate" style="padding: 0px;">
+                                        <div class="numReviews2" style="margin: 0px; padding: 0px;">
+                                            <i class="fa-regular fa-star mediaStyleStar"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                        </div>
+                                        <p class="productRate" style="margin: 0px;font-size: 14px; color: #fff">
+                                            {{this.overallRating}}</p>
+                                    </div>
+                                    <span style="color: #555;">({{this.numReviews}})</span>
+                                    <input type="number" value="{{this.overallRating}}" class="avgRating" hidden>
+                                </div>
+                                <div>
+                                    <form action="/admin/deleteProduct" method="POST"
+                                        style="align-items: baseline; width: 100%; display: flex; justify-content: center;">
+                                        <a href="/admin/product/{{this._id}}">
+                                            <img src="/images/admin-img/edit.png"
+                                                style="margin-right: 5px; margin-left: 5px; cursor: pointer; width: 15px;">
+                                        </a>
+                                        <input type="text" value="{{this._id}}" name="deleteBtn" hidden>
+                                        <input type="image" src="/images/admin-img/delete.png"
+                                            style="margin-left: 8px; cursor: pointer; width: 15px;"
+                                            formaction="/admin/deleteProduct">
+                                    </form>
+                                </div>
+                                {{/each}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="pagination-div">
+                    <button class="page-btn start-page">&#10094;&#10094;</button>
+                    <button class="page-btn prev-page">&#10094;</button>
+                    <div>
+                        <ul id="page-btns" style="display: flex; list-style: none;">
+                        </ul>
+                    </div>
+                    <button class="page-btn next-page">&#10095;</button>
+                    <button class="page-btn end-page">&#10095;&#10095;</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--javaScripts-->
+    <script src="/javascripts/sidebar.js"></script>
+    <script src="/javascripts/productList.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,181 @@
+[dir="rtl"] .container {
+    direction: ltr;
+}
+
+[dir="rtl"] .mproducts h4 {
+    margin-right: 10px;
+    margin-left: 0px;
+}
+
+[dir="rtl"] .mproducts p {
+    margin-right: 10px;
+}
+
+[dir="rtl"] footer {
+    direction: ltr;
+}
+
+[dir="rtl"] #arrow2 {
+    width: 15px;
+    margin-right: 10px;
+    margin-bottom: 0px;
+}
+
+[dir="rtl"] #edit-arrow {
+    display: flex;
+    width: 130px;
+}
+
+[dir="rtl"] #product-js {
+    direction: ltr;
+}
+
+[dir="rtl"] .single-product {
+    direction: ltr;
+}
+
+[dir="rtl"] .data-product {
+    direction: ltr;
+}
+
+[dir="rtl"] .scale p {
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+[dir="rtl"] #inputs {
+    direction: ltr;
+    float: right;
+    margin-left: 0px;
+}
+
+[dir="rtl"] #enter-address {
+    margin-left: 400px;
+    margin-right: 0px;
+}
+
+[dir="rtl"] #input-number {
+    margin-bottom: 10px;
+}
+
+[dir="rtl"] #input-number2 {
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+[dir="rtl"] .col22 h3 {
+    margin-left: 0%;
+    margin-right: 10px;
+}
+
+[dir="rtl"] .col22 p {
+    margin-right: 10px;
+}
+
+[dir="rtl"] #edit {
+    margin-left: 10px;
+    float: left;
+}
+
+[dir="rtl"] .container-profile p {
+    margin-right: 10px;
+    margin-left: 0px;
+}
+
+[dir="rtl"] #user-name {
+    margin-right: 0px;
+}
+
+[dir="rtl"] #plus {
+    float: left;
+}
+
+[dir="rtl"] #detailes-address div p {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+[dir="rtl"] #detailes-address div h2 {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+[dir="rtl"] #address-cart {
+    margin-left: 200px;
+}
+
+[dir="rtl"] .divQA {
+    margin-right: 20%;
+    margin-top: 50px;
+}
+
+[dir="rtl"] .imgNoProducts {
+    margin-right: 640px;
+    margin-left: 0px;
+}
+
+[dir="rtl"] .pNoProducts {
+    text-align: center;
+    margin-left: 50px;
+    margin-right: 690px;
+}
+
+[dir="rtl"] .aNoProducts {
+    margin-left: 60px;
+    margin-right: 700px;
+}
+
+[dir="rtl"] #body-cart {
+    direction: ltr;
+}
+
+[dir="rtl"] .address-inputs {
+    margin-right: 0px;
+}
+
+[dir="rtl"] #enter-address form div {
+    margin-right: 80px;
+}
+
+[dir="rtl"] #Indicator {
+    transform: translateX(-100px);
+}
+
+[dir="rtl"] .buttoms {
+    margin-right: 0px;
+    margin-left: 10px;
+}
+
+[dir="rtl"] .foot2 {
+    direction: rtl;
+}
+
+[dir="rtl"] .foot3 h3 {
+    direction: rtl;
+}
+
+@media only screen and (max-width: 600px) {
+    [dir="rtl"] #edit-arrow {
+        margin-right: 30%;
+    }
+
+    [dir="rtl"] .scale p {
+        padding-left: 10px;
+    }
+
+    [dir="rtl"] .mproducts h4 {
+        margin-left: 10px;
+        margin-right: 0px;
+    }
+
+    [dir="rtl"] .col22 h3 {
+    margin-left: 10px;
+    margin-right: 0px;
+    }
+
+    [dir="rtl"] .divQA {
+        margin-right: 20px;
+        margin-left: 20px;
+    }
+}

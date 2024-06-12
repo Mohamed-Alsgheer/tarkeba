@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarkeba Perfume</title>
+    <link rel="icon" href="/images/icon2.png">
+    <link rel="stylesheet" href="/stylesheets/tarkeba.css">
+    <link rel="stylesheet" href="/stylesheets/products.css">
+    <link rel="stylesheet" href="/stylesheets/productList.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;1,400;1,500&display=swap">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <!--header-->
+    {{> header1}}
+    <div class="productList-container">
+        <form action="/category/{{slug}}" method="GET" id="filter-form">
+            <div style="margin-bottom: 20px;">
+                <h3>Price</h3>
+                <div class="price-input">
+                    <div class="field">
+                        <span>Min</span>
+                        <input type="number" name="minPrice" class="input-min" value="0">
+                    </div>
+                    <div class="separator">-</div>
+                    <div class="field">
+                        <span>Max</span>
+                        <input type="number" name="maxPrice" class="input-max" value="{{maxPriceProduct}}">
+                    </div>
+                </div>
+                <div class="slider">
+                    <div class="progress"></div>
+                </div>
+                <div class="range-input">
+                    <input type="range" name="price-max" class="range-min" min="0" max="{{maxPriceProduct}}" value="0"
+                        step="5">
+                    <input type="range" name="price-min" class="range-max" min="0" max="{{maxPriceProduct}}"
+                        value="{{maxPriceProduct}}" step="5">
+                </div>
+            </div>
+            <div style="margin-bottom: 20px;">
+                <h3>Size</h3>
+                <div class="price-input">
+                    <div class="field">
+                        <span>Min</span>
+                        <input type="number" name="minSize" class="input-min" value="0">
+                    </div>
+                    <div class="separator">-</div>
+                    <div class="field">
+                        <span>Max</span>
+                        <input type="number" name="maxSize" class="input-max" value="{{maxSizeProduct}}">
+                    </div>
+                </div>
+                <div class="slider">
+                    <div class="progress"></div>
+                </div>
+                <div class="range-input">
+                    <input type="range" name="size-min" class="range-min" min="0" max="{{maxSizeProduct}}" value="0"
+                        step="5">
+                    <input type="range" name="size-max" class="range-max" min="0" max="{{maxSizeProduct}}"
+                        value="{{maxSizeProduct}}" step="5">
+                </div>
+            </div>
+            <div>
+                <h3>Fragrance</h3>
+                <label for="men">
+                    <input type="checkbox" class="fragrance" name="fragrance" id="men" value="For Men">
+                    <p>For Men</p>
+                </label>
+                <label for="women">
+                    <input type="checkbox" class="fragrance" name="fragrance" id="women" value="For Women">
+                    <p>For Women</p>
+                </label>
+                <label for="kids">
+                    <input type="checkbox" class="fragrance" name="fragrance" id="kids" value="For Kids">
+                    <p>For Kids</p>
+                </label>
+                <label for="unisex">
+                    <input type="checkbox" class="fragrance" name="fragrance" id="unisex" value="Unisex">
+                    <p>Unisex</p>
+                </label>
+            </div>
+            {{#if productsTypes}}
+            <div>
+                <h3>Type</h3>
+                {{#each productsTypes}}
+                <label for="{{this}}">
+                    <input type="checkbox" class="productType" name="type" id="{{this}}" value="{{this}}">
+                    <p>{{this}}</p>
+                </label>
+                {{/each}}
+            </div>
+            {{/if}}
+            {{#if subCategories}}
+            <div>
+                <h3>Category</h3>
+                {{#each subCategories}}
+                <label for="{{this.name}}">
+                    <input type="checkbox" class="productCategory" name="category" id="{{this.name}}"
+                        value="{{this.name}}">
+                    <p>{{this.name}}</p>
+                </label>
+                {{/each}}
+            </div>
+            {{/if}}
+            <div>
+                <h3>Origins</h3>
+                <label for="oriental">
+                    <input type="checkbox" class="origins" name="origins" id="oriental" value="oriental">
+                    <p>Oriental</p>
+                </label>
+                <label for="Western">
+                    <input type="checkbox" class="origins" name="origins" id="Western" value="western">
+                    <p>Western</p>
+                </label>
+                <label for="mix">
+                    <input type="checkbox" class="origins" name="origins" id="mix" value="mix">
+                    <p>Mix &#40;Oriental &#38; Western&#41;</p>
+                </label>
+            </div>
+            <input type="hidden" name="sortType" id="hiddenSort">
+            <input type="text" name="search_query" id="hiddenSearch1" hidden>
+            <input type="submit" value="Apply" class="btn" style="border: 0px; border-radius: 5px;">
+        </form>
+        <div>
+            <div id="title-container">
+                {{#if search}}
+                <h2>Showing results for: {{search}}</h2>
+                {{else}}
+                <h2>{{pageTitle}}</h2>
+                {{/if}}
+                <div>
+                    <button class="btn" id="media-filter">Filter</button>
+                    <form action="/category/{{slug}}" method="GET" id="sortForm">
+                        <select name="sortType" id="sortType" style="padding: 9px 10px; border-radius: 7px;">
+                            <option value="overallRating">Featured Items</option>
+                            <option value="sold">Best Selling</option>
+                            <option value="pricing.price,-1">Price: high to low</option>
+                            <option value="pricing.price,1">Price: low to high</option>
+                            <option value="createdAt,-1">Date: new to old</option>
+                            <option value="createdAt,1">Date: old to new</option>
+                        </select>
+                        <input type="number" id="hiddenPriceInput1" name="minPrice" hidden>
+                        <input type="number" id="hiddenPriceInput2" name="maxPrice" hidden>
+                        <input type="number" id="hiddenSizeInput1" name="minSize" hidden>
+                        <input type="number" id="hiddenSizeInput2" name="maxSize" hidden>
+                        <input type="checkbox" class="hiddenOrigin" name="origins" value="oriental" hidden>
+                        <input type="checkbox" class="hiddenOrigin" name="origins" value="western" hidden>
+                        <input type="checkbox" class="hiddenOrigin" name="origins" value="mix" hidden>
+                        <input type="checkbox" class="hiddenFragrance" name="fragrance" value="For Men" hidden>
+                        <input type="checkbox" class="hiddenFragrance" name="fragrance" value="For Women" hidden>
+                        <input type="checkbox" class="hiddenFragrance" name="fragrance" value="For Kids" hidden>
+                        <input type="checkbox" class="hiddenFragrance" name="fragrance" value="Unisex" hidden>
+                        <input type="text" name="search_query" id="hiddenSearch2" hidden>
+                        {{#each productsTypes}}
+                        <input type="checkbox" class="hiddenType" name="type" value="{{this}}" hidden>
+                        {{/each}}
+                        {{#each subCategories}}
+                        <input type="checkbox" class="hiddenProductCategory" name="category" id="{{this.name}}"
+                            value="{{this.name}}" hidden>
+                        {{/each}}
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                {{#each offeredProducts}}
+                <div class="mproducts">
+                    <a href="/product-page/{{this.id}}/{{this.name}}">
+                        {{#if this.pricing.discount}}
+                        <div class="offer">
+                            <p>{{this.pricing.discount}}% OFF</p>
+                        </div>
+                        {{/if}}
+                        {{#with (lookup this.images 0)~}}
+                        <img src="{{url}}" alt="{{altText}}">
+                        {{/with}}
+                    </a>
+                    <div>
+                        <div
+                            style="display: flex; align-items: baseline; justify-content: space-between; margin: 10px 10px 0px 10px;">
+                            <a href="/product-page/{{this.id}}/{{this.name}}">
+                                <h4 style="margin: 0px; font-size: 18px;">{{this.name}}</h4>
+                            </a>
+                            <div style="display: flex; align-items: baseline; white-space: nowrap;">
+                                {{#if this.pricing.salePrice}}
+                                <p id="salePrice">{{this.pricing.salePrice}} EGP</p>
+                                {{/if}}
+                                <p class="priceOnScreen">{{this.pricing.price}} EGP</p>
+                            </div>
+                        </div>
+                        <div
+                            style="max-width: 100%; height: 59px; margin: 10px 10px 0px 10px; overflow: hidden; text-overflow: ellipsis;">
+                            <p style="font-size: 12px; color: #6c757d; text-align: left;">
+                                {{this.desc}}
+                            </p>
+                        </div>
+                        <div class="starLine2">
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <div class="starRate">
+                                    <div class="numReviews2" style="margin: 0px;">
+                                        <i class="fa-regular fa-star mediaStyleStar"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                    </div>
+                                    <p class="productRate" style="margin: 0px;font-size: 14px; color: #fff">
+                                        {{this.overallRating}}</p>
+                                </div>
+                                <input type="number" value="{{this.overallRating}}" class="avgRating" hidden>
+                                <span style="align-items: baseline; white-space: nowrap;">
+                                    {{#if this.pricing.salePrice}}
+                                    <p id="salePrice-media">{{this.pricing.salePrice}} EGP</p>
+                                    {{/if}}
+                                    <p class="priceOnMobile" style="font-size: 13px;">{{this.pricing.price}} EGP</p>
+                                </span>
+                            </div>
+                            <form action="/addToCart/{{this._id}}" method="POST">
+                                <input type="submit" class="btn"
+                                    style="border: none; padding: 10px 20px; border-radius: 7px; margin: 0px; cursor: pointer; width: 100%;"
+                                    value="Add To Cart">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+    <!--footer-->
+    {{> footer}}
+    <script src="/javascripts/products.js"></script>
+    <script>
+        const rangeInput = document.querySelectorAll(".range-input input"),
+            priceInput = document.querySelectorAll(".price-input input"),
+            range = document.querySelectorAll(".slider .progress");
+        let priceGap = 5;
+
+        priceInput.forEach(input => {
+            input.addEventListener("input", e => {
+                if (input === priceInput[0] || input === priceInput[1]) {
+                    let minPrice = parseInt(priceInput[0].value),
+                        maxPrice = parseInt(priceInput[1].value);
+                    if ((maxPrice - minPrice >= priceGap) && maxPrice <= rangeInput[1].max) {
+                        if (e.target.className === "input-min") {
+                            rangeInput[0].value = minPrice;
+                            range[0].style.left = ((minPrice / rangeInput[0].max) * 100) + "%";
+                        } else {
+                            rangeInput[1].value = maxPrice;
+                            range[0].style.right = 100 - (maxPrice / rangeInput[1].max) * 100 + "%";
+                        }
+                    }
+                } else {
+                    let minPrice = parseInt(priceInput[2].value),
+                        maxPrice = parseInt(priceInput[3].value);
+                    if ((maxPrice - minPrice >= priceGap) && maxPrice <= rangeInput[3].max) {
+                        if (e.target.className === "input-min") {
+                            rangeInput[2].value = minPrice;
+                            range[1].style.left = ((minPrice / rangeInput[2].max) * 100) + "%";
+                        } else {
+                            rangeInput[3].value = maxPrice;
+                            range[1].style.right = 100 - (maxPrice / rangeInput[3].max) * 100 + "%";
+                        }
+                    }
+                }
+
+            });
+        });
+
+        rangeInput.forEach(input => {
+            input.addEventListener("input", e => {
+                if (input === rangeInput[0] || input === rangeInput[1]) {
+                    let minVal = parseInt(rangeInput[0].value),
+                        maxVal = parseInt(rangeInput[1].value);
+                    if ((maxVal - minVal) < priceGap) {
+                        if (e.target.className === "range-min") {
+                            rangeInput[0].value = maxVal - priceGap
+                        } else {
+                            rangeInput[1].value = minVal + priceGap;
+                        }
+                    } else {
+                        priceInput[0].value = minVal;
+                        priceInput[1].value = maxVal;
+                        range[0].style.left = ((minVal / rangeInput[0].max) * 100) + "%";
+                        range[0].style.right = 100 - (maxVal / rangeInput[1].max) * 100 + "%";
+                    }
+                } else {
+                    let minVal = parseInt(rangeInput[2].value),
+                        maxVal = parseInt(rangeInput[3].value);
+                    if ((maxVal - minVal) < priceGap) {
+                        if (e.target.className === "range-min") {
+                            rangeInput[2].value = maxVal - priceGap
+                        } else {
+                            rangeInput[3].value = minVal + priceGap;
+                        }
+                    } else {
+                        priceInput[2].value = minVal;
+                        priceInput[3].value = maxVal;
+                        range[1].style.left = ((minVal / rangeInput[2].max) * 100) + "%";
+                        range[1].style.right = 100 - (maxVal / rangeInput[3].max) * 100 + "%";
+                    }
+                }
+            });
+        });
+    </script>
+    <script>
+        ////average rating////
+        const avgRating = document.getElementsByClassName("avgRating");
+        const numReviews = document.querySelectorAll(".numReviews2");
+        for (let i = 0; i < numReviews.length; i++) {
+            for (let j = 0; j < avgRating[i].value; j++) {
+                numReviews[i].children[j].classList.add("fa-solid");
+            }
+        }
+    </script>
+    <script>
+        let filterBtn = document.getElementById("media-filter");
+        let filterForm = document.getElementById("filter-form");
+        let hiddenSort = document.getElementById("hiddenSort");
+        let sortType = document.getElementById("sortType");
+        let hiddenSearch1 = document.getElementById("hiddenSearch1");
+        filterBtn.onclick = () => {
+            if (filterForm.style.height === "100%") {
+                filterForm.style.height = "0px";
+            } else {
+                filterForm.style.height = "100%";
+            }
+        }
+        filterForm.onsubmit = (e) => {
+            e.preventDefault();
+            hiddenSort.value = sortType.value;
+            if (urlParams.get('search_query')) hiddenSearch1.value = urlParams.get('search_query');
+            filterForm.submit();
+        }
+    </script>
+    <script>
+        if (window.location.href.includes('/category/best-seller')) sortType.value = 'sold';
+        // Get the query parameters from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        // Set the values of the inputs based on the query parameters
+        for (let i = 0; i < urlParams.getAll('fragrance').length; i++) {
+            document.querySelector(`input[type="checkbox"][value="${urlParams.getAll('fragrance')[i]}"]`).checked = true;
+        }
+        for (let i = 0; i < urlParams.getAll('origins').length; i++) {
+            document.querySelector(`input[type="checkbox"][value="${urlParams.getAll('origins')[i]}"]`).checked = true;
+        }
+        for (let i = 0; i < urlParams.getAll('type').length; i++) {
+            document.querySelector(`input[type="checkbox"][value="${urlParams.getAll('type')[i]}"]`).checked = true;
+        }
+        let typeInput = document.querySelector(`input[type="checkbox"][value="${urlParams.get('type')}"]`);
+        if (typeInput) typeInput.checked = true;
+        let minPrice = document.querySelector('input[name="minPrice"]');
+        let minPriceNumber = document.querySelector('input[name="price-min"]');
+        if (urlParams.get('minPrice')) {
+            minPrice.value = urlParams.get('minPrice');
+            minPriceNumber.value = urlParams.get('minPrice');
+        }
+        let maxPrice = document.querySelector('input[name="maxPrice"]');
+        let maxPriceNumber = document.querySelector('input[name="price-max"]');
+        if (urlParams.get('maxPrice')) {
+            maxPrice.value = urlParams.get('maxPrice');
+            maxPriceNumber.value = urlParams.get('maxPrice');
+        }
+        let minSize = document.querySelector('input[name="minSize"]');
+        let minSizeNumber = document.querySelector('input[name="size-min"]');
+        if (urlParams.get('minSize')) {
+            minSize.value = urlParams.get('minSize');
+            minSizeNumber.value = urlParams.get('minSize');
+        }
+        let maxSize = document.querySelector('input[name="maxSize"]');
+        let maxSizeNumber = document.querySelector('input[name="size-max"]');
+        if (urlParams.get('maxSize')) {
+            maxSize.value = urlParams.get('maxSize');
+            maxSizeNumber.value = urlParams.get('maxSize');
+        }
+        if (urlParams.get('sortType')) sortType.value = urlParams.get('sortType');
+
+        let minValPrice = parseInt(minPrice.value),
+            maxValPrice = parseInt(maxPrice.value);
+        range[0].style.left = ((minValPrice / rangeInput[0].max) * 100) + "%";
+        range[0].style.right = 100 - (maxValPrice / rangeInput[1].max) * 100 + "%";
+        rangeInput[0].value = minValPrice
+        rangeInput[1].value = maxValPrice
+
+        let minValSize = parseInt(minSize.value),
+            maxValSize = parseInt(maxSize.value);
+        range[1].style.left = ((minValSize / rangeInput[2].max) * 100) + "%";
+        range[1].style.right = 100 - (maxValSize / rangeInput[3].max) * 100 + "%";
+        rangeInput[2].value = minValSize
+        rangeInput[3].value = maxValSize
+        //document.getElementById('name').value = urlParams.get('name') || '';
+        //document.getElementById('email').value = urlParams.get('email') || '';
+    </script>
+    <script>
+        let sortForm = document.getElementById("sortForm");
+        let sortInput = document.querySelector("select[name='sortType']");
+        sortInput.onchange = (e) => {
+            e.preventDefault();
+            let hiddenSearch2 = document.getElementById("hiddenSearch2");
+            let fragrance = document.querySelectorAll(".fragrance");
+            let origins = document.querySelectorAll(".origins");
+            let type = document.querySelectorAll(".productType");
+            let hiddenPriceInput1 = document.getElementById("hiddenPriceInput1");
+            let hiddenPriceInput2 = document.getElementById("hiddenPriceInput2");
+            let hiddenSizeInput1 = document.getElementById("hiddenSizeInput1");
+            let hiddenSizeInput2 = document.getElementById("hiddenSizeInput2");
+            let hiddenOrigin = document.querySelectorAll(".hiddenOrigin");
+            let hiddenFragrance = document.querySelectorAll(".hiddenFragrance");
+            let hiddenType = document.querySelectorAll(".hiddenType");
+            let hiddenCategory = document.querySelectorAll(".hiddenProductCategory");
+            hiddenPriceInput1.value = minPrice.value;
+            hiddenPriceInput2.value = maxPrice.value;
+            hiddenSizeInput1.value = minSize.value;
+            hiddenSizeInput2.value = maxSize.value;
+            for (let i = 0; i < fragrance.length; i++) {
+                if (fragrance[i].checked === true) hiddenFragrance[i].checked = true;
+            }
+            for (let i = 0; i < origins.length; i++) {
+                if (origins[i].checked === true) hiddenOrigin[i].checked = true;
+            }
+            for (let i = 0; i < type.length; i++) {
+                if (type[i].checked === true) hiddenType[i].checked = true;
+            }
+            for (let i = 0; i < type.length; i++) {
+                if (type[i].checked === true) hiddenCategory[i].checked = true;
+            }
+            if (urlParams.get('search_query')) hiddenSearch2.value = urlParams.get('search_query');
+            sortForm.submit();
+        }
+    </script>
+</body>
+
+</html>

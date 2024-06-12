@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Tarkeba perfume">
+    <meta property="og:description"
+        content="get the best Tarkeba's of the best perfumes, we can make a custom perfume for you.">
+    <meta property="og:image" content="tarkeba-img/iconSocail.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="600">
+    <meta property="og:type" content="website">
+    <title>Tarkeba perfume | Profile</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="/images/icon2.png">
+    <link rel="stylesheet" href="/stylesheets/tarkeba.css">
+    <link rel="stylesheet" href="/stylesheets/products.css">
+    <link rel="stylesheet" href="/stylesheets/profile.css">
+    <link rel="stylesheet" href="/stylesheets/style-language.css">
+</head>
+
+<body>
+    <!--header-->
+    {{> header1}}
+    <div class="body-container">
+        <!--profile-->
+        <div class="profile-detailes" style="margin-top: 50px;">
+            <!--add address-->
+            <div style="border-bottom: 1px solid #aaa; margin-bottom: 15px;">
+                <div class="container-profile1">
+                    <h4 style="font-weight: bold;">Addresses:</h4>
+                </div>
+                <div>
+                    <div id="addresss">
+                        {{#if addresses}}
+                        {{#each addresses as | val index |}}
+                        <div class="detailes-address"
+                            style="box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2); border-radius: 5px 5px 0px 0px; padding: 20px; margin-bottom: 25px; border: 0px;">
+                            <div id="detailes-address2">
+                                <h2>{{this.name}}</h2>
+                                <p style="margin: 10px 0px;">{{this.government}} - {{this.city}}</p>
+                                <p style="margin: 10px 0px;">{{this.street}} </p>
+                                <p style="margin: 10px 0px;">Phone: {{this.phone}}</p>
+                            </div>
+                            <div>
+                                <form action="/users/deleteAddress/{{this._id}}" method="POST"
+                                    style="align-items: baseline; width: 100%; display: flex; justify-content: center;">
+                                    <a href="/users/updateAddress/{{this._id}}">
+                                        <img src="/images/admin-img/edit.png"
+                                            style="margin-right: 5px; margin-left: 5px; cursor: pointer; width: 15px;">
+                                    </a>
+                                    <input type="image" src="/images/admin-img/delete.png"
+                                        style="margin-left: 8px; cursor: pointer; width: 15px;"
+                                        formaction="/admin/deleteProduct">
+                                </form>
+                            </div>
+                        </div>
+                        {{/each}}
+                        {{else}}
+                        <p>You have not any address.</p>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: center;">
+                <a href="/users/addAddress" class="delete-account" style="background: #4028df;">Add new address</a>
+            </div>
+        </div>
+    </div>
+    <!--footer-->
+    {{> footer}}
+</body>
+
+</html>

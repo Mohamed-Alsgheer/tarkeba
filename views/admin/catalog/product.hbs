@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Tarkeba perfume">
+    <meta property="og:description"
+        content="get the best Tarkeba's of the best perfumes, we can make a custom perfume for you.">
+    <meta property="og:image" content="tarkeba-img/iconSocail.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="600">
+    <meta property="og:type" content="website">
+    <title>Tarkeba perfume | Product</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="/images/icon2.png">
+    <link rel="stylesheet" href="/stylesheets/tarkeba.css">
+    <link rel="stylesheet" href="/stylesheets/products.css">
+    <link rel="stylesheet" href="/stylesheets/dashboard.css">
+    <link rel="stylesheet" href="/stylesheets/orderDetails.css">
+    <link rel="stylesheet" href="/stylesheets/product.css">
+    <link rel="stylesheet" href="/stylesheets/orders.css">
+    <link rel="stylesheet" href="/stylesheets/style-language.css">
+</head>
+
+<body>
+    <div id="cartBody">
+        <div style="display: flex; justify-content: flex-start;">
+            <!--side bar-->
+            {{> sidebar}}
+            <!--header-->
+            {{> header2}}
+            <!--page body-->
+            <div class="dashboard-body">
+                <div class="order-list" style="margin-bottom: 50px;">
+                    <form action="/admin/createProduct" method="POST" enctype="multipart/form-data" id="createProduct"
+                        style="width: 80%; display: flex; flex-direction: column;">
+                        <div class="page-title"
+                            style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                            {{#if product}}
+                            <p>{{product.name}}</p>
+                            <button class="btn" style="border-radius: 4px; border: 0px; font-weight: bold; margin: 0px;"
+                                formaction="/admin/updateProduct/{{product._id}}">Update</button>
+                            {{else}}
+                            <p>New Product</p>
+                            <button class="btn"
+                                style="border-radius: 4px; border: 0px; font-weight: bold; margin: 0px;">Create</button>
+                            {{/if}}
+                        </div>
+                        <div class="product-body">
+                            <div>
+                                <div class="details-div">
+                                    <h3 style="padding-bottom: 20px;">Basic information</h3>
+                                    <div>
+                                        <div>
+                                            <p style="font-weight: bold;" id="nameTitle">Name</p>
+                                            <input type="text" class="inputStyle" id="productName" name="name"
+                                                value="{{product.name}}" required>
+                                            {{#if existProduct}}
+                                            <p class="error" id="existProduct" style="margin-left: 0px;">
+                                                {{existProduct}}</p>
+                                            {{/if}}
+                                        </div>
+                                        <div>
+                                            <p style="font-weight: bold;" id="codeTitle">Stock quantity</p>
+                                            <input type="number" class="inputStyle" name="stock"
+                                                value="{{product.stock}}" required>
+                                        </div>
+                                        <div>
+                                            <p style="font-weight: bold;" id="codeTitle">Description</p>
+                                            <textarea name="description" class="inputStyle textArea"
+                                                required>{{product.desc}}</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="details-div">
+                                    <h3 style="padding-bottom: 20px;">Pricing</h3>
+                                    <div class="pricing">
+                                        <div>
+                                            <p style="font-weight: bold;">Product Price</p>
+                                            <input type="number" class="inputStyle" name="price"
+                                                value="{{product.pricing.price}}" required>
+                                        </div>
+                                        <div>
+                                            <p style="font-weight: bold;">Sale Price</p>
+                                            <input type="number" class="inputStyle" name="salePrice"
+                                                value="{{product.pricing.salePrice}}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="details-div">
+                                    <h3 style="padding-bottom: 20px;">Additional information</h3>
+                                    <div>
+                                        <div>
+                                            <p style="font-weight: bold;">Size</p>
+                                            <input type="text" class="inputStyle" name="size" value="{{product.size}}"
+                                                placeholder="Enter the size with the unit of measure...">
+                                        </div>
+                                        <div>
+                                            <p style="font-weight: bold;">Origin</p>
+                                            <select name="origin" class="inputStyle">
+                                                {{#if product}}
+                                                <option value="{{product.origin}}" hidden>{{product.origin}}</option>
+                                                {{else}}
+                                                <option value="" hidden>Select Origin</option>
+                                                {{/if}}
+                                                <option value="Western">Western</option>
+                                                <option value="Oriental">Oriental</option>
+                                                <option value="Mix &#40;Oriental &#38; Western&#41;">Mix &#40;Oriental
+                                                    &#38; Western&#41;</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <p style="font-weight: bold;">Fragrance</p>
+                                            <select name="fragrance" class="inputStyle">
+                                                {{#if product}}
+                                                <option value="{{product.fragrance}}" hidden>{{product.fragrance}}
+                                                </option>
+                                                {{else}}
+                                                <option value="" hidden>Select Fragrance</option>
+                                                {{/if}}
+                                                <option value="For Men">For Men</option>
+                                                <option value="For Women">For Women</option>
+                                                <option value="For Kids">For Kids</option>
+                                                <option value="Unisex">Unisex</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <p style="font-weight: bold;">Type</p>
+                                            <input type="text" class="inputStyle" name="productType"
+                                                value="{{product.productType}}">
+                                        </div>
+                                        <div>
+                                            <h4 style="font-weight: bold;">More details</h4>
+                                            <div
+                                                style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                                                <input type="text" id="classify" placeholder="Classification name">
+                                                <p style="font-size: 24px; font-weight: bold;">:</p>
+                                                <input type="text" id="value" placeholder="Value">
+                                                <div class="btn"
+                                                    style="border-radius: 4px; margin: 5px 0px 0px 0px; padding: 7px 25px; font-size: 14px"
+                                                    id="addClassify">Add</div>
+                                            </div>
+                                            <p class="error" id="errorValue" style="margin: 10px 0px;"></p>
+                                            <div style="margin-top: 15px;">
+                                                <div id="classifyHeader">
+                                                    <div
+                                                        style="width: 25%; min-width: fit-content; border: 1px solid #bbb; padding: 6px 13px;">
+                                                        Classification</div>
+                                                    <div
+                                                        style="width: 75%; border: 1px solid #bbb;  padding: 6px 13px;">
+                                                        Value</div>
+                                                </div>
+                                                <div id="classifyContainer">
+                                                    {{#if product}}
+                                                    {{#each product.details}}
+                                                    <div id="classifyContainer">
+                                                        <div style="display: flex;">
+                                                            <div
+                                                                style="width: 25%;  border: 1px solid #bbb; padding: 6px 13px;">
+                                                                {{this.classification}}</div>
+                                                            <div
+                                                                style="width: 75%; border: 1px solid #bbb;  padding: 6px 13px; display: flex; justify-content: space-between; align-items: center;">
+                                                                <p>{{this.value}}</p>
+                                                                <img src="/images/admin-img/delete.png"
+                                                                    class="deleteElement" style="border: 0px;"
+                                                                    onclick="deleteclassify(0)">
+                                                            </div>
+                                                            <input type="checkbox" name="classifications"
+                                                                value='{{jsonStringify @this}}' checked hidden />
+                                                        </div>
+                                                    </div>
+                                                    {{/each}}
+                                                    {{/if}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="details-div">
+                                    <h3 style="margin-bottom: 15px;">Images</h3>
+                                    <div
+                                        style="display: grid; grid-template-columns: 1fr 7fr 1fr 0.5fr; justify-content: space-between; width: 100%; align-items: center; margin: 10px 0px">
+                                        <h4 style="font-weight: bold; margin: 0px 5px;">Image</h4>
+                                        <h4 style="font-weight: bold;">Alt text</h4>
+                                        <h4 style="font-weight: bold;">Order</h4>
+                                    </div>
+                                    <div style="border-bottom: 1px solid #bbb;">
+                                        {{#each product.images as | val index |}}
+                                        <div
+                                            style="display: grid; grid-template-columns: 1fr 7fr 1fr 1fr; width: 100%; align-items: center; margin-bottom: 25px;">
+                                            <img src="{{this.url}}" style="width: 40px;">
+                                            <input type="text" class="altImg" value="{{this.altText}}"
+                                                style="margin: 0px">
+                                            <input type="number" class="orderImg" value="{{this.order}}"
+                                                style="margin: 0px 0px 0px 40%">
+                                            <input type="checkbox" name="deletedImages" id="{{this.public_id}}"
+                                                style="display: none;" value="{{this.public_id}}">
+                                            <label for="{{this.public_id}}">
+                                                <img class="closeX" src="/images/close.png"
+                                                    style="border: 0px; width: 12px; margin-left: 70%; cursor: pointer;"
+                                                    onclick="deleteStoredImg(this)">
+                                            </label>
+                                        </div>
+                                        {{/each}}
+                                        <span id="imagesBody"></span>
+                                    </div>
+                                    <input type="file" accept="image/*" id="file" name="images" style="display: none;"
+                                        multiple>
+                                    <label for="file">
+                                        <div style="display: inline-block">
+                                            <p class="upload">Upload new image</p>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="product-div">
+                                    <h3 style="padding-bottom: 25px;">Visibility</h3>
+                                    <div class="radio-type">
+                                        <input type="radio" name="visibility" value="Published" id="published"
+                                            visibility="{{product.visibility}}" checked>
+                                        <label for="published">Published</label>
+                                    </div>
+                                    <div class="radio-type">
+                                        <input type="radio" name="visibility" value="Scheduled" id="scheduled">
+                                        <label for="scheduled">Scheduled</label>
+                                    </div>
+                                    <div class="radio-type">
+                                        <input type="radio" name="visibility" value="Hidden" id="hidden">
+                                        <label for="hidden">Hidden</label>
+                                    </div>
+                                    <div style="margin-top: 20px;">
+                                        <p style="font-weight: bold;" id="dateTitle">Publish date</p>
+                                        <input type="date" name="publishDate" id="dateValue"
+                                            value="{{product.postDate}}" disabled>
+                                    </div>
+                                </div>
+                                <div class="details-div">
+                                    <h3 style="padding-bottom: 25px;">Categories</h3>
+                                    <div>
+                                        <ul class="categories-list">
+                                            {{#if this}}
+                                            {{#each product.categories}}
+                                            <li>
+                                                <div>
+                                                    <img src="/images/X.png"
+                                                        style="width: 17px; padding-right: 5px;display: flex;"
+                                                        onclick="removeCategory(this, '{{this}}')">
+                                                </div>
+                                                <span>{{this}}</span>
+                                                <input type="checkbox" name="categories" value="{{this}}" checked
+                                                    hidden />
+                                            </li>
+                                            {{/each}}
+                                            {{/if}}
+                                            <input list="categories">
+                                            <datalist id="categories">
+                                                {{#each categories}}
+                                                <option value="{{this.name}}">
+                                                    {{/each}}
+                                            </datalist>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="details-div">
+                                    <h3>Search engine optimization</h3>
+                                    <p style="color: #6c757d; font-size: 15px; margin: 15px 0px;">Provide information
+                                        that
+                                        will help improve the snippet and bring your product to the top of search
+                                        engines.
+                                    </p>
+                                    <div>
+                                        <p style="font-weight: bold;">Page title</p>
+                                        <input type="text" class="inputStyle" name="pageTitle"
+                                            value="{{product.pageTitle}}" required>
+                                    </div>
+                                    <div>
+                                        <p style="font-weight: bold;">Meta description</p>
+                                        <textarea name="metaDesc" class="inputStyle textArea"
+                                            required>{{product.metaDesc}}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--javaScripts-->
+    <script src="/javascripts/sidebar.js"></script>
+    <script src="/javascripts/product.js"></script>
+</body>
+
+</html>

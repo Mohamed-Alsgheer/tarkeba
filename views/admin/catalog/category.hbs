@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Tarkeba perfume">
+    <meta property="og:description"
+        content="get the best Tarkeba's of the best perfumes, we can make a custom perfume for you.">
+    <meta property="og:image" content="tarkeba-img/iconSocail.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="600">
+    <meta property="og:type" content="website">
+    <title>Tarkeba perfume | Category</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="/images/icon2.png">
+    <link rel="stylesheet" href="/stylesheets/tarkeba.css">
+    <link rel="stylesheet" href="/stylesheets/products.css">
+    <link rel="stylesheet" href="/stylesheets/category.css">
+    <link rel="stylesheet" href="/stylesheets/dashboard.css">
+    <link rel="stylesheet" href="/stylesheets/orderDetails.css">
+    <link rel="stylesheet" href="/stylesheets/orders.css">
+    <link rel="stylesheet" href="/stylesheets/style-language.css">
+</head>
+
+<body>
+    <div id="cartBody">
+        <div style="display: flex; justify-content: flex-start;">
+            <!--side bar-->
+            {{> sidebar}}
+            <!--header-->
+            {{> header2}}
+            <!--page body-->
+            <div class="dashboard-body">
+                <div class="order-list" style="margin-bottom: 50px;">
+                    <form action="/admin/createCategory" method="POST" enctype="multipart/form-data" style="width: 80%; display: flex; flex-direction: column;">
+                        <div class="page-title" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                            {{#if category}}
+                            <p>{{category.name}}</p>
+                            <input type="submit" value="Update" class="btn" style="border-radius: 4px; border: 0px; font-weight: bold; margin: 0px;" formaction="/admin/updateCategory/{{category._id}}" id="createProduct">  
+                            {{else}}
+                            <p>New Category</p>
+                            <input type="submit" value="Create" class="btn" style="border-radius: 4px; border: 0px; font-weight: bold; margin: 0px;" id="createProduct">  
+                            {{/if}}
+                        </div>
+                        <div class="category-body">
+                            <div>
+                                <div class="details-div">
+                                    <h3 style="margin-bottom: 15px;">Basic information</h3>
+                                    <div>
+                                        <div style="margin-bottom: 20px;">
+                                            <p style="font-weight: bold;">Name</p>
+                                            <input type="text" name="name" style="margin-bottom: 0px;" value="{{category.name}}" required>
+                                            <p class="error">{{existCategory}}</p>
+                                        </div>
+                                        <div>
+                                            <p style="font-weight: bold;">Slug</p>
+                                            <div class="slugDiv">
+                                                <span id="slugExample">https://tarkeba.com/categories/</span>
+                                                <input type="text" name="slug" style="margin: 0; border: 0.0625rem solid #ced4da; border-radius: 0.125rem;" value="{{category.slug}}" required>
+                                            </div>
+                                            <p class="error" style="margin: 0px;">{{notUniqueSlug}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="details-div">
+                                    <h3>Search engine optimization</h3>
+                                    <p style="color: #6c757d; font-size: 15px; margin: 15px 0px;">Provide information that
+                                        will help improve the snippet and bring your product to the top of search engines.
+                                    </p>
+                                    <div>
+                                        <p style="font-weight: bold;">Page title</p>
+                                        <input type="text" class="inputStyle" name="title" value="{{category.pageTitle}}" required>
+                                    </div>
+                                    <div>
+                                        <p style="font-weight: bold;">Meta description</p>
+                                        <textarea name="metaDesc" class="inputStyle textArea" required>{{category.metaDesc}}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="details-div visibility">
+                                    <h3 style="padding-bottom: 25px;">Visibility</h3>
+                                    <div class="radio-type">
+                                        <input type="radio" name="visibility" value="Published" onclick="checkRadio(this)" visibility="{{category.visibility}}" checked>
+                                        <label for="">Published</label>
+                                    </div>
+                                    <div class="radio-type">
+                                        <input type="radio" name="visibility" value="Scheduled" onclick="checkRadio(this)">
+                                        <label for="">Scheduled</label>
+                                    </div>
+                                    <div class="radio-type">
+                                        <input type="radio" name="visibility" value="Hidden" onclick="checkRadio(this)">
+                                        <label for="">Hidden</label>
+                                    </div>
+                                    <div style="margin-top: 20px;">
+                                        <p style="font-weight: bold;" id="dateTitle">Publish date</p>
+                                        <input type="date" name="postDate" value="{{category.publishDate}}" id="dateValue" disabled>
+                                    </div>
+                                </div>
+                                <div class="details-div">
+                                    <h3 style="margin-bottom: 15px;">Parent category</h3>
+                                    <input list="categories" name="parentCategory" value="{{category.parent}}" required>
+                                    <datalist id="categories">
+                                        <option value="None">
+                                        {{#each categories}}
+                                        <option value="{{this.name}}">
+                                        {{/each}}
+                                    </datalist>
+                                    <p style="color: #6c757d; font-size: 14px;">Select a category that will be the parent of the current one.</p>
+                                </div>
+                                <div class="details-div" id="image-div">
+                                        <h3 style="margin-bottom: 15px;">Image</h3>
+                                        <div style="border-bottom: 1px solid #bbb;">
+                                            {{#each product.images as | val index |}}
+                                            <div style="display: grid; grid-template-columns: 1fr 7fr 1fr 1fr; width: 100%; align-items: center; margin-bottom: 25px;">
+                                                <img src="{{this.url}}" style="width: 40px;">
+                                                <input type="text" class="altImg" value="{{this.altText}}" style="margin: 0px">
+                                                <input type="number" class="orderImg" value="{{this.order}}" style="margin: 0px 0px 0px 40%">
+                                                <input type="checkbox" name="deletedImages" id="{{this.public_id}}" style="display: none;" value="{{this.public_id}}">
+                                                <label for="{{this.public_id}}">
+                                                    <img class="closeX" src="/images/close.png" style="border: 0px; width: 12px; margin-left: 70%; cursor: pointer;" onclick="deleteStoredImg(this)">
+                                                </label>
+                                            </div>
+                                            {{/each}}
+                                            <span id="imagesBody" style="display: flex; justify-content: center;">
+                                                {{#if category.image.url}}
+                                                    <div style="margin-bottom: 25px; display: flex; justify-content: center; border-radius: 125px; overflow: hidden; width: 150px; height: 150px; align-items: center;">
+                                                        <img src="{{category.image.url}}" alt="category-image" style="width: 100%;">
+                                                    </div>
+                                                {{/if}}
+                                            </span>
+                                        </div>
+                                        <input type="file" accept="image/*" id="file" name="image" style="display: none;">
+                                        <label for="file">
+                                            <div style="display: inline-block">
+                                                <p class="upload">Upload new image</p>
+                                            </div>
+                                        </label>
+                                    </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--javaScripts-->
+    <script src="/javascripts/sidebar.js"></script>
+    <script>
+        let visibility = document.querySelectorAll("[name=visibility]");
+        let visibilityStatus = visibility[0].getAttribute("visibility");
+        let dateValue = document.getElementById("dateValue");
+        let dateTitle = document.getElementById("dateTitle");
+        document.querySelector(`[name=visibility][value=${visibilityStatus}]`).checked = true;
+        let checkedRadio = document.querySelector("[name=visibility]:checked");
+        if(checkedRadio.value !== "Scheduled") {
+            dateValue.disabled = true;
+            dateTitle.style.color = "#6c757d";
+        } else {
+            dateValue.disabled = false;
+            dateTitle.style.color = "#000";
+        }
+        visibility.forEach((radio) => {
+            radio.onclick = () => {
+                if(radio.value !== "Scheduled") {
+                    dateValue.disabled = true;
+                    dateTitle.style.color = "#6c757d";
+                } else {
+                    dateValue.disabled = false;
+                    dateTitle.style.color = "#000";
+                }
+            }
+        });
+    </script>
+    <script>
+        const inputFile = document.getElementById("file");
+        const imagesBody = document.getElementById("imagesBody");
+        inputFile.addEventListener("change", () => {
+                imagesBody.innerHTML = "";
+                let picture = new FileReader();
+                picture.readAsDataURL(inputFile.files[0]);
+                picture.onload = () => {
+                    imagesBody.innerHTML += `
+                    <div style="margin-bottom: 25px; display: flex; justify-content: center; overflow: hidden; width: 150px; height: 150px; align-items: center;">
+                        <img src="${picture.result}" alt="category-image" style="width: 100%;">
+                    </div>
+                    `;
+                };
+        });
+    </script>
+    <script>
+        let imageDiv = document.getElementById("image-div");
+        let categories = document.querySelector("input[list=categories]");
+        imageDiv.style.display = "none";
+        if(categories.value === "None") {
+            imageDiv.style.display = "block";
+        } else {
+            imageDiv.style.display = "none";
+        }
+        categories.onchange = () => {
+            if(categories.value === "None") {
+                imageDiv.style.display = "block";
+            } else {
+                imageDiv.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

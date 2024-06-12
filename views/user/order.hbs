@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Tarkeba perfume">
+    <meta property="og:description"
+        content="get the best Tarkeba's of the best perfumes, we can make a custom perfume for you.">
+    <meta property="og:image" content="tarkeba-img/iconSocail.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="600">
+    <meta property="og:type" content="website">
+    <title>Orders</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="/images/icon2.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/stylesheets/tarkeba.css">
+    <link rel="stylesheet" href="/stylesheets/products.css">
+    <link rel="stylesheet" href="/stylesheets/profile.css">
+    <link rel="stylesheet" href="/stylesheets/checkout.css">
+    <link rel="stylesheet" href="/stylesheets/cart.css">
+</head>
+
+<body>
+    <!--header-->
+    {{> header1}}
+    {{#each order as |val index|}}
+    <div class="body-container">
+        <!--Add-comment-->
+        {{#each this.cart.selectedProduct as |val indexProduct|}}
+        <div class="popup">
+            <div class="overlay"></div>
+            <div class="content" id="contentPass" style="max-height: 520px; width: auto; height: fit-content;">
+                <div style="display: flex;">
+                    <div class="close-btn" onclick="togglePopupName()">&times;</div>
+                    <h2 style="color: #1E1926; margin: 0px 25px;">Product Review</h2>
+                </div>
+                <div class="scrollBar">
+                    <div style="margin: 0px 25px;">
+                        <div class="productInfo">
+                            <img src="/{{this.img}}" style="width: 250px" id="ProductImg">
+                            <div class="productText">
+                                <h1 style="margin-bottom: 15px; font-weight: 500; font-size: 18px;">{{this.name}}
+                                </h1>
+                                <h4 style="margin-bottom: 15px; font-weight: 500; font-size: 15px;">{{this.price}} EGP
+                                </h4>
+                                <div style="margin-bottom: 20px;">
+                                    <p>{{this.desc}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <form action="/review/{{this._id}}" method="POST" style="margin-top: 40px;">
+                            <div style="display: flex; margin-bottom: 20px">
+                                <p class="textReview" style="margin-right: 60px;">Overall Rating:</p>
+                                <div class="review" style="margin-left: 25px;">
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                </div>
+                                <input type="number" id="ratingCount" name="rating" hidden>
+                            </div>
+                            <div class="addComment">
+                                <p class="textReview">Review:</p>
+                                <textarea placeholder="Tell us your opinion" cols="40" rows="4" name="comment"
+                                    style="height: 80px; border: 1px solid black" class="textArea" required></textarea>
+                            </div>
+                            <input type="hidden" name="_csrf" value="{{../token}}">
+                            <div class="div-btns">
+                                <input type="submit" class="btn change-btn" id="subNewEmail"
+                                    style="border: 0px; float: right; margin: 0px; border-radius: 0px;"
+                                    value="POST A REVIEW">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+        <div class="popup" id="cancel-popup">
+            <div class="overlay"></div>
+            <div class="content" id="contentPass" style="max-height: 520px; width: auto; height: fit-content;">
+                <div style="display: flex;">
+                    <div class="close-btn" onclick="togglePopupName()">&times;</div>
+                    <h2 style="color: #1E1926; margin: 0px 25px;">Cancelling Order</h2>
+                </div>
+                <div style="margin: 0px 25px;">
+                    <form action="/users/orders/cancelOrder/{{this._id}}" method="POST" style="margin-top: 40px;">
+                        <p style="margin: 50px 0px;">Are you sure you want to cancel the order?</p>
+                        <input type="hidden" name="_csrf" value="{{../token}}">
+                        <div class="div-btns">
+                            <input type="submit" class="btn change-btn" id="subNewEmail"
+                                style="border: 0px; float: right; margin: 0px; border-radius: 0px;"
+                                value="Cancelling order">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="divAddress">
+            <!--user-order-->
+            <div style="margin-bottom: 15px; width: 80%;">
+                <div class="container-profile1">
+                    <h2>{{this._id}}</h2>
+                    <p style="color: #7e859b;">Ordered it on <span class="date" style="margin-left: 5px;">{{this.createdAt}}</span></p>
+                </div>
+                <div>
+                    <div id="detailes-address"
+                        style="box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2); border-radius: 5px 5px 0px 0px; padding: 20px; margin-bottom: 25px; border: 0px;">
+                        <div id="detailes-address2">
+                            <h3 style="margin-bottom: 10px; width: auto;">Delivery Address</h3>
+                            <p>{{this.shippingAddress.name}}</p>
+                            <p>{{this.shippingAddress.street}} {{this.shippingAddress.county}}
+                                ,{{this.shippingAddress.city}}</p>
+                            <p>Phone: {{this.phone}}</p>
+                        </div>
+                    </div>
+                    <div
+                        style="box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2); border-radius: 5px 5px 0px 0px; padding: 20px; margin-bottom: 25px; border: 0px;">
+                        <h3>Order Status</h3>
+                        <div style="display: flex; gap: 10px; justify-content: center; margin: 10px;">
+                            <input type="hidden" value="{{this.status}}" id="status">
+                            <div class="status-bar">
+                                <div></div>
+                                <p>Ordered</p>
+                            </div>
+                            <div class="status-bar">
+                                <div></div>
+                                <p>Processing</p>
+                            </div>
+                            <div class="status-bar">
+                                <div></div>
+                                <p>Shipped</p>
+                            </div>
+                            <div class="status-bar">
+                                <div></div>
+                                <p>Delivered</p>
+                            </div>
+                        </div>
+                        {{#if this.deliveredAt}}
+                        <p style="color: #7e859b;">Delivered it on <span class="date" id="deliveryDate">{{this.deliveredAt}}</span></p>
+                        {{/if}}
+                        <div style="display: flex; justify-content: flex-end;">
+                            <button id="cancel-order" class="btn" style="border: 0px; margin: 0px; border-radius: 5px; padding: 10px 20px; font-weight: bold; cursor: pointer;">Cancelling order</button>
+                        </div>
+                    </div>
+                    <div style="box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2); border-radius: 5px 5px 0px 0px; padding: 20px; margin-bottom: 25px; border: 0px;">
+                        <form action="returnOrder/{{this._id}}" method="POST" id="returnForm">
+                            <input type="hidden" name="_csrf" value="{{../token}}">
+                            <div style="display: flex; justify-content: space-between; align-items: center; height: 36px" id="product-functions">
+                                <h3>The Order</h3>
+                                <div style="display: flex; gap: 15px;">
+                                    <input type="submit" value="Return" style="display: none; border: 0px; margin: 0px; border-radius: 5px; padding: 10px 20px; font-weight: bold;" id="returnOrder" class="btn">
+                                    {{#unless this.returnedOrder.products}}
+                                    <button id="returnBtn" class="btn" style="border: 0px; margin: 0px; border-radius: 5px; padding: 10px 20px; font-weight: bold;">Return products</button>
+                                    {{/unless}}
+                                </div>
+                            </div>
+                            <div>
+                                {{#each this.cart.selectedProduct as |val indexProduct|}}
+                                <div class="productDiv">
+                                    <div style="display: flex;">
+                                        <input type="checkbox" name="returnedProducts" value="{{this._id}}" class="selectProduct" style="margin: 0px 20px 0px 10px;">
+                                        <div style="display: flex; align-items: center; width: max-content;">
+                                            <img src="/{{this.img}}" alt="{{this.name}}" style="width: 75px;"></a>
+                                            <div style="margin: 10px;">
+                                                <p style="font-weight: bold;">{{this.name}}</p>
+                                                <p style="color: #7e859b; font-size: 14px;">{{this.quantity}} unit sold</p>
+                                                <p>price: {{this.price}} EGP</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="quantity" style="width: auto;">
+                                        <div class="qtyContainer selectProduct">
+                                            <span class="next"></span>
+                                            <div id="boxNumber">
+                                                <span class="value" style="display: initial;">1</span>
+                                            </div>
+                                            <span class="prev disabled"></span>
+                                            <input type="hidden" name="returnedQty" max="{{this.quantity}}" min="1" value="1">
+                                        </div>
+                                    </div>
+                                    <div class="btnDiv">
+                                        <button class="addReview">Add yor review +</button>
+                                    </div>
+                                </div>
+                                {{/each}}
+                            </div>
+                        </form>
+                    </div>
+                    {{#if this.returnedOrder.products}}   
+                    <div style="box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2); border-radius: 5px 5px 0px 0px; padding: 20px; margin-bottom: 25px; border: 0px;">
+                        <div>
+                            <h3>Returned Products</h3>
+                        </div>
+                        <div>
+                            {{#each this.returnedOrder.products as |val indexProduct|}}
+                            <div class="productDiv">
+                                <div style="display: flex;">
+                                    <div style="display: flex; align-items: center; width: max-content;">
+                                        <img src="/{{this.img}}" alt="{{this.name}}" style="width: 75px;"></a>
+                                        <div style="margin: 10px;">
+                                            <p style="font-weight: bold;">{{this.name}}</p>
+                                            <p style="color: #7e859b; font-size: 14px;">{{this.returned}} unit returned</p>
+                                            <p>price: {{this.price}} EGP</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {{/each}}
+                        </div>
+                    </div>
+                    {{/if}}
+                    <div style="box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2); border-radius: 5px 5px 0px 0px; padding: 20px; margin-bottom: 25px; border: 0px;">
+                        <h3 style="margin-bottom: 10px;">Order Invoice</h3>
+                        <div style="display: flex; justify-content: space-between;">
+                            <div>
+                                <p style="margin-top: 8px;">Subtotal:</p>
+                                <p style="margin-top: 8px;">Shipping fee:</p>
+                                {{#if this.coupon}}
+                                <p style="margin-top: 8px;">{{this.coupon}}</p>
+                                {{/if}}
+                                {{#if this.returnedOrder.refund}}
+                                <p style="margin-top: 8px;">Refund:</p>
+                                {{/if}}
+                                <p style="font-size: 19px; font-weight: bold; margin-top: 8px;">Total cost:</p>
+                            </div>
+                            <div style="display: flex; flex-direction: column; align-items: flex-end;">
+                                <p style="margin-top: 8px;">{{this.cart.totalPrice}} EGP</p>
+                                <p style="margin-top: 8px;">{{this.shippingFee}} EGP</p>
+                                {{#if this.coupon}}
+                                <p style="margin-top: 8px;" id="couponValue">-{{../coupon.discountValue}} <span id="statusSymbol">EGP</span></p>
+                                <input type="hidden" value="{{../coupon.discountValue}}" id="status">
+                                {{/if}}
+                                {{#if this.returnedOrder.refund}}
+                                <p style="margin-top: 8px;">-{{this.returnedOrder.refund}} EGP</p>
+                                {{/if}}
+                                <p style="font-size: 19px; font-weight: bold; margin-top: 8px;">{{this.orderPrice}} EGP</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+    <!--footer-->
+    {{> footer}}
+    <script>
+        let date = document.querySelectorAll(".date");
+        date.forEach((date) => date.innerHTML = new Date(date.innerHTML).toLocaleDateString("en-us", { dateStyle: "long" }));
+    </script>
+    <script>
+        let status = document.getElementById("status").value;
+        let productFunc = document.getElementById("product-functions");
+        let cancelOrder = document.getElementById("cancel-order");
+        let reviewBtn = document.querySelectorAll(".addReview");
+        let cancelPopup = document.getElementById("cancel-popup");
+        cancelOrder.onclick = () => {
+            cancelPopup.classList.add("active");
+        }
+
+
+        if (status !== 'delivered') {
+            productFunc.style.display = 'none';
+            reviewBtn.forEach(btn => btn.style.display = 'none');
+        }
+
+        let statusBar = document.querySelectorAll(".status-bar"), barCount;
+        if (status == 'ordered') {
+            barCount = 1;
+        } else if (status == 'processing') {
+            barCount = 2;
+        } else if (status == 'shipped') {
+            barCount = 3;
+            cancelOrder.style.display = 'none';
+        } else if (status == 'delivered') {
+            barCount = 4;
+            cancelOrder.style.display = 'none';
+        }
+        for (let i = 0; i < barCount; i++) {
+            statusBar[i].children[0].style.background = '#00C397';
+            statusBar[i].children[1].style.color = '#00C397';
+        }
+
+
+        let returnBtn = document.getElementById("returnBtn");
+        let deliveryDate = document.getElementById("deliveryDate");
+        let returnOrder = document.getElementById("returnOrder");
+        let productDiv = document.querySelectorAll(".productDiv");
+        let selectProduct = document.querySelectorAll(".selectProduct");
+        let btnDiv = document.querySelectorAll(".btnDiv");
+        if(new Date() > new Date(deliveryDate.textContent)) returnBtn.style.display = "none";
+        if(returnBtn) {
+            returnBtn.onclick = (e) => {
+                e.preventDefault();
+                if(returnBtn.textContent == "Return products") { 
+                    returnOrder.style.display = "block";
+                    returnBtn.textContent = "Cancel" 
+                } else { 
+                    returnOrder.style.display = "none";
+                    returnBtn.textContent = "Return products"
+                }
+                productDiv.forEach(div => div.classList.toggle("active"));
+                btnDiv.forEach(btn => btn.classList.toggle("hide"));
+                selectProduct.forEach(el => el.classList.toggle("active"));
+
+            }
+        }
+
+        let next = Array.from(document.querySelectorAll(".next"));
+        let prev = Array.from(document.querySelectorAll(".prev"));
+        let value = document.querySelectorAll(".value");
+        let returnedQty = Array.from(document.querySelectorAll("input[name=returnedQty]"));
+
+        returnedQty.forEach((inp) => {
+            if(inp.max == 1) {
+                next[returnedQty.indexOf(inp)].classList.add("disabled");
+            }
+        });
+
+        next.forEach((btn) => {
+            btn.onclick = () => {
+                let index = next.indexOf(btn);
+                if(value[index].innerHTML != returnedQty[index].max) {
+                    if(value[index].innerHTML == returnedQty[index].max - 1) btn.classList.add("disabled");
+                    prev[index].classList.remove("disabled");
+                    value[index].innerHTML = parseInt(value[index].innerHTML) + 1;
+                    returnedQty[index].value = parseInt(returnedQty[index].value) + 1;
+
+                }
+            }
+        });
+
+        prev.forEach((btn) => {
+            btn.onclick = () => {
+                let index = prev.indexOf(btn);
+                if(value[index].innerHTML == '1') {
+                    btn.classList.add("disabled");
+                } else {
+                    btn.classList.remove("disabled");
+                    next[index].classList.remove("disabled");
+                    if(value[index].innerHTML == '2') btn.classList.add("disabled");
+                    value[index].innerHTML = parseInt(value[index].innerHTML) - 1;
+                    returnedQty[index].value -= 1;
+                }
+            }
+        });
+
+        let couponValue = document.getElementById("couponValue");
+        let couponStatus = document.getElementById("status");
+        let statusSymbol = document.getElementById("statusSymbol");
+        if(couponValue) {
+            if(couponValue.innerHTML == "-_ <span>EGP</span>") {
+                couponValue.innerHTML = "Free shipping";
+            } else {
+                if(couponStatus.value != "Fixed amount") {
+                    statusSymbol.innerHTML = "%";
+                }
+            }
+        }
+
+        let returnForm = document.getElementById("returnForm");
+        returnForm.onsubmit = (e) => {
+            let checkboxes = document.querySelectorAll("[name=returnedProducts]"), isChecked = false;
+            for (let i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].checked) {
+                    isChecked = true;
+                    break;
+                }
+            }
+            if (!isChecked) {
+                e.preventDefault();
+                alert("Please select at least one checkbox.");
+                return false;
+            }
+        }
+    </script>
+    <script src="/javascripts/tarkeba.js"></script>
+</body>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Tarkeba perfume">
+    <meta property="og:description"
+        content="get the best Tarkeba's of the best perfumes, we can make a custom perfume for you.">
+    <meta property="og:image" content="tarkeba-img/iconSocail.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="600">
+    <meta property="og:type" content="website">
+    <title>Tarkeba perfume | Coupons</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="/images/icon2.png">
+    <link rel="stylesheet" href="/stylesheets/tarkeba.css">
+    <link rel="stylesheet" href="/stylesheets/products.css">
+    <link rel="stylesheet" href="/stylesheets/dashboard.css">
+    <link rel="stylesheet" href="/stylesheets/orders.css">
+    <link rel="stylesheet" href="/stylesheets/profile.css">
+    <link rel="stylesheet" href="/stylesheets/style-language.css">
+</head>
+
+<body>
+    <!--header-->
+    <div id="cartBody">
+        <!--popup-->
+        <div class="popup" id="popup-1">
+            <div class="overlay"></div>
+            <div class="content" id="contentPass">
+                <div style="display: flex;">
+                    <div class="close-btn" onclick="togglePopupDelete()">&times;</div>
+                    <h2 style="color: #1E1926;">Delete Orders</h2>
+                </div>
+                <form action="deleteOrders" method="POST" id="delete-form" style="margin-top: 40px;">
+                    <p style="margin-top: 80px; margin-bottom: 40px">are you sure you want to delete all orders and make
+                        file of these?</p>
+                    <input type="hidden" name="_csrf" value="{{token}}">
+                    <div class="div-btns">
+                        <input style="width: 114px;" type="submit" class="btn change-btn" id="subNewEmail"
+                            value="Delete" onclick="createCSV()">
+                        <a class="btn cancel-btn" onclick="togglePopupDelete()">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div style="display: flex; justify-content: flex-start;">
+            <!--side bar-->
+            {{> sidebar}}
+            <!--header-->
+            {{> header2}}
+            <!--page body-->
+            <div class="dashboard-body">
+                <div class="order-list" style="margin-bottom: 50px;">
+                    <div class="page-title">
+                        <p>Coupons</p>
+                    </div>
+                    <div
+                        style="width: 80%; box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2); border-radius: 5px 5px 0px 0px;">
+                        <div class="order-filters">
+                            <form>
+                                <div class="filter-div">
+                                    <input type="search" placeholder="Search By Code" id="search">
+                                    <input type="hidden" value="{{orders}}" id="orders">
+                                </div>
+                                <div>
+                                    <a href="/admin/coupon" id="delete-orders">New coupon</a>
+                                </div>
+                            </form>
+                        </div>
+                        <div style="white-space: nowrap; overflow: overlay;">
+                            <div class="order-div" style="grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;">
+                                <div class="list-key head-item" id="code">
+                                    <img src="/images/admin-img/arrow2.png" style="transform: rotate(0deg);">
+                                    <p>Code</p>
+                                </div>
+                                <div class="list-key head-item" id="type">
+                                    <img src="/images/admin-img/arrow2.png" style="transform: rotate(0deg);">
+                                    <p>Type</p>
+                                </div>
+                                <div class="list-key head-item" id="discount">
+                                    <img src="/images/admin-img/arrow2.png" style="transform: rotate(0deg);">
+                                    <p>Discount</p>
+                                </div>
+                                <div class="list-key head-item" id="status">
+                                    <img src="/images/admin-img/arrow2.png" style="transform: rotate(0deg);">
+                                    <p>Status</p>
+                                </div>
+                                <div class="list-key head-item" id="startDate">
+                                    <img src="/images/admin-img/arrow2.png" style="transform: rotate(0deg);">
+                                    <p>Start date</p>
+                                </div>
+                                <div class="list-key head-item" id="endDate">
+                                    <img src="/images/admin-img/arrow2.png" style="transform: rotate(0deg);">
+                                    <p>End date</p>
+                                </div>
+                                <div class="head-item" style="justify-content: center;">
+                                    <p>Action</p>
+                                </div>
+                            </div>
+                            <div class="order-div" id="coupons-body"
+                                style="grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;">
+                                {{#each coupons as | val |}}
+                                <div>
+                                    <p>{{this.code}}</p>
+                                </div>
+                                <div>
+                                    <p>{{this.type}}</p>
+                                </div>
+                                <div>
+                                    <p>
+                                        {{this.discountValue}}
+                                        {{suffix @val.type}}
+                                    </p>
+                                </div>
+                                <div>
+                                    <p>{{this.status}}</p>
+                                </div>
+                                <div>
+                                    <p>{{this.startDate}}</p>
+                                </div>
+                                <div>
+                                    <p>{{this.endDate}}</p>
+                                </div>
+                                <div style="justify-content: center;">
+                                    <form action="/admin/deleteProduct" method="POST" style="align-items: baseline;">
+                                        <input type="text" value="{{this._id}}" name="deleteBtn" hidden>
+                                        <a href="/admin/coupon/{{this._id}}">
+                                            <img src="/images/admin-img/edit.png"
+                                                style="margin-right: 5px; margin-left: 5px; cursor: pointer; width: 15px;">
+                                        </a>
+                                        <input type="image" src="/images/admin-img/delete.png"
+                                            style="margin-left: 8px; cursor: pointer; width: 15px;"
+                                            formaction="/admin/deleteProduct">
+                                    </form>
+                                </div>
+                                {{/each}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="pagination-div">
+                    <button class="page-btn start-page">&#10094;&#10094;</button>
+                    <button class="page-btn prev-page">&#10094;</button>
+                    <div>
+                        <ul id="page-btns" style="display: flex; list-style: none;">
+                        </ul>
+                    </div>
+                    <button class="page-btn next-page">&#10095;</button>
+                    <button class="page-btn end-page">&#10095;&#10095;</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--javaScripts-->
+    <script src="/javascripts/sidebar.js"></script>
+    <script src="/javascripts/couponsList.js"></script>
+</body>
+
+</html>

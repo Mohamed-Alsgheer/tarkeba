@@ -1,0 +1,193 @@
+#page-body {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    width: 100%;
+    padding: 20px 0px 20px 20px;
+}
+
+.images img,
+.images div {
+    width: 100%;
+}
+
+.images input[type=radio]:checked+label img {
+    border: 3px solid #1E1926;
+}
+
+label img {
+    border-radius: 5px;
+    box-shadow: 0 2px 10px 0 rgb(70 76 79 / 20%);
+}
+
+.images input[type=radio] {
+    display: none;
+}
+
+.images label {
+    display: block;
+    margin: 0px 0px 20px 30px;
+    cursor: pointer;
+    padding: 0px;
+}
+
+.img-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2);
+    border-radius: 5px;
+    width: 100%;
+    aspect-ratio: 160 / 78;
+}
+
+.img-box img {
+    border-radius: 5px;
+}
+
+.flex-box {
+    display: flex;
+    align-items: baseline;
+    margin: 15px 0px;
+    white-space: nowrap;
+}
+
+.flex-box input {
+    width: 80%;
+}
+
+#x-input {
+    width: 50%;
+}
+
+#y-input {
+    width: 50%;
+    justify-content: flex-end;
+}
+
+.flex-box p {
+    margin-right: 15px;
+}
+
+label {
+    padding: 0px 7px;
+}
+
+#url,
+#coordinates,
+#btnValue,
+#colors {
+    display: none;
+}
+
+#url.active,
+#btnValue.active {
+    display: block;
+}
+
+#coordinates.active,
+#colors.active {
+    display: flex;
+    white-space: nowrap;
+}
+
+#imgslider-btn {
+    position: absolute;
+    display: inline-block;
+    background: #4028df;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 30px;
+    transition: 0.5s;
+    font-size: 10px;
+}
+
+.location {
+    width: 80%;
+    margin-left: 10px;
+}
+
+.btn-style {
+    border-radius: 5px;
+    border: 0px;
+    font-weight: bold;
+    margin: 15px 0px 0px 20px;
+}
+
+#save-btn,
+#edit-btn,
+#delete-btn,
+#cancel-btn {
+    display: none;
+}
+
+#save-btn.active,
+#edit-btn.active,
+#delete-btn.active,
+#cancel-btn.active {
+    display: inline-block;
+}
+
+.disable {
+    color: #6c757d;
+}
+
+.disable.active {
+    color: black;
+}
+
+#colors {
+    align-items: center;
+}
+
+#colors .color-div {
+    display: flex;
+    align-items: center;
+    width: 50%;
+}
+
+.color-container {
+    position: relative;
+    overflow: hidden;
+    width: 40px;
+    height: 40px;
+    border: solid 2px #ddd;
+    border-radius: 40px;
+    margin: 0px 15px;
+}
+
+input[type=color] {
+    position: absolute;
+    cursor: pointer;
+    border: none;
+    width: 56px;
+    height: 56px;
+    right: -8px;
+    top: -8px;
+}
+
+@media only screen and (max-width: 750px) {
+    #page-body {
+        grid-template-columns: 1fr;
+        padding: 20px;
+    }
+
+    .images label {
+        margin: 15px 0px;
+    }
+
+    #coordinates.active {
+        flex-direction: column;
+    }
+
+    #x-input,
+    #y-input {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .flex-box input {
+        width: 100%;
+    }
+}

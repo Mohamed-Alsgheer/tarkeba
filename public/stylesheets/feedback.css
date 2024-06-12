@@ -1,0 +1,21 @@
+form div p {
+    font-weight: bold;
+}
+
+input {
+    padding: 6px 13px;
+    width: 100%;
+    margin-bottom: 20px;
+    margin-top: 5px;
+}
+
+textArea {
+    border: 1px solid #1E1926;
+    border-radius: 3px;
+    min-height: 150px;
+    min-width: 100%;
+    max-width: 100%;
+    padding: 6px 13px;
+    font-size: 14px;
+    margin-top: 5px;
+}

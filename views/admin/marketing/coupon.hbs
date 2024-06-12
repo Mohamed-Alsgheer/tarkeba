@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Tarkeba perfume">
+    <meta property="og:description"
+        content="get the best Tarkeba's of the best perfumes, we can make a custom perfume for you.">
+    <meta property="og:image" content="tarkeba-img/iconSocail.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="600">
+    <meta property="og:type" content="website">
+    <title>Tarkeba perfume | Coupon</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="/images/icon2.png">
+    <link rel="stylesheet" href="/stylesheets/tarkeba.css">
+    <link rel="stylesheet" href="/stylesheets/products.css">
+    <link rel="stylesheet" href="/stylesheets/dashboard.css">
+    <link rel="stylesheet" href="/stylesheets/coupon.css">
+    <link rel="stylesheet" href="/stylesheets/orders.css">
+    <link rel="stylesheet" href="/stylesheets/style-language.css">
+</head>
+
+<body>
+    <!--header-->
+    <div id="cartBody">
+        <!--popup-->
+        <div class="popup" id="popup-1">
+            <div class="overlay"></div>
+            <div class="content" id="contentPass">
+                <div style="display: flex;">
+                    <div class="close-btn" onclick="togglePopupDelete()">&times;</div>
+                    <h2 style="color: #1E1926;">Delete Orders</h2>
+                </div>
+                <form action="deleteOrders" method="POST" id="delete-form" style="margin-top: 40px;">
+                    <p style="margin-top: 80px; margin-bottom: 40px">are you sure you want to delete all orders and make
+                        file of these?</p>
+                    <input type="hidden" name="_csrf" value="{{token}}">
+                    <div class="div-btns">
+                        <input style="width: 114px;" type="submit" class="btn change-btn" id="subNewEmail"
+                            value="Delete" onclick="createCSV()">
+                        <a class="btn cancel-btn" onclick="togglePopupDelete()">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div style="display: flex; justify-content: flex-start;">
+            <!--side bar-->
+            {{> sidebar}}
+            <!--header-->
+            {{> header2}}
+            <!--page body-->
+            <div class="dashboard-body">
+                <div class="order-list" style="margin-bottom: 50px;">
+                    <div class="page-title">
+                        {{#if coupon}}
+                        <p>{{coupon.code}}</p>
+                        {{else}}
+                        <p>New Coupon</p>
+                            
+                        {{/if}}
+                    </div>
+                    <div
+                        style="width: 80%; box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2); border-radius: 5px 5px 0px 0px; padding: 20px;">
+                        <h3 style="padding-bottom: 20px;">Basic information</h3>
+                        <form action="/admin/createCoupon" method="POST" id="couponBody">
+                            <div id="left-side">
+                                <div>
+                                    <p style="font-weight: bold;" id="codeTitle">Code</p>
+                                    <input type="text" placeholder="MTKX402" class="inputStyle" id="code" name="code" value="{{coupon.code}}">
+                                    {{#if existCoupon}}
+                                    <p class="error" id="existCoupon" style="margin-left: 0px;">{{existCoupon}}</p>
+                                    {{/if}}
+                                </div>
+                                <div style="margin-bottom: 15px;">
+                                    <p style="padding-bottom: 10px; font-weight: bold;">Type</p>
+                                    <div style="display: flex;">
+                                        <input type="radio" name="couponType" value="Percentage" class="couponType" coupon-type="{{coupon.type}}">
+                                        <p>Percentage</p>
+                                    </div>
+                                    <div style="display: flex;">
+                                        <input type="radio" name="couponType" value="Fixed amount" class="couponType">
+                                        <p>Fixed amount</p>
+                                    </div>
+                                    <div style="display: flex;">
+                                        <input type="radio" name="couponType" value="Free shipping" class="couponType">
+                                        <p>Free shipping</p>
+                                    </div>
+                                </div>
+                                <p style="font-weight: bold;" id="discountTitle">Discount value</p>
+                                <input type="number" class="inputStyle" name="discountValue" id="discountValue" value="{{coupon.discountValue}}">
+                                <p style="font-weight: bold;">Usage limit</p>
+                                <input type="number" class="inputStyle" name="usageLimit" value="{{coupon.usageLimit}}">
+                                <div class="checkbox-div">
+                                    {{#if coupon}}
+                                        {{#if coupon.newUsers}}
+                                        <input type="checkbox" name="newUsers" id="newUsers" checked>
+                                        {{else}}    
+                                        <input type="checkbox" name="newUsers" id="newUsers" >
+                                        {{/if}}
+                                    {{else}}
+                                    <input type="checkbox" name="newUsers" id="newUsers" >
+                                    {{/if}}
+                                    <p>Only for registered customers</p>
+                                </div>
+                            </div>
+                            <div id="right-side">
+                                <h3>Schedule</h3>
+                                <p style="color: #6c757d; font-size: 15px; margin: 15px 0px;">Use these settings to limit the coupon expiration date.</p>
+                                <div>
+                                    <p style="font-weight: bold;">Start date</p>
+                                    <input type="date" class="inputStyle" name="startDate" value="{{coupon.startDate}}">
+                                </div>
+                                <div>
+                                    <p style="font-weight: bold;">End date</p>
+                                    <input type="date" class="inputStyle" name="endDate" value="{{coupon.endDate}}">
+                                </div>
+                                {{#if coupon}}
+                                <button class="btn" style="border-radius: 4px; border: 0px; font-weight: bold;" formaction="/admin/updateCoupon/{{coupon._id}}">Update</button>
+                                {{else}}
+                                <button class="btn" style="border-radius: 4px; border: 0px; font-weight: bold;">Create</button>
+                                {{/if}}
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--javaScripts-->
+    <script src="/javascripts/sidebar.js"></script>
+    <script src="/javascripts/coupon.js"></script>
+</body>
+
+</html>

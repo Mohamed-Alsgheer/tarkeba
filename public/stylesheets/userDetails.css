@@ -1,0 +1,44 @@
+.user-body {
+  display: grid;
+  grid-template-columns: 3fr 5fr;
+  gap: 20px;
+  width: 100%;
+}
+
+#email {
+  font-size: 13px;
+  color: #4028df;
+}
+
+#email:hover {
+  text-decoration: underline;
+}
+
+#orderID,
+.ordersInvoices {
+  color: #4028df;
+  font-weight: bold;
+}
+
+#orderID:hover,
+.ordersInvoices:hover {
+  text-decoration: underline;
+}
+
+.ordersTable {
+  display: grid;
+  grid-template-columns: 2fr 3fr 2fr 1fr 1fr;
+  /* row-gap: 24px; */
+}
+
+.ordersTable div,
+.ordersTable a {
+  border-top: 1px solid #ccc;
+  padding: 15px 0px;
+}
+
+@media only screen and (max-width: 800px) {
+  .user-body {
+    grid-template-columns: 1fr;
+  }
+}

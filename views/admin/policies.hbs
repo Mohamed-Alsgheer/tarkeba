@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Tarkeba perfume">
+    <meta property="og:description"
+        content="get the best Tarkeba's of the best perfumes, we can make a custom perfume for you.">
+    <meta property="og:image" content="tarkeba-img/iconSocail.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="600">
+    <meta property="og:type" content="website">
+    <title>Tarkeba perfume | Policies</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="/images/icon2.png">
+    <link rel="stylesheet" href="/stylesheets/tarkeba.css">
+    <link rel="stylesheet" href="/stylesheets/products.css">
+    <link rel="stylesheet" href="/stylesheets/dashboard.css">
+    <link rel="stylesheet" href="/stylesheets/policies.css">
+    <link rel="stylesheet" href="/stylesheets/product.css">
+    <link rel="stylesheet" href="/stylesheets/orders.css">
+    <link rel="stylesheet" href="/stylesheets/style-language.css">
+</head>
+
+<body>
+    <div id="cartBody">
+        <div style="display: flex; justify-content: flex-start;">
+            <!--side bar-->
+            {{> sidebar}}
+            <!--header-->
+            {{> header2}}
+            <!--page body-->
+            <div class="dashboard-body">
+                <div class="order-list" style="margin-bottom: 50px;">
+                    <form action="/admin/editPolicies" method="POST" style="width: 80%; display: block;">
+                        <h2 style="text-align: center; margin-top: 10%;">Policies</h2>
+                        <div class="page-title" style="display: flex; justify-content: space-between; align-items: baseline; width: 100%; padding-left: 15px; margin: 30px 0px;">
+                            <select name="policyType" style="width: 120px;">
+                                <option value="privacy">privacy</option>
+                                <option value="returns">return</option>
+                                <option value="shipping">shipping</option>
+                                <option value="terms">conditions</option>
+                            </select>
+                            <div style="display: flex;">
+                                <button id="cancel" class="btn" style="border-radius: 5px; border: 0px; font-weight: bold; display: none; margin: 30px 15px">Cancel</button>
+                                <input type="submit" value="Edit" id="edit" class="btn" style="border-radius: 5px; border: 0px; font-weight: bold;">
+                            </div>
+                        </div>
+                        <div class="policies-body">
+                            <div id="privacy">
+                                <p id="show-privacy">{{privacy.text}}</p>
+                                <textarea id="edit-privacy" name="privacy">{{privacy.text}}</textarea>
+                            </div>
+                            <div id="return" style="display: none;">
+                                <p id="show-return">{{return.text}}</p>
+                                <textarea id="edit-return" name="returns">{{return.text}}</textarea>
+                            </div>
+                            <div id="shipping" style="display: none;">
+                                <p id="show-shipping">{{shipping.text}}</p>
+                                <textarea id="edit-shipping" name="shipping">{{shipping.text}}</textarea>
+                            </div>
+                            <div id="terms" style="display: none;">
+                                <p id="show-terms">{{terms.text}}</p>
+                                <textarea id="edit-terms" name="terms">{{terms.text}}</textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--javaScripts-->
+    <script src="/javascripts/sidebar.js"></script>
+    <script src="/javascripts/orders.js"></script>
+    <script src="/javascripts/policies.js"></script>
+</body>
+
+</html>

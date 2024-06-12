@@ -1,0 +1,143 @@
+.review-div {
+    box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2); 
+    border-radius: 5px; 
+    padding: 20px; 
+    margin: 20px 0px; 
+    width: 100%;
+}
+
+.remove-review {
+    margin-left: 8px; 
+    cursor: pointer;
+    width: 15px;
+    display: none;
+}
+
+.remove-review.active {
+    display: block;
+}
+
+.confirm-div {
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    background: #dd00001a; 
+    padding: 0px 15px;
+    border-radius: 5px;
+}
+
+.confirm-div.active {
+    display: flex;
+}
+
+.search-review {
+    padding: 6px; width: 100%; 
+    border-radius: 4px 0px 0px 4px; 
+    border: 2px solid #66BAA8;
+    outline: 0px;
+}
+
+.icon-box2 {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    background: #66BAA8;
+    padding: 8px;
+    border-radius: 0px 4px 4px 0px;
+    cursor: pointer;
+}
+
+.cancel-btn, .delete-btn {
+    border-radius: 5px;
+    border: 1px solid #1E1926;
+    margin: 0px;
+    background: #fff;
+    color: #1E1926;
+    padding: 7px 25px;
+    transition: 0s;
+    cursor: pointer;
+}
+
+.cancel-btn:hover, .delete-btn:hover {
+    background: #fff;
+    outline: 2px solid #ccc;
+}
+
+.action-btns {
+    display: none;
+}
+
+.action-btns.active {
+    display: block;
+    position: absolute; 
+    top: 15px; 
+    right: 15px;
+} 
+
+.questionDiv {
+    position: relative;
+    box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2); 
+    border-radius: 5px; 
+    padding: 20px; 
+    margin: 20px 0px; 
+    width: 100%;
+}
+
+.edit-ques, .delete-ques {
+    width: 15px;
+    cursor: pointer;
+    margin: 0px 2px;
+}
+
+.reviewerRate {
+    width: 80%;
+}
+
+.confirm-div .reviewerRate {
+    width: auto;
+}
+
+@media only screen and (max-width: 600px) {
+    .reviewDiv {
+        gap: 10px;
+    }
+
+    .mediaStyleDiv {
+        display: flex; 
+        align-items: center;
+        background: #FF754D;
+        border-radius: 20px;
+        padding: 0px 8px;
+        gap: 5px;
+        height: 25px;
+        font-size: 14px;
+    }
+
+    .mediaStyleDiv p, .mediaStyleDiv div i {
+        font-size: 14px;
+        color: #fff;
+    }
+
+    .reviewerRate {
+        width: 100%;
+    }
+
+    .confirm-div {
+        flex-direction: column;
+    }
+
+    .confirm-div .reviewerRate {
+        text-align: center;
+    }
+
+    .action-btns-div {
+        width: 100%;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .comment {
+        align-items: baseline;
+    }
+}

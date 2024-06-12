@@ -1,0 +1,313 @@
+.account-page {
+  padding: 200px 0;
+  background-image: linear-gradient(
+    to bottom,
+    #66baa8,
+    #4c9d9c,
+    #3d7f8a,
+    #356373,
+    #2f4858
+  );
+}
+
+.form-container {
+  background: #ffffff;
+  width: 450px;
+  height: 460px;
+  position: relative;
+  text-align: center;
+  padding: 20px 0;
+  margin: auto;
+  box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.form-container span {
+  font-weight: bold;
+  padding: 0 10px;
+  color: #555;
+  cursor: pointer;
+  width: 100px;
+  display: inline-block;
+}
+
+.form-btn {
+  display: inline-block;
+}
+
+.form-container form {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  max-width: 450px;
+  padding: 0 20px;
+  position: absolute;
+  top: 100px;
+  transition: transform 0.5s;
+}
+
+.loginWith {
+  display: flex;
+  align-items: center;
+  height: 48px;
+  padding: 0 16px;
+  min-width: 48px;
+  min-height: auto;
+  border: 1px solid rgb(228, 232, 240);
+  border-radius: 10px;
+  background: rgb(255, 255, 255);
+  transition: 0.5s;
+  font-size: 12px;
+  color: rgb(117, 117, 117);
+  margin-bottom: 10px;
+}
+
+.media-auth {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  padding-bottom: 8px;
+}
+
+.form-container hr {
+  background: #ccc;
+  padding: 0px;
+  border: 0.5px solid #ccc;
+  width: 94%;
+}
+
+.loginWith:hover {
+  background: #e0e0e0;
+}
+
+.inputDiv {
+  width: 100%;
+}
+
+#email {
+  font-size: 14px;
+  font-weight: bold;
+  float: left;
+  margin-left: 15px;
+  color: #1e1926;
+}
+
+#password {
+  font-size: 14px;
+  font-weight: bold;
+  float: left;
+  margin-left: 15px;
+  color: #1e1926;
+}
+
+#userName {
+  font-size: 14px;
+  font-weight: bold;
+  float: left;
+  margin-left: 15px;
+  color: #1e1926;
+}
+
+#emailRegister {
+  font-size: 14px;
+  font-weight: bold;
+  float: left;
+  margin-left: 15px;
+  color: #1e1926;
+}
+
+#passwordRegister {
+  font-size: 14px;
+  font-weight: bold;
+  float: left;
+  margin-left: 15px;
+  color: #1e1926;
+}
+
+#confirmPassword {
+  font-size: 14px;
+  font-weight: bold;
+  float: left;
+  margin-left: 15px;
+  color: #1e1926;
+}
+
+#newPassword {
+  font-size: 14px;
+  font-weight: bold;
+  float: left;
+  margin-left: 15px;
+  color: #1e1926;
+}
+
+form input {
+  width: 93%;
+  height: 30px;
+  margin: 10px 0;
+  padding: 0px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.recoverText {
+  margin: 0px 7px;
+  margin-top: 32px;
+}
+
+.recoverInputs {
+  height: 45px;
+}
+
+.btn22 {
+  width: 70%;
+  height: 40px;
+  border-radius: 30px;
+  border: none;
+  background: #4028df;
+  color: #ffffff;
+  cursor: pointer;
+  margin: 10px 0;
+  transition: 0.5s;
+}
+#notReceiveBtn {
+  color: #4028df;
+  font-size: 14px;
+  font-weight: 600;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+#notReceiveBtn:hover {
+  text-decoration: underline;
+}
+
+#resendLink {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+#countdown {
+  width: 0px;
+  display: unset;
+  color: #4028df;
+  padding: 0px 5px;
+  font-weight: 400;
+}
+
+#resendLink {
+  width: 70%;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-top: 30px;
+}
+
+#cantReceive {
+  display: none;
+}
+
+.btn22:hover {
+  background: #352b48;
+}
+
+form .btn22:focus {
+  outline: none;
+}
+
+#LoginForm {
+  left: 0px;
+  top: 85px;
+  width: 450px;
+}
+
+#RegForm {
+  left: -450px;
+}
+
+form a {
+  font-size: 12px;
+}
+
+.recoverHeader {
+  font-size: 22px;
+  font-weight: 500;
+  color: #1e1926;
+}
+
+#Indicator {
+  width: 100px;
+  border: none;
+  background: #4028df;
+  height: 3px;
+  margin-top: 8px;
+  transform: translateX(100px);
+  transition: transform 0.5s;
+}
+
+.resetPassHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#Indicator2 {
+  width: 100px;
+  border: none;
+  background: #4028df;
+  height: 3px;
+  margin-top: 8px;
+}
+
+#forgetPass:hover {
+  text-decoration: underline;
+}
+
+.error {
+  font-size: 13px;
+  font-weight: 400;
+  text-align: left;
+  margin-left: 15px;
+  margin-bottom: 10px;
+  color: #c40000;
+  text-shadow: red;
+}
+
+.successReset {
+  font-size: 13px;
+  font-weight: 400;
+  text-align: left;
+  margin-left: 15px;
+  margin-bottom: 10px;
+  color: #006946;
+  text-shadow: green;
+}
+
+#error {
+  font-size: 13px;
+  text-align: left;
+  color: #c40000;
+  text-shadow: red;
+  display: none;
+}
+
+/*-------media query for less than 600 screen size-------*/
+
+@media only screen and (max-width: 600px) {
+  .form-container {
+    width: 85%;
+  }
+
+  .form-container form {
+    max-width: 100%;
+  }
+
+  .media-auth {
+    flex-direction: column;
+  }
+
+  .loginWith {
+    padding: 0px 10px;
+    justify-content: center;
+  }
+}

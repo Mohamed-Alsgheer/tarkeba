@@ -1,0 +1,16 @@
+.style-edit-profile {
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 100px;
+}
+
+.style-edit-profile form input {
+    width: 100%;
+    margin-bottom: 10px;
+    height: 40px;
+    padding-left: 10px;
+    font-size: 20px;
+    margin-right: 10px;
+    border: 2px solid #4028df;
+}

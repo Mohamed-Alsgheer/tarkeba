@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Tarkeba perfume">
+    <meta property="og:description"
+        content="get the best Tarkeba's of the best perfumes, we can make a custom perfume for you.">
+    <meta property="og:image" content="tarkeba-img/iconSocail.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="600">
+    <meta property="og:type" content="website">
+    <meta name="description" content="{{productInfo.metaDesc}}" />
+    <title>{{productInfo.pageTitle}}</title>
+    <link rel="icon" href="/images/icon2.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/stylesheets/tarkeba.css">
+    <link rel="stylesheet" href="/stylesheets/products.css">
+    <link rel="stylesheet" href="/stylesheets/style-language.css">
+</head>
+
+<body>
+    <!--header-->
+    {{> header1}}
+    <!--single product details-->
+    <div id="product-js" class="body-container">
+        <div class="single-product">
+            <div class="row5">
+                <div class="col2" style="max-width: 600px;">
+                    {{#with (lookup productInfo.images 0)~}}
+                    <img src="{{url}}" alt="{{altText}}" style="width: 100%" id="ProductImg">
+                    {{/with}}
+                    <div class="sir">
+                        {{#each productInfo.images}}
+                        <div class="sic">
+                            <img src="{{this.url}}" alt="{{this.altText}}" class="small-img">
+                        </div>
+                        {{/each}}
+                    </div>
+                </div>
+                <div class="col2 data-product" style="padding-top: 0px; align-items: flex-start;">
+                    <div class="reviewContainer">
+                        <h1 style="margin-bottom: 20px;">{{productInfo.name}}</h1>
+                        <div class="starLine">
+                            <p style="margin-right: 8px;"> {{productInfo.overallRating}} / 5 </p>
+                            <div class="numReviews" style="display: flex;">
+                                <i class="fa-regular fa-star" style="display: block;"></i>
+                                <i class="fa-regular fa-star" style="display: block;"></i>
+                                <i class="fa-regular fa-star" style="display: block;"></i>
+                                <i class="fa-regular fa-star" style="display: block;"></i>
+                                <i class="fa-regular fa-star" style="display: block;"></i>
+                            </div>
+                            <input type="number" value="{{productInfo.overallRating}}" id="avgRating" hidden>
+                            <p class="reviewsCount" style="margin-left: 8px;">( {{productInfo.reviews.length}} reviews )
+                            </p>
+                        </div>
+                        {{#if productInfo.pricing.salePrice}}
+                        <p class="previousPrice" style="margin-bottom: 10px;">{{productInfo.pricing.salePrice}} EGP</p>
+                        {{/if}}
+                        <h4>{{productInfo.pricing.price}}.00 EGP</h4>
+                        <form action="/addToCart/{{productInfo._id}}" method="POST" id="input-div">
+                            {{#if productInfo.stock}}
+                            <p style="margin-top: 20px;">In stock: {{productInfo.stock}} available</p>
+                            {{else}}
+                            <p style="margin-top: 20px;">Out of stock</p>
+                            {{/if}}
+                            <input type="number" name="quantity" value="1" min="1" max="{{productInfo.stock}}"
+                                id="input-number2">
+                            <input type="submit" class="btn"
+                                style="font-size: 16px; height: 40px; padding-top: 10px; border: 0px; margin-top: 15px;"
+                                value="Add To Cart">
+                        </form>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <h3>Description</h3>
+                        <br>
+                        <p>{{productInfo.desc}}</p>
+                    </div>
+                </div>
+            </div>
+            <!--comments-->
+            <div style="display: flex; justify-content: center;">
+                <div style="width: 90%">
+                    <div class="reviewHeader">
+                        <h2 class="headers active">Reviews</h2>
+                        <h2 class="headers">Details</h2>
+                    </div>
+                    <div class="bodies">
+                        <div class="comment reviewQuestions">
+                            <div class="qdiv">
+                                <p class="question">How do I review this product?</p>
+                                <p class="answer">If you recently purchased this product from Tarkeba, you can go to
+                                    your Orders page and click on the Submit Review button.</p>
+                            </div>
+                            <div class="qdiv">
+                                <p class="question">Where do the reviews come from?</p>
+                                <p class="answer">Our reviews are from our customers who purchased the product and
+                                    submitted a review.</p>
+                            </div>
+                        </div>
+                        {{#each productInfo.reviews}}
+                        <div class="comment">
+                            <div>
+                                <h2 class="reviewerName">{{this.name}}</h2>
+                                <p class="reviewerRate">{{this.comment}}</p>
+                            </div>
+                            <div class="reviewDiv">
+                                <p class="reviewerDate">{{this.date}}</p>
+                                <div class="reviewNumber" style="display: flex;">
+                                    <i class="fa-regular fa-star" style="display: block;"></i>
+                                    <i class="fa-regular fa-star" style="display: block;"></i>
+                                    <i class="fa-regular fa-star" style="display: block;"></i>
+                                    <i class="fa-regular fa-star" style="display: block;"></i>
+                                    <i class="fa-regular fa-star" style="display: block;"></i>
+                                </div>
+                                <input type="number" class="starCount" name="rating" value="{{this.rating}}" hidden>
+                            </div>
+                        </div>
+                        {{/each}}
+                    </div>
+                    <div class="bodies" style="display:none; gap: 10px; margin-bottom: 20px;" id="details">
+                        <div class="scale">
+                            <p>Size</p>
+                            <p>{{productInfo.size}}</p>
+                            <p>Origin</p>
+                            <p>{{productInfo.origin}}</p>
+                            <p>Fragrance</p>
+                            <p>{{productInfo.fragrance}}</p>
+                            <p>Type</p>
+                            <p>{{productInfo.productType}}</p>
+                        </div>
+                        <div class="scale">
+                            {{#each productInfo.details}}
+                            <p>{{this.classification}}</p>
+                            <p>{{this.value}}</p>
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Add-comment-->
+    <div class="popup" id="popup-1">
+        <div class="overlay"></div>
+        <div class="content" id="contentPass">
+            <div style="display: flex;">
+                <div class="close-btn" onclick="togglePopupName()">&times;</div>
+                <h2 style="color: #1E1926; margin: 0px 25px;">Product Review</h2>
+            </div>
+            <div class="scrollBar">
+                <div style="margin: 0px 25px;">
+                    <div class="productInfo">
+                        {{#with (lookup productInfo.images 0)~}}
+                        <img src="/{{img}}" alt="{{altText}}" style="width: 250px" id="ProductImg">
+                        {{/with}}
+                        <div class="productText">
+                            <h1 style="margin-bottom: 15px; font-weight: 500; font-size: 18px;">{{productInfo.name}}
+                            </h1>
+                            <h4 style="margin-bottom: 15px; font-weight: 500; font-size: 15px;">
+                                {{productInfo.pricing.price}} LE
+                            </h4>
+                            <div style="margin-bottom: 20px;">
+                                <p>{{productInfo.desc}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <form action="/review/{{productInfo._id}}" method="POST" style="margin-top: 40px;">
+                        <div style="display: flex; margin-bottom: 20px">
+                            <p class="textReview" style="margin-right: 60px;">Overall Rating:</p>
+                            <div class="review">
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                            </div>
+                            <input type="number" id="ratingCount" name="rating" hidden>
+                        </div>
+                        <div class="addComment">
+                            <p class="textReview">Review:</p>
+                            <textarea placeholder="Tell us your opinion" cols="40" rows="4" name="comment"
+                                style="height: 80px; border: 1px solid black" class="textArea" required></textarea>
+                        </div>
+                        <div class="addComment">
+                            <p class="textReview">Customer: </p>
+                            <input type="text" class="change-inputs" name="customerName" value="{{notLogin}}"
+                                placeholder="Customer Name" id="current-pass" required>
+                        </div>
+                        <input type="hidden" name="_csrf" value="{{token}}">
+                        <div class="div-btns">
+                            <input type="submit" class="btn change-btn" id="subNewEmail"
+                                style="border: 0px; float: right; margin: 0px; border-radius: 0px;"
+                                value="POST A REVIEW">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--footer-->
+    {{> footer}}
+    <!--JavaScript-->
+    <script src="/javascripts/products.js"></script>
+    <script src="/javascripts/tarkeba.js"></script>
+    <script>
+        const productImg = document.getElementById("ProductImg");
+        const smallImg = document.getElementsByClassName("small-img");
+        const headers = document.getElementsByClassName("headers");
+        const bodies = document.getElementsByClassName("bodies");
+        Array.from(smallImg).forEach((img) => {
+            img.onclick = () => {
+                productImg.src = img.src;
+            }
+        });
+
+        headers[0].onclick = () => {
+            headers[0].classList.add("active");
+            bodies[0].style.display = "block";
+            headers[1].classList.remove("active");
+            bodies[1].style.display = "none";
+        }
+
+        headers[1].onclick = () => {
+            headers[1].classList.add("active");
+            bodies[1].style.display = "flex";
+            headers[0].classList.remove("active");
+            bodies[0].style.display = "none";
+        }
+
+        ////average rating////
+        const avgRating = document.getElementById("avgRating");
+        const numReviews = document.querySelectorAll(".numReviews i");
+        for (let i = 0; i < avgRating.value; i++) {
+            numReviews[i].classList.add("fa-solid");
+        }
+    </script>
+</body>
+
+</html>

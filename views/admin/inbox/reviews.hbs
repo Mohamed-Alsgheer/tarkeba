@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Tarkeba perfume">
+    <meta property="og:description"
+        content="get the best Tarkeba's of the best perfumes, we can make a custom perfume for you.">
+    <meta property="og:image" content="tarkeba-img/iconSocail.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="600">
+    <meta property="og:type" content="website">
+    <title>Tarkeba perfume | Reviews</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" href="/images/icon2.png">
+    <link rel="stylesheet" href="/stylesheets/tarkeba.css">
+    <link rel="stylesheet" href="/stylesheets/products.css">
+    <link rel="stylesheet" href="/stylesheets/dashboard.css">
+    <link rel="stylesheet" href="/stylesheets/coupon.css">
+    <link rel="stylesheet" href="/stylesheets/reviews.css">
+    <link rel="stylesheet" href="/stylesheets/orders.css">
+    <link rel="stylesheet" href="/stylesheets/style-language.css">
+</head>
+
+<body>
+    <div id="cartBody">
+        <div style="display: flex; justify-content: flex-start;">
+            <!--side bar-->
+            {{> sidebar}}
+            <!--header-->
+            {{> header2}}
+            <!--page body-->
+            <div class="dashboard-body">
+                <div class="order-list" style="margin-bottom: 50px;">
+                    <div class="page-title" style="display: flex; justify-content: space-between; align-items: center;">
+                        <p>Reviews</p>
+                        <div style="width: 50%; display: flex; justify-content: space-between; align-items: center;">
+                            <input type="search" id="reviewSearch" class="search-review"
+                                placeholder="Search over reviews">
+                            <div class="icon-box2">
+                                <img src="/images/loupe.png" style="width: 15px">
+                            </div>
+                        </div>
+                    </div>
+                    <div style="width: 80%; display: flex; flex-direction: column; align-items: center;">
+                        <div style="width: 100%;" id="reviewsBody">
+                            {{#each products as | value item |}}
+                            {{#each this.reviews}}
+                            <div class="review-div">
+                                <div class="comment" style="border-bottom: 0px; margin: 0px;">
+                                    <div style="display: flex; align-items: center;">
+                                        {{#with (lookup value.images 0)~}}
+                                        <img src="{{url}}" alt="{{altText}}" style="width: 60px;">
+                                        {{/with}}
+                                        <div style="padding: 10px 5px 0px 5px;">
+                                            <p style="margin-bottom: 10px;">{{value.name}}</p>
+                                            <p style="font-size: 14px; color: #6c757d;">Reviewed by {{this.name}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="reviewDiv">
+                                        <p class="reviewerDate">{{this.date}}</p>
+                                        <span class="mediaStyleDiv">
+                                            <p class="productRate">{{this.rating}}</p>
+                                            <div class="reviewNumber">
+                                                <i class="fa-regular fa-star mediaStyleStar"></i>
+                                                <i class="fa-regular fa-star"></i>
+                                                <i class="fa-regular fa-star"></i>
+                                                <i class="fa-regular fa-star"></i>
+                                                <i class="fa-regular fa-star"></i>
+                                            </div>
+                                            <input type="number" class="starCount" name="rating" value="{{this.rating}}"
+                                                hidden>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div style="display: flex; align-items: flex-end; justify-content: space-between;">
+                                    <p class="reviewerRate" style="overflow-wrap: break-word;">{{this.comment}}</p>
+                                    <img src="/images/admin-img/delete.png" class="remove-review">
+                                </div>
+                                <div class="confirm-div">
+                                    <p class="reviewerRate" style="color: #c40000;">Review flagged for deletion.</p>
+                                    <div class="action-btns-div">
+                                        <button class="cancel-btn btn">Cancel</button>
+                                        <button class="btn delete-btn">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                            {{/each}}
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+                <div id="pagination-div">
+                    <button class="page-btn start-page">&#10094;&#10094;</button>
+                    <button class="page-btn prev-page">&#10094;</button>
+                    <div>
+                        <ul id="page-btns" style="display: flex; list-style: none;">
+                        </ul>
+                    </div>
+                    <button class="page-btn next-page">&#10095;</button>
+                    <button class="page-btn end-page">&#10095;&#10095;</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--javaScripts-->
+    <script src="/javascripts/sidebar.js"></script>
+    <script src="/javascripts/review.js"></script>
+</body>
+
+</html>
